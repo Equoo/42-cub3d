@@ -60,20 +60,32 @@ typedef struct s_world {
     size_t      n_sectors;
 }   t_world;
 
+int is_left(t_vec2 *a, t_vec2 *b)
+{
+    return (-a->x * b->y + a->y * b->x < 0);
+}
+
 static int  is_inpolygon(t_face *points, int npoints, t_vec3 point)
 {
     int     i;
     int     isleft;
     t_vec2  va;
+    t_vec2  vb;
 
     isleft = 1;
     i = 0;
     while (i < npoints)
     {
-        va = vec2_sub(points[i].po, points[i + 1].pos);
-        
+        va = vec2_sub(points[i].pos, points[i + 1].pos);
+        vb = vec2_sub((t_vec2){point.x, point.y}, points[i + 1].pos);
+        __builtin_printf("Npoints: %i, i %i, a(%f, %f), b(%f, %f), va(%f, %f), vb(%f, %f)\n", npoints, i, points[i].pos.x, points[i].pos.y, points[i + 1].pos.x, points[i + 1].pos.y, va.x, va.y, vb.x, vb.y);
+        if (!is_left(&vb, &va)) {
+            isleft = 0;
+            break ;
+        }
+        i++;
     }
-    return (0);
+    return (isleft);
 }
 
 static t_sector *sector_from_pos(t_world *world, t_vec3 pos)
@@ -109,13 +121,14 @@ static void draw_world(t_render *render)
         {{-100, 100}, {.rgba=RDM}}
     }};
     world.sectors[0] = (t_sector){ 0, 100, {.rgba=0xffffffff}, {.rgba=0xfffffff}, 4, {
-        {{-100, -100}, {.rgba=RED}},
-        {{100, -100}, {.rgba=BLUE}},
-        {{100, 100}, {.rgba=GREEN}},
-        {{-100, 100}, {.rgba=RDM}}
+        {{-100, -200}, {.rgba=RED}},
+        {{100, -200}, {.rgba=BLUE}},
+        {{100, -100}, {.rgba=GREEN}},
+        {{-100, -100}, {.rgba=RDM}}
     }};
     t_camera    cam = (t_camera){.fov = 90};
     t_sector    *main_sector = sector_from_pos(&world, cam.pos);
+    __builtin_printf("Sector: %p, %p, %p;\n", world.sectors, world.sectors + 1, main_sector);
 
     x = 0;
     while (x < render->width)

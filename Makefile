@@ -10,6 +10,7 @@ CFLAGS = -Wall -Wextra -Werror -MMD -mavx2 $(ADDFLAGS) -I $(INC_DIR) -I libft/he
 LIBS = -Llibft -lft -Lminilibx-linux -lmlx -L/usr/X11/lib -lXext -lX11 -lm
 SOLONG_SRCS =   vector2d/add.c\
 				vector2d/dot.c\
+				vector2d/cross.c\
 				vector2d/scale.c\
 				vector2d/sub.c\
 				vector2d/length.c\
@@ -22,6 +23,7 @@ SOLONG_SRCS =   vector2d/add.c\
 				vector2d/abs.c\
 				vector2d/transform.c\
 				vector2d/lerp.c\
+				vector2d/dist.c\
 				vector2d.c\
 				vector3d/add.c\
 				vector3d/dot.c\
@@ -106,7 +108,7 @@ debug:
 
 .PHONY: release
 release:
-	$(MAKE) -j $(nproc) --no-print-directory LIBFTTARGET="release" ADDFLAGS="-O3 -D DEBUG=0" SOLONG_SRCS="$(SOLONG_SRCS)" $(NAME)
+	$(MAKE) -j $(nproc) --no-print-directory LIBFTTARGET="release" ADDFLAGS="-O3 -D DEBUG=0 -flto" SOLONG_SRCS="$(SOLONG_SRCS)" $(NAME)
 
 
 .PHONY: bonus

@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@42lyon.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 16:02:00 by dderny            #+#    #+#             */
-/*   Updated: 2025/04/26 01:45:59 by dderny           ###   ########.fr       */
+/*   Updated: 2025/09/28 22:16:51 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 typedef struct s_m256i_rgba
 {
     struct {
-        __m256i_u	r;
-        __m256i_u	g;
         __m256i_u	b;
+        __m256i_u	g;
+        __m256i_u	r;
         __m256i_u	a;
     };
     __m256i_u rgba;
@@ -28,10 +28,10 @@ typedef struct s_m256i_rgba
 typedef union s_rgba
 {
     struct {
-	    u_int		r;
-	    u_int		g;
-	    u_int		b;
-	    u_int		a;
+	    u_int16_t		b;
+	    u_int16_t		g;
+	    u_int16_t		r;
+	    u_int16_t		a;
     };
     u_int rgba;
 }				t_rgba;

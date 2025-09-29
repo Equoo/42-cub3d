@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@42lyon.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:54:37 by dderny            #+#    #+#             */
-/*   Updated: 2025/04/26 01:48:32 by dderny           ###   ########.fr       */
+/*   Updated: 2025/09/28 23:16:00 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ typedef struct s_rtext
 	int			font_size;
 }				t_rtext;
 
+typedef struct s_image
+{
+	t_img	*img;
+	u_int	*data;
+	int		size_line;
+	int		width;
+	int		height;
+	int		size;
+}   t_image;
+
 typedef struct s_render
 {
 	void		*mlx;
@@ -38,6 +48,7 @@ typedef struct s_render
 
 	t_list		*textures;
 	t_img		*buffer;
+	t_image		buffer_img;
 	void		*font;
 	t_vec   	texts;
 }				t_render;
@@ -62,6 +73,7 @@ typedef struct s_copyimg
 
 void			render_texts(t_render *render, t_img *buffer);
 
+void            put_pixel(const t_image img, const int x, const int y, u_int color);
 void			mylx_pixel_put(t_img *img, int x, int y, unsigned int color);
 void			mylx_m256_pixel_put(t_img *img, int x, int y, __m256i_u color);
 unsigned int	*mylx_pixel_get(t_img *img, int x, int y);

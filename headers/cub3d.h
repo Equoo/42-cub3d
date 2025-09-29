@@ -17,7 +17,7 @@
 # include <libft.h>
 
 # ifndef TICK
-#  define TICK 244
+#  define TICK 2048
 # endif
 
 enum

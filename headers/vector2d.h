@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@42lyon.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:50:41 by dderny            #+#    #+#             */
-/*   Updated: 2025/04/26 01:46:03 by dderny           ###   ########.fr       */
+/*   Updated: 2025/09/28 21:36:12 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,12 @@ t_vec2		vec2_scale_dived(t_vec2 self, float factor);
 t_vec2		vec2_scaled(t_vec2 self, float factor);
 void			vec2_scale(t_vec2 *self, float factor);
 float			vec2_dot(t_vec2 *self, t_vec2 *other);
+float			vec2_cross(t_vec2 *self, t_vec2 *other);
 t_vec2		vec2_normalize(t_vec2 self);
 t_vec2		vec2_abs(t_vec2 self);
 float			vec2_length(t_vec2 self);
 t_vec2		vec2_lerp(t_vec2 a, t_vec2 b, float t);
+float       vec2_dist(t_vec2 a, t_vec2 b);
 
 void			vec2_del(t_vec2 *self);
 t_vec2		*vec2_new(float x, float y);

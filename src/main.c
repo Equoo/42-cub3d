@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderny <dderny@42lyon.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:03:13 by dderny            #+#    #+#             */
-/*   Updated: 2025/04/26 01:52:56 by dderny           ###   ########.fr       */
+/*   Updated: 2025/09/28 23:15:51 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char **argv)
 	errno = 0;
 	if (game_init(&env, argv[1]))
 		return (process_close(&env));
-    
+    mlx_do_key_autorepeatoff(env.render.mlx);
 	mlx_hook(env.render.win, ON_DESTROY, 0, &process_close, &env);
 	mlx_hook(env.render.win, ON_KEYDOWN, KeyPressMask, &down_key, &env);
 	mlx_hook(env.render.win, ON_KEYUP, KeyReleaseMask, &up_key, &env);
@@ -107,15 +107,23 @@ int	update(t_gameenv *env)
 
 void	tick(t_gameenv *env)
 {
+    t_render    *rndr;
+
+    rndr = &env->render;
 	printticks(env);
 	*getseed() = ((t_scene *)env->scene)->seed;
 	tick_inputs(env);
 	tick_game(env);
-	tick_render(env, &env->render);
+    rndr->buffer = mlx_new_image(rndr->mlx, rndr->width, rndr->height); // NOTE: check allocation error
+    rndr->buffer_img = (t_image){rndr->buffer, (u_int *)rndr->buffer->data, rndr->buffer->size_line / 4, rndr->buffer->width, rndr->buffer->height, rndr->buffer->width * rndr->buffer->height};
+	tick_render(env, rndr);
+    mlx_destroy_image(rndr->mlx, rndr->buffer);
+    rndr->buffer = NULL;
 }
 
 int	process_close(t_gameenv *env)
 {
+    mlx_do_key_autorepeaton(env->render.mlx);
 	vec_free(env->render.texts);
 	ft_lstclear(&env->scenes_lst, &scene_del);
 	ft_lstclear(&env->render.textures, &texture_del);

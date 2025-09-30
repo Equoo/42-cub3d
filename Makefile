@@ -24,6 +24,9 @@ SOLONG_SRCS =   vector2d/add.c\
 				vector2d/transform.c\
 				vector2d/lerp.c\
 				vector2d/dist.c\
+				rotation/forward.c\
+				rotation/right.c\
+				rotation/up.c\
 				vector2d.c\
 				vector3d/add.c\
 				vector3d/dot.c\

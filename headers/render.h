@@ -39,6 +39,14 @@ typedef struct s_image
 	int		size;
 }   t_image;
 
+#include "vector3d.h"
+
+typedef struct  s_camera {
+    t_vec3  pos;
+    t_vec3  rot;
+    int     fov;
+}   t_camera;
+
 typedef struct s_render
 {
 	void		*mlx;
@@ -49,6 +57,7 @@ typedef struct s_render
 	t_list		*textures;
 	t_img		*buffer;
 	t_image		buffer_img;
+    t_camera    camera;
 	void		*font;
 	t_vec   	texts;
 }				t_render;

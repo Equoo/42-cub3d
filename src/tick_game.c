@@ -12,7 +12,6 @@
 
 #include "classes/element.h"
 #include "classes/entities/player.h"
-#include "ft_bool.h"
 #include "input.h"
 #include "libft.h"
 #include "render.h"
@@ -22,12 +21,14 @@
 #include <X11/X.h>
 #include <X11/Xutil.h>
 #include <stdlib.h>
+#include "rotation.h"
 
 void	tick_key(t_player *ply, t_gameenv *env)
 {
-	int	modifier;
+	//int	modifier;
+	(void)ply;
 
-	if (input_ispressed('w', env))
+	/*if (input_ispressed('w', env))
 	{
 		ply->actor->move(ply->actor, 2, 0);
 		ply->base->play_anim(ply->base, "J_2");
@@ -49,7 +50,22 @@ void	tick_key(t_player *ply, t_gameenv *env)
 		ply->actor->move(ply->actor, 3, modifier);
 	}
 	if (input_ispressed(XK_space, env))
-		ply->attack(ply);
+		ply->attack(ply);*/
+
+    t_camera *camera = &env->render.camera;
+    if (input_isdown('w', env))
+		camera->pos = vec3_add(camera->pos, vec3_scaled(rot_forward(camera->rot), 100 * env->frametime));
+	if (input_isdown('a', env))
+		camera->pos = vec3_add(camera->pos, vec3_scaled(rot_right(camera->rot), -100 * env->frametime));
+	if (input_isdown('d', env))
+		camera->pos = vec3_add(camera->pos, vec3_scaled(rot_right(camera->rot), 100 * env->frametime));
+	if (input_isdown('s', env))
+		camera->pos = vec3_add(camera->pos, vec3_scaled(rot_forward(camera->rot), -100 * env->frametime));
+	
+	if (input_isdown('q', env))
+		camera->rot.z += -40 * env->frametime;
+	if (input_isdown('e', env))
+		camera->rot.z += 40 * env->frametime;
 }
 
 // NOT MALLOC SAFE

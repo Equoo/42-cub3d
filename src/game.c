@@ -69,6 +69,7 @@ int	game_init(t_gameenv *env, char *mappath)
 	//player->base->pos = (t_vec3){(terrain->spawn % terrain->w)
 	//		* 16, (terrain->spawn / terrain->w) * 16, 0};
 	//scene->ply = player;
+    env->render.camera = (t_camera){.fov = 90};
 	scene->seed = curtime_us();
 	return (0);
 }

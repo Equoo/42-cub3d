@@ -94,14 +94,8 @@ typedef struct s_sector {
     t_rgba      top_face;
     t_rgba      bot_face;
     int         n_points;
-    t_face      faces[4];
+    t_face      faces[5];
 }   t_sector;
-
-typedef struct  s_camera {
-    t_vec3  pos;
-    t_vec3  rot;
-    int     fov;
-}   t_camera;
 
 #define NSECTORS 2
 
@@ -192,13 +186,18 @@ static  int intersect_line_segment(const t_vec2 line_pos,
 static int  trace_wall(t_sector sector, t_vec2 pos, float angle, t_vec2 *hit_pos)
 {
     t_vec2  dir = {cos(angle), sin(angle)};
+    t_vec2  hit_dir;
     int     i;
 
     i = 0;
     while (i < sector.n_points)
     {
         if (intersect_line_segment(pos, dir, (t_2vec2){sector.faces[i].pos, sector.faces[(i + 1) % sector.n_points].pos}, hit_pos))
-            return (1);
+        {
+            hit_dir = vec2_sub(*hit_pos, pos);
+            if (vec2_dot(&dir, &hit_dir) > 0)
+                return (1);
+        }
         i++;
     }
     __builtin_printf("EHYYY;\n");
@@ -211,13 +210,13 @@ static int draw_wall(t_render *render, int x, t_vec2 origin, t_vec2 hit_pos)
     int height = 1 / length * 500000;
     int i = 0;
     while (i < height)
-        put_pixel(render->buffer_img, x, 1080 / 2 - height / 2 + i++, 0xffeeee00);
+        put_pixel(render->buffer_img, 200 + x, 1080 / 2 - height / 2 + i++, 0xffeeee00);
     return (0);
 }
 
 static int  draw_walls(t_render *render, t_world world, t_camera cam, t_sector first_sec)
 {
-    const int   rays = render->width;
+    const int   rays = render->width - 200;
     const int   slice_width = render->width / rays;
     const float angle_steps = (float)cam.fov / (float)rays;
     int         i;
@@ -230,7 +229,7 @@ static int  draw_walls(t_render *render, t_world world, t_camera cam, t_sector f
     while (i < rays)
     {
         ray_angle = (M_PI / 180) * (cam.rot.z - ((float)cam.fov / 2) + i * angle_steps);
-        t_vec2 off = (t_vec2){200, 500};
+        t_vec2 off = (t_vec2){100, 500};
         t_vec2 origin = vec2_add(vec2_scale_dived((t_vec2){cam.pos.x, cam.pos.y}, 12), off);
         if (trace_wall(first_sec, (t_vec2){cam.pos.x, cam.pos.y}, ray_angle, &hit_pos))
         {
@@ -253,24 +252,25 @@ static int  draw_walls(t_render *render, t_world world, t_camera cam, t_sector f
 static void draw_world(t_render *render)
 {
     t_world     world = (t_world){.n_sectors = NSECTORS};
-    world.sectors[0] = (t_sector){ 0, 100, {.rgba=0xffffffff}, {.rgba=0xfffffff}, 4, {
+    world.sectors[0] = (t_sector){ 0, 100, {.rgba=0xffffffff}, {.rgba=0xfffffff}, 5, {
         {{-1000, -1000}, {.rgba=RED}},
         {{1000, -1000}, {.rgba=BLUE}},
         {{1000, 1000}, {.rgba=GREEN}},
+        {{0, 1450}, {.rgba=RDM}},
         {{-1000, 1000}, {.rgba=RDM}}
     }};
-    world.sectors[1] = (t_sector){ 0, 100, {.rgba=0xffffffff}, {.rgba=0xfffffff}, 4, {
+    world.sectors[1] = (t_sector){ 0, 100, {.rgba=0xffffffff}, {.rgba=0xfffffff}, 5, {
         {{-100, -200}, {.rgba=RED}},
         {{100, -200}, {.rgba=BLUE}},
         {{100, -100}, {.rgba=GREEN}},
+        {{-100, -100}, {.rgba=RDM}},
         {{-100, -100}, {.rgba=RDM}}
     }};
-    t_camera    cam = (t_camera){.fov = 90, .rot = {0, 0, 30}};
-    t_sector    *main_sector = sector_from_pos(&world, cam.pos);
+    t_sector    *main_sector = sector_from_pos(&world, render->camera.pos);
 
-    draw_square(render->buffer_img, (t_vec2){100, 400}, (t_vec2){300, 600}, 0xff999999);
+    draw_square(render->buffer_img, (t_vec2){0, 400}, (t_vec2){300, 600}, 0xff999999);
     int i = 0;
-    t_vec2 off = (t_vec2){200, 500}; 
+    t_vec2 off = (t_vec2){100, 500}; 
     while (i < main_sector->n_points)
     {
         t_face face_a = main_sector->faces[i];
@@ -279,7 +279,7 @@ static void draw_world(t_render *render)
         i++;
     }
 
-    draw_walls(render, world, cam, *main_sector);
+    draw_walls(render, world, render->camera, *main_sector);
 }
 
 void	tick_render(t_gameenv *env, t_render *render)

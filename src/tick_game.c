@@ -54,18 +54,18 @@ void	tick_key(t_player *ply, t_gameenv *env)
 
     t_camera *camera = &env->render.camera;
     if (input_isdown('w', env))
-		camera->pos = vec3_add(camera->pos, vec3_scaled(rot_forward(camera->rot), 100 * env->frametime));
+		camera->pos = vec3_add(camera->pos, vec3_scaled(rot_forward(camera->rot), 250 * env->frametime));
 	if (input_isdown('a', env))
-		camera->pos = vec3_add(camera->pos, vec3_scaled(rot_right(camera->rot), -100 * env->frametime));
+		camera->pos = vec3_add(camera->pos, vec3_scaled(rot_right(camera->rot), -250 * env->frametime));
 	if (input_isdown('d', env))
-		camera->pos = vec3_add(camera->pos, vec3_scaled(rot_right(camera->rot), 100 * env->frametime));
+		camera->pos = vec3_add(camera->pos, vec3_scaled(rot_right(camera->rot), 250 * env->frametime));
 	if (input_isdown('s', env))
-		camera->pos = vec3_add(camera->pos, vec3_scaled(rot_forward(camera->rot), -100 * env->frametime));
+		camera->pos = vec3_add(camera->pos, vec3_scaled(rot_forward(camera->rot), -250 * env->frametime));
 	
 	if (input_isdown('q', env))
-		camera->rot.z += -40 * env->frametime;
+		camera->rot.z += -70 * env->frametime;
 	if (input_isdown('e', env))
-		camera->rot.z += 40 * env->frametime;
+		camera->rot.z += 70 * env->frametime;
 }
 
 // NOT MALLOC SAFE

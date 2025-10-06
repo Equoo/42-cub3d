@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@42lyon.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:10:51 by dderny            #+#    #+#             */
-/*   Updated: 2025/09/28 22:14:06 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/03 20:41:07 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,72 +70,6 @@ void draw_square(const t_image img, const t_vec2 p1, const t_vec2 p2, const u_in
 #include "colors.h"
 #include <math.h>
 
-typedef struct  s_tex_map {
-    t_texture  *tex;
-    t_vec2      uva;
-    t_vec2      uvb;
-    uint16_t    alpha;
-}   t_tex_map;
-
-// if texture NULL -> portal
-typedef struct s_face {
-	int32_t		portal;
-	int32_t		portal_face;
-    t_vec2      pos;
-    t_rgba      color;
-    //t_tex_map   *texture;
-}   t_face;
-
-// Minimum 4 faces;
-// have to be CONVEX
-typedef struct s_sector {
-    float       pos_z;
-    float       height;
-    //t_tex_map   *top_face;
-    //t_tex_map   *bot_face;
-    t_rgba      top_face;
-    t_rgba      bot_face;
-    int         n_points;
-    t_face      faces[];
-}   t_sector;
-
-#define NSECTORS 2
-
-typedef struct s_world {
-    t_sector    *sectors[NSECTORS]; // replace to vec
-    size_t      n_sectors;
-}   t_world;
-
-int is_left(t_vec2 *a, t_vec2 *b)
-{
-    return (-a->x * b->y + a->y * b->x < 0);
-}
-
-static int  is_inpolygon(t_face *points, int npoints, t_vec3 point)
-{
-    int     i;
-    int     next;
-    int     isleft;
-    t_vec2  va;
-    t_vec2  vb;
-
-    isleft = 1;
-    i = 0;
-    while (i < npoints)
-    {
-        next = (i + 1) % npoints;
-        va = vec2_sub(points[i].pos, points[next].pos);
-        vb = vec2_sub((t_vec2){point.x, point.y}, points[next].pos);
-        //__builtin_printf("Npoints: %i, i %i, a(%f, %f), b(%f, %f), va(%f, %f), vb(%f, %f), Isleft %i\n", npoints, i, points[i].pos.x, points[i].pos.y, points[i + 1].pos.x, points[i + 1].pos.y, va.x, va.y, vb.x, vb.y, is_left(&vb, &va));
-        if (!is_left(&vb, &va)) {
-            isleft = 0;
-            break ;
-        }
-        i++;
-    }
-    return (isleft);
-}
-
 static int sector_from_pos(t_world *world, t_vec3 pos)
 {
     size_t      i;
@@ -185,7 +119,13 @@ static  int intersect_line_segment(const t_vec2 line_pos,
     return (1);
 }
 
-static int  trace_wall(t_sector **sectors, int sec_id, t_vec2 pos, float angle, t_vec2 *hit_pos, int face_ignore)
+typedef struct s_hit {
+	t_vec2	pos;
+	int		sector;
+	int		face;
+}	t_hit;
+
+static int  trace_wall(t_sector **sectors, int sec_id, t_vec2 pos, float angle, t_hit *hit, int face_ignore)
 {
     t_vec2  	dir = {cos(angle), sin(angle)};
     t_vec2  	hit_dir;
@@ -195,17 +135,20 @@ static int  trace_wall(t_sector **sectors, int sec_id, t_vec2 pos, float angle, 
     i = 0;
     while (i < sector->n_points)
     {
-        if (i != face_ignore && intersect_line_segment(pos, dir, (t_2vec2){sector->faces[i].pos, sector->faces[(i + 1) % sector->n_points].pos}, hit_pos))
+        if (i != face_ignore && intersect_line_segment(pos, dir, (t_2vec2){sector->faces[i].pos, sector->faces[(i + 1) % sector->n_points].pos}, &hit->pos))
         {
-            hit_dir = vec2_sub(*hit_pos, pos);
+            hit_dir = vec2_sub(hit->pos, pos);
             if (vec2_dot(&dir, &hit_dir) > 0)
 			{
 				if (sector->faces[i].portal != -1)
 				{
-					return (trace_wall(sectors, sector->faces[i].portal, pos, angle, hit_pos, sector->faces[i].portal_face));
+					return (trace_wall(sectors, sector->faces[i].portal, pos, angle, hit, sector->faces[i].portal_face));
 				}
-				else
+				else {
+					hit->sector = sec_id;
+					hit->face = i;
                 	return (1);
+				}
 			}
         }
         i++;
@@ -230,23 +173,26 @@ static int  draw_walls(t_render *render, t_world world, t_camera cam, int first_
     const int   rays = render->width - 200;
     const int   slice_width = render->width / rays;
     const float angle_steps = (float)cam.fov / (float)rays;
+	const int	rays_filling = 1;
     int         i;
     float       ray_angle;
-    t_vec2      hit_pos;
+    t_hit      	hit;
 
     (void)slice_width;
     (void)world;
     i = 0;
     while (i < rays)
     {
+		if (i % rays_filling && ++i)
+			continue;
         ray_angle = (M_PI / 180) * (cam.rot.z - ((float)cam.fov / 2) + i * angle_steps);
         t_vec2 off = (t_vec2){100, 500};
         t_vec2 origin = vec2_add(vec2_scale_dived((t_vec2){cam.pos.x, cam.pos.y}, 20), off);
-        if (trace_wall(world.sectors, first_sec, (t_vec2){cam.pos.x, cam.pos.y}, ray_angle, &hit_pos, -1))
+        if (trace_wall(world.sectors, first_sec, (t_vec2){cam.pos.x, cam.pos.y}, ray_angle, &hit, -1))
         {
-            draw_wall(render, i, (t_vec2){cam.pos.x, cam.pos.y}, hit_pos);
+            draw_wall(render, i, (t_vec2){cam.pos.x, cam.pos.y}, hit.pos);
             draw_line(render->buffer_img, origin, vec2_add(vec2_scaled((t_vec2){cos(ray_angle), sin(ray_angle)}, 100), origin), 0xff00ff00);
-            put_pixel(render->buffer_img, 100 + hit_pos.x / 20, 500 + hit_pos.y / 20, 0xff0000ff);
+            put_pixel(render->buffer_img, 100 + hit.pos.x / 20, 500 + hit.pos.y / 20, 0xff0000ff);
         }
         else
             draw_line(render->buffer_img, origin, vec2_add(vec2_scaled((t_vec2){cos(ray_angle), sin(ray_angle)}, 100), origin), 0xffff0000);

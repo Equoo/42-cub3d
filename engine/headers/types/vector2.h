@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:50:41 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/06 16:48:33 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/07 15:12:35 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -307,5 +307,13 @@ t_vec2		vec2_max(t_vec2 a, t_vec2 b);
  * @return Vector (|x|, |y|)
  */
 t_vec2		vec2_abs(t_vec2 self);
+
+/**
+ * @brief Rotates a vector by a given angle in radians
+ * @param v Vector to rotate
+ * @param angle Rotation angle in radians (positive is counter-clockwise)
+ * @return New rotated vector
+ */
+t_vec2		vec2_rot(t_vec2 v, float angle);
 
 #endif

@@ -1,45 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   object.hpp                                         :+:      :+:    :+:   */
+/*   node.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:24:40 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/29 00:53:51 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/29 13:56:20 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OBJECT_H
-# define OBJECT_H
+#ifndef NODE_H
+# define NODE_H
 
-# include <stdint.h>
 # include <ft_vector.h>
-# include <ft_string.h>
-# include <sys/types.h>
+# include <stddef.h>
 # include <unistd.h>
 
-typedef	void *t_self;
+# include "classes/object.h"
 
-/** INHERIT none **/
-typedef struct s_object t_object;
-struct s_object
+/** INHERIT object **/
+typedef struct s_node t_node;
+struct s_node
 {
-	t_str		*base_classes;
-	t_str		class_name;
-	uint32_t	id;
+	t_node	**childs;
 
-	void	*(*del)(t_object *self);
-	int		(*destruct)(t_object *self);
-	t_str	(*to_string)(t_object *self);
-	int		(*is_class)(t_object *self, t_str class);
+	int		(*add_child)(t_self *self, t_node *child);
+	int		(*rm_child)(t_self *self, size_t child);
 };
 
-int				object_construct(t_object *self);
-int				object_destruct(t_object *self);
-void			*object_del(t_object *self);
+t_node		*node_new();
+int			node_construct(t_node *self);
+int			node_destruct(t_node *self);
 
-t_str			object_to_string(t_object *self);
-int				object_is_class(t_object *self, t_str class);
+int			node_add_child(t_node *self, t_node *child);
+int			node_rm_child(t_node *self, size_t child);
 
 #endif

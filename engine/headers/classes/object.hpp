@@ -29,10 +29,10 @@ struct s_object
 	t_str		class_name;
 	uint32_t	id;
 
-	void	*(*del)(t_object *self);
-	int		(*destruct)(t_object *self);
-	t_str	(*to_string)(t_object *self);
-	int		(*is_class)(t_object *self, t_str class);
+	void	*(*del)(t_self *self);
+	int		(*destruct)(t_self *self);
+	t_str	(*to_string)(t_self *self);
+	int		(*is_class)(t_self *self, t_str class);
 };
 
 int				object_construct(t_object *self);

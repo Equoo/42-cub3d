@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:30:59 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/07 16:38:47 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/28 23:58:56 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define TRANSFORM2D_H
 
 # include <ft_bool.h>
-#include <math.h>
+# include <math.h>
 # include "rect2.h"
 # include "vector2.h"
 

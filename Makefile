@@ -1,86 +1,74 @@
-define gen_srcs_file # arg1: directory and file name
-	$(shell echo "# Auto-generated file, do not edit!" > $(1)_srcs.mk)
-	$(shell echo -n "SRCS = " >> $(1)_srcs.mk)
-	$(shell find $(1)/src -type f -name "*.c" | sed 's|$(1)/src/||' | sed '$$ ! s/$$/" \\/' >> $(1)_srcs.mk)
-endef
-
-.PHONY: generate_srcs
-generate_srcs:
-	$(call gen_srcs_file,engine)
-
-NAME = so_long
+NAME = cub3d
 CC = cc
 
 DIR_OBJ = obj/
-SRC_DIR = src/
-INC_DIR = headers/
+SRC_DIR = engine/src/
+INC_DIR = engine/headers/
 
-ADDFLAGS =
-CFLAGS = -Wall -Wextra -Werror -MMD -mavx2 $(ADDFLAGS) -I $(INC_DIR) -I libft/headers -I minilibx-linux
-LIBS = -Llibft -lft -Lminilibx-linux -lmlx -L/usr/X11/lib -lXext -lX11 -lm
-SOLONG_SRCS = 
+CFLAGS = -Wall -Wextra -Werror -MMD -mavx2
+INCLUDES = -I $(INC_DIR) -I libs/libft/headers -I libs/minilibx-linux
+LIBS = -Llibs/libft -lft -Llibs/minilibx-linux -lmlx -L/usr/X11/lib -lXext -lX11 -lm
 
-OBJS = ${patsubst %.c,$(DIR_OBJ)%.o, $(SOLONG_SRCS)}
+include engine_srcs.mk
+SRCS_BONUS =
 
-DEPS= ${patsubst %.c,$(DIR_OBJ)%.d, $(SOLONG_SRCS)}
+OBJS = ${patsubst %.c,$(DIR_OBJ)%.o, $(SRCS)}
+DEPS = ${patsubst %.c,$(DIR_OBJ)%.d, $(SRCS)}
 -include $(DEPS)
 
 .SILENT:
 
 .PHONY: all
+all: export CFLAGS := $(CFLAGS) -D DEBUG=0
 all:
-	$(MAKE) -j $(nproc) --no-print-directory LIBFTTARGET="all" ADDFLAGS="-O3" SOLONG_SRCS="$(SOLONG_SRCS)" $(NAME)
+	$(MAKE) --no-print-directory $(NAME)
+	#$(MAKE) -j $(nproc) --no-print-directory $(NAME)
 
 .PHONY: debug
+debug: export CFLAGS := $(CFLAGS) -O0 -g3 -D DEBUG=1
+debug: export DEBUG := 1
+debug: export TARGET := debug
 debug:
-	$(MAKE) -j $(nproc) --no-print-directory LIBFTTARGET="debug" ADDFLAGS="-O0 -g3 -D DEBUG=1" SOLONG_SRCS="$(SOLONG_SRCS)" $(NAME)
+	$(MAKE) -j $(nproc) --no-print-directory $(NAME)
 
 .PHONY: release
+release: export CFLAGS := $(CFLAGS) -O3 -flto -D DEBUG=0
+release: export TARGET := release
 release:
-	$(MAKE) -j $(nproc) --no-print-directory LIBFTTARGET="release" ADDFLAGS="-O3 -D DEBUG=0 -flto" SOLONG_SRCS="$(SOLONG_SRCS)" $(NAME)
-
+	$(MAKE) -j $(nproc) --no-print-directory $(NAME)
 
 .PHONY: bonus
+bonus: export SRCS := $(SRCS) $(SRCS_BONUS)
 bonus:
-	$(MAKE) --no-print-directory ADDFLAGS="-O3" SOLONG_SRCS="$(SRCS_BONUS)"
+	$(MAKE) --no-print-directory
+
+###########################################################
+######################### TOOLS ###########################
+###########################################################
+
+define gen_srcs_file # arg1: directory and file name
+	$(shell echo "# Auto-generated file, do not edit!" > $(1)_srcs.mk)
+	$(shell echo -n "SRCS = " >> $(1)_srcs.mk)
+	$(shell find $(1)/src -type f -name "*.c" | sed 's|$(1)/src/||' | sed '$$ ! s/$$/ \\/' >> $(1)_srcs.mk)
+endef
+
+.PHONY: gen_srcs
+gen_srcs:
+	$(call gen_srcs_file,engine)
+	$(call gen_srcs_file,game)
+
+.PHONY: gen_headers
+gen_headers:
+	$(shell python3 scripts/expand_base_comments.py --root .)
 
 .PHONY: cachegrind
 cachegrind:
-	valgrind --tool=cachegrind ./$(NAME) $(MAP)
+	valgrind --tool=cachegrind ./$(NAME) $(ARGS)
 
 .PHONY: callgrind
 callgrind:
-	valgrind --tool=callgrind --dump-instr=yes --collect-jumps=yes ./$(NAME) $(MAP)
+	valgrind --tool=callgrind --dump-instr=yes --collect-jumps=yes ./$(NAME) $(ARGS)
 
-.PHONY: supressor
-supressor:
-	/bin/echo -e "\
-	{\n\
-		ignore_libmlx_error\n\
-		Memcheck:Param\n\
-		writev(vector[0])\n\
-		fun:__internal_syscall_cancel\n\
-		fun:__syscall_cancel\n\
-		fun:writev\n\
-		fun:UnknownInlinedFun\n\
-		fun:_xcb_conn_wait.part.0\n\
-		fun:UnknownInlinedFun\n\
-		fun:_xcb_out_send\n\
-		fun:UnknownInlinedFun\n\
-		fun:xcb_writev\n\
-		fun:_XSend\n\
-		fun:_XReadEvents\n\
-		fun:XWindowEvent\n\
-		fun:mlx_int_wait_first_expose\n\
-		fun:mlx_new_window\n\
-	},\n\
-	{\n\
-		ignore_libmlx_leaks\n\
-		Memcheck:Leak\n\
-		...\n\
-		obj:/libmlx.a.\n\
-	}\
-	" > mlx.supp
 
 %/:
 	mkdir -p $@
@@ -88,30 +76,31 @@ supressor:
 $(DIR_OBJ)%.o: $(SRC_DIR)%.c
 	echo "Compiling $*.c"
 	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-LIBFTTARGET = all
 .PHONY: libft
 libft:
 	echo "Make libft"
-	$(MAKE) -s -j $(nproc) -C ./libft $(LIBFTTARGET)
+	$(MAKE) -s -j $(nproc) -C ./libs/libft $(TARGET)
 
 .PHONY: mlx
 mlx:
-	$(MAKE) -s -j $(nproc) -C ./minilibx-linux
+	$(MAKE) -s -j $(nproc) -C ./libs/minilibx-linux
 
 $(NAME): mlx libft $(DIR_OBJ) $(OBJS) Makefile
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBS)
+
+
 
 .PHONY: clean
 clean:
-	$(MAKE) -j $(nproc) clean --no-print-directory -C ./minilibx-linux
-	$(MAKE) -j $(nproc) clean --no-print-directory -C ./libft
+	$(MAKE) -j $(nproc) clean --no-print-directory -C ./libs/minilibx-linux
+	$(MAKE) -j $(nproc) clean --no-print-directory -C ./libs/libft
 	rm -Rf $(DIR_OBJ)
 
 .PHONY: fclean
 fclean: clean
-	$(MAKE) -j $(nproc) fclean --no-print-directory -C ./libft
+	$(MAKE) -j $(nproc) fclean --no-print-directory -C ./libs/libft
 	rm -f $(NAME)
 
 .PHONY: re

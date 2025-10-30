@@ -8,19 +8,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/vector2d/add.c",
+   "engine/src/classes/object.c",
    "-o",
-   "obj/vector2d/add.o"
+   "obj/classes/object.o"
   ],
-  "file": "src/vector2d/add.c"
+  "file": "engine/src/classes/object.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -31,19 +30,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/vector2d/dot.c",
+   "engine/src/classes/node/childs.c",
    "-o",
-   "obj/vector2d/dot.o"
+   "obj/classes/node/childs.o"
   ],
-  "file": "src/vector2d/dot.c"
+  "file": "engine/src/classes/node/childs.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -54,19 +52,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/vector2d/scale.c",
+   "engine/src/classes/node.c",
    "-o",
-   "obj/vector2d/scale.o"
+   "obj/classes/node.o"
   ],
-  "file": "src/vector2d/scale.c"
+  "file": "engine/src/classes/node.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -77,19 +74,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/vector2d/sub.c",
+   "engine/src/types/vector3/comparisons.c",
    "-o",
-   "obj/vector2d/sub.o"
+   "obj/types/vector3/comparisons.o"
   ],
-  "file": "src/vector2d/sub.c"
+  "file": "engine/src/types/vector3/comparisons.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -100,19 +96,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/vector2d/length.c",
+   "engine/src/types/vector3/operators.c",
    "-o",
-   "obj/vector2d/length.o"
+   "obj/types/vector3/operators.o"
   ],
-  "file": "src/vector2d/length.c"
+  "file": "engine/src/types/vector3/operators.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -123,19 +118,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/vector2d/normalize.c",
+   "engine/src/types/vector3/other_operators.c",
    "-o",
-   "obj/vector2d/normalize.o"
+   "obj/types/vector3/other_operators.o"
   ],
-  "file": "src/vector2d/normalize.c"
+  "file": "engine/src/types/vector3/other_operators.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -146,19 +140,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/vector2d/multiply.c",
+   "engine/src/types/vector3/operators_by.c",
    "-o",
-   "obj/vector2d/multiply.o"
+   "obj/types/vector3/operators_by.o"
   ],
-  "file": "src/vector2d/multiply.c"
+  "file": "engine/src/types/vector3/operators_by.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -169,19 +162,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/vector2d/divide.c",
+   "engine/src/types/vector3/other_operators_by.c",
    "-o",
-   "obj/vector2d/divide.o"
+   "obj/types/vector3/other_operators_by.o"
   ],
-  "file": "src/vector2d/divide.c"
+  "file": "engine/src/types/vector3/other_operators_by.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -192,19 +184,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/vector2d/scaled.c",
+   "engine/src/types/vector3/len.c",
    "-o",
-   "obj/vector2d/scaled.o"
+   "obj/types/vector3/len.o"
   ],
-  "file": "src/vector2d/scaled.c"
+  "file": "engine/src/types/vector3/len.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -215,19 +206,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/vector2d/scale_divided.c",
+   "engine/src/types/vector3/dot.c",
    "-o",
-   "obj/vector2d/scale_divided.o"
+   "obj/types/vector3/dot.o"
   ],
-  "file": "src/vector2d/scale_divided.c"
+  "file": "engine/src/types/vector3/dot.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -238,19 +228,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/vector2d/convert.c",
+   "engine/src/types/vector3/dist.c",
    "-o",
-   "obj/vector2d/convert.o"
+   "obj/types/vector3/dist.o"
   ],
-  "file": "src/vector2d/convert.c"
+  "file": "engine/src/types/vector3/dist.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -261,19 +250,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/vector2d/abs.c",
+   "engine/src/types/vector3/normalize.c",
    "-o",
-   "obj/vector2d/abs.o"
+   "obj/types/vector3/normalize.o"
   ],
-  "file": "src/vector2d/abs.c"
+  "file": "engine/src/types/vector3/normalize.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -284,19 +272,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/vector2d/transform.c",
+   "engine/src/types/vector3/clamp.c",
    "-o",
-   "obj/vector2d/transform.o"
+   "obj/types/vector3/clamp.o"
   ],
-  "file": "src/vector2d/transform.c"
+  "file": "engine/src/types/vector3/clamp.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -307,19 +294,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/vector2d/lerp.c",
+   "engine/src/types/vector3/cross.c",
    "-o",
-   "obj/vector2d/lerp.o"
+   "obj/types/vector3/cross.o"
   ],
-  "file": "src/vector2d/lerp.c"
+  "file": "engine/src/types/vector3/cross.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -330,19 +316,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/vector2d.c",
+   "engine/src/types/vector3/min.c",
    "-o",
-   "obj/vector2d.o"
+   "obj/types/vector3/min.o"
   ],
-  "file": "src/vector2d.c"
+  "file": "engine/src/types/vector3/min.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -353,19 +338,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/texture/data.c",
+   "engine/src/types/vector3/max.c",
    "-o",
-   "obj/texture/data.o"
+   "obj/types/vector3/max.o"
   ],
-  "file": "src/texture/data.c"
+  "file": "engine/src/types/vector3/max.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -376,19 +360,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/texture/draw_slice.c",
+   "engine/src/types/vector3/abs.c",
    "-o",
-   "obj/texture/draw_slice.o"
+   "obj/types/vector3/abs.o"
   ],
-  "file": "src/texture/draw_slice.c"
+  "file": "engine/src/types/vector3/abs.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -399,19 +382,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/texture/get_frame.c",
+   "engine/src/types/vector2/abs.c",
    "-o",
-   "obj/texture/get_frame.o"
+   "obj/types/vector2/abs.o"
   ],
-  "file": "src/texture/get_frame.c"
+  "file": "engine/src/types/vector2/abs.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -422,19 +404,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/texture/texture_slice_time.c",
+   "engine/src/types/vector2/clamp.c",
    "-o",
-   "obj/texture/texture_slice_time.o"
+   "obj/types/vector2/clamp.o"
   ],
-  "file": "src/texture/texture_slice_time.c"
+  "file": "engine/src/types/vector2/clamp.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -445,19 +426,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/texture.c",
+   "engine/src/types/vector2/comparisons.c",
    "-o",
-   "obj/texture.o"
+   "obj/types/vector2/comparisons.o"
   ],
-  "file": "src/texture.c"
+  "file": "engine/src/types/vector2/comparisons.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -468,19 +448,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/element/play_anim.c",
+   "engine/src/types/vector2/cross.c",
    "-o",
-   "obj/classes/element/play_anim.o"
+   "obj/types/vector2/cross.o"
   ],
-  "file": "src/classes/element/play_anim.c"
+  "file": "engine/src/types/vector2/cross.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -491,19 +470,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/element/draw.c",
+   "engine/src/types/vector2/dist.c",
    "-o",
-   "obj/classes/element/draw.o"
+   "obj/types/vector2/dist.o"
   ],
-  "file": "src/classes/element/draw.c"
+  "file": "engine/src/types/vector2/dist.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -514,19 +492,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/element.c",
+   "engine/src/types/vector2/dot.c",
    "-o",
-   "obj/classes/element.o"
+   "obj/types/vector2/dot.o"
   ],
-  "file": "src/classes/element.c"
+  "file": "engine/src/types/vector2/dot.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -537,19 +514,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/terrain/grid_utils.c",
+   "engine/src/types/vector2/len.c",
    "-o",
-   "obj/classes/terrain/grid_utils.o"
+   "obj/types/vector2/len.o"
   ],
-  "file": "src/classes/terrain/grid_utils.c"
+  "file": "engine/src/types/vector2/len.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -560,19 +536,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/terrain/wall_rules.c",
+   "engine/src/types/vector2/max.c",
    "-o",
-   "obj/classes/terrain/wall_rules.o"
+   "obj/types/vector2/max.o"
   ],
-  "file": "src/classes/terrain/wall_rules.c"
+  "file": "engine/src/types/vector2/max.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -583,19 +558,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/terrain/surface_others.c",
+   "engine/src/types/vector2/min.c",
    "-o",
-   "obj/classes/terrain/surface_others.o"
+   "obj/types/vector2/min.o"
   ],
-  "file": "src/classes/terrain/surface_others.c"
+  "file": "engine/src/types/vector2/min.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -606,19 +580,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/terrain/surface_corgrass.c",
+   "engine/src/types/vector2/normalize.c",
    "-o",
-   "obj/classes/terrain/surface_corgrass.o"
+   "obj/types/vector2/normalize.o"
   ],
-  "file": "src/classes/terrain/surface_corgrass.c"
+  "file": "engine/src/types/vector2/normalize.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -629,19 +602,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/terrain/surface_rules_utils.c",
+   "engine/src/types/vector2/operators.c",
    "-o",
-   "obj/classes/terrain/surface_rules_utils.o"
+   "obj/types/vector2/operators.o"
   ],
-  "file": "src/classes/terrain/surface_rules_utils.c"
+  "file": "engine/src/types/vector2/operators.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -652,19 +624,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/terrain/draw.c",
+   "engine/src/types/vector2/operators_by.c",
    "-o",
-   "obj/classes/terrain/draw.o"
+   "obj/types/vector2/operators_by.o"
   ],
-  "file": "src/classes/terrain/draw.c"
+  "file": "engine/src/types/vector2/operators_by.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -675,19 +646,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/terrain/draw_surface.c",
+   "engine/src/types/vector2/other_operators.c",
    "-o",
-   "obj/classes/terrain/draw_surface.o"
+   "obj/types/vector2/other_operators.o"
   ],
-  "file": "src/classes/terrain/draw_surface.c"
+  "file": "engine/src/types/vector2/other_operators.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -698,19 +668,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/terrain/load.c",
+   "engine/src/types/vector2/other_operators_by.c",
    "-o",
-   "obj/classes/terrain/load.o"
+   "obj/types/vector2/other_operators_by.o"
   ],
-  "file": "src/classes/terrain/load.c"
+  "file": "engine/src/types/vector2/other_operators_by.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -721,19 +690,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/terrain/findpath.c",
+   "engine/src/types/mat2/get.c",
    "-o",
-   "obj/classes/terrain/findpath.o"
+   "obj/types/mat2/get.o"
   ],
-  "file": "src/classes/terrain/findpath.c"
+  "file": "engine/src/types/mat2/get.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -744,19 +712,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/terrain.c",
+   "engine/src/types/mat2/operators.c",
    "-o",
-   "obj/classes/terrain.o"
+   "obj/types/mat2/operators.o"
   ],
-  "file": "src/classes/terrain.c"
+  "file": "engine/src/types/mat2/operators.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -767,19 +734,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/entity/physic.c",
+   "engine/src/types/mat2/translate.c",
    "-o",
-   "obj/classes/entity/physic.o"
+   "obj/types/mat2/translate.o"
   ],
-  "file": "src/classes/entity/physic.c"
+  "file": "engine/src/types/mat2/translate.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -790,19 +756,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/entity.c",
+   "engine/src/types/mat2/new.c",
    "-o",
-   "obj/classes/entity.o"
+   "obj/types/mat2/new.o"
   ],
-  "file": "src/classes/entity.c"
+  "file": "engine/src/types/mat2/new.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -813,19 +778,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/player/anim_coroutine.c",
+   "engine/src/types/mat2/dot.c",
    "-o",
-   "obj/classes/player/anim_coroutine.o"
+   "obj/types/mat2/dot.o"
   ],
-  "file": "src/classes/player/anim_coroutine.c"
+  "file": "engine/src/types/mat2/dot.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -836,19 +800,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/player/update.c",
+   "engine/src/types/mat2/xform.c",
    "-o",
-   "obj/classes/player/update.o"
+   "obj/types/mat2/xform.o"
   ],
-  "file": "src/classes/player/update.c"
+  "file": "engine/src/types/mat2/xform.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -859,19 +822,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/player/on_die.c",
+   "engine/src/types/mat2/rotate.c",
    "-o",
-   "obj/classes/player/on_die.o"
+   "obj/types/mat2/rotate.o"
   ],
-  "file": "src/classes/player/on_die.c"
+  "file": "engine/src/types/mat2/rotate.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -882,19 +844,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/player/attack.c",
+   "engine/src/types/mat2/scale.c",
    "-o",
-   "obj/classes/player/attack.o"
+   "obj/types/mat2/scale.o"
   ],
-  "file": "src/classes/player/attack.c"
+  "file": "engine/src/types/mat2/scale.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -905,19 +866,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/player.c",
+   "engine/src/types/mat2/invert.c",
    "-o",
-   "obj/classes/player.o"
+   "obj/types/mat2/invert.o"
   ],
-  "file": "src/classes/player.c"
+  "file": "engine/src/types/mat2/invert.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -928,19 +888,18 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/exit.c",
+   "engine/src/types/mat2/lerp.c",
    "-o",
-   "obj/classes/exit.o"
+   "obj/types/mat2/lerp.o"
   ],
-  "file": "src/classes/exit.c"
+  "file": "engine/src/types/mat2/lerp.c"
  },
  {
   "directory": "/home/dderny/Documents/42-cub3d",
@@ -951,708 +910,17 @@
    "-Werror",
    "-MMD",
    "-mavx2",
-   "-O3",
    "-I",
-   "headers/",
+   "engine/headers/",
    "-I",
-   "libft/headers",
+   "libs/libft/headers",
    "-I",
-   "minilibx-linux",
+   "libs/minilibx-linux",
    "-c",
-   "src/classes/frog/on_die.c",
+   "engine/src/engine.c",
    "-o",
-   "obj/classes/frog/on_die.o"
+   "obj/engine.o"
   ],
-  "file": "src/classes/frog/on_die.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/classes/frog/on_collide.c",
-   "-o",
-   "obj/classes/frog/on_collide.o"
-  ],
-  "file": "src/classes/frog/on_collide.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/classes/frog.c",
-   "-o",
-   "obj/classes/frog.o"
-  ],
-  "file": "src/classes/frog.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/scene.c",
-   "-o",
-   "obj/scene.o"
-  ],
-  "file": "src/scene.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/classes/background.c",
-   "-o",
-   "obj/classes/background.o"
-  ],
-  "file": "src/classes/background.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/classes/actor/draw.c",
-   "-o",
-   "obj/classes/actor/draw.o"
-  ],
-  "file": "src/classes/actor/draw.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/classes/actor/move.c",
-   "-o",
-   "obj/classes/actor/move.o"
-  ],
-  "file": "src/classes/actor/move.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/classes/actor/update.c",
-   "-o",
-   "obj/classes/actor/update.o"
-  ],
-  "file": "src/classes/actor/update.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/classes/actor.c",
-   "-o",
-   "obj/classes/actor.o"
-  ],
-  "file": "src/classes/actor.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/render/pixel.c",
-   "-o",
-   "obj/render/pixel.o"
-  ],
-  "file": "src/render/pixel.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/render/copy.c",
-   "-o",
-   "obj/render/copy.o"
-  ],
-  "file": "src/render/copy.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/render/fast_copy.c",
-   "-o",
-   "obj/render/fast_copy.o"
-  ],
-  "file": "src/render/fast_copy.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/render/blend.c",
-   "-o",
-   "obj/render/blend.o"
-  ],
-  "file": "src/render/blend.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/render/text.c",
-   "-o",
-   "obj/render/text.o"
-  ],
-  "file": "src/render/text.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/render/fast_blend.c",
-   "-o",
-   "obj/render/fast_blend.o"
-  ],
-  "file": "src/render/fast_blend.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/render/img.c",
-   "-o",
-   "obj/render/img.o"
-  ],
-  "file": "src/render/img.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/render/colors.c",
-   "-o",
-   "obj/render/colors.o"
-  ],
-  "file": "src/render/colors.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/render/m256_colors.c",
-   "-o",
-   "obj/render/m256_colors.o"
-  ],
-  "file": "src/render/m256_colors.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/inputs/update.c",
-   "-o",
-   "obj/inputs/update.o"
-  ],
-  "file": "src/inputs/update.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/inputs/isdown.c",
-   "-o",
-   "obj/inputs/isdown.o"
-  ],
-  "file": "src/inputs/isdown.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/inputs/ispressed.c",
-   "-o",
-   "obj/inputs/ispressed.o"
-  ],
-  "file": "src/inputs/ispressed.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/inputs/isreleased.c",
-   "-o",
-   "obj/inputs/isreleased.o"
-  ],
-  "file": "src/inputs/isreleased.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/collisions/aabb.c",
-   "-o",
-   "obj/collisions/aabb.o"
-  ],
-  "file": "src/collisions/aabb.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/collisions/sweep_aabb.c",
-   "-o",
-   "obj/collisions/sweep_aabb.o"
-  ],
-  "file": "src/collisions/sweep_aabb.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/collisions/world_sweep_aabb.c",
-   "-o",
-   "obj/collisions/world_sweep_aabb.o"
-  ],
-  "file": "src/collisions/world_sweep_aabb.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/error.c",
-   "-o",
-   "obj/error.o"
-  ],
-  "file": "src/error.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/seed.c",
-   "-o",
-   "obj/seed.o"
-  ],
-  "file": "src/seed.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/tick_game.c",
-   "-o",
-   "obj/tick_game.o"
-  ],
-  "file": "src/tick_game.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/game.c",
-   "-o",
-   "obj/game.o"
-  ],
-  "file": "src/game.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/render.c",
-   "-o",
-   "obj/render.o"
-  ],
-  "file": "src/render.c"
- },
- {
-  "directory": "/home/dderny/Documents/42-cub3d",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Wextra",
-   "-Werror",
-   "-MMD",
-   "-mavx2",
-   "-O3",
-   "-I",
-   "headers/",
-   "-I",
-   "libft/headers",
-   "-I",
-   "minilibx-linux",
-   "-c",
-   "src/so_long.c",
-   "-o",
-   "obj/so_long.o"
-  ],
-  "file": "src/so_long.c"
+  "file": "engine/src/engine.c"
  }
 ]

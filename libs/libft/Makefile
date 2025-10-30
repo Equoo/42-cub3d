@@ -100,6 +100,7 @@ SRCS =	string/ft_split.c\
 		printf/float.c\
 		printf/core.c\
 		printf/printf.c\
+		printf/snprintf.c\
 \
 		get_next_line/utils.c\
 		get_next_line/core.c\

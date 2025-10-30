@@ -6,11 +6,11 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 16:03:32 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/07 16:03:45 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/30 13:03:28 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mat2.h"
+#include "types/mat2.h"
 
 float	mat2_tdotx(t_mat2 m, t_vec2 v)
 {

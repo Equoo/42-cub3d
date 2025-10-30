@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:50:00 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/07 15:47:43 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/30 13:02:54 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ t_mat2	mat2_from_rp(float rot, t_vec2 pos)
 	return (result);
 }
 
-t_mat2	mat2_from_rssp(float rot, t_vec2 scale, t_vec2 skew, t_vec2 pos)
+t_mat2	mat2_from_rssp(float rot, t_vec2 scale, float skew, t_vec2 pos)
 {
 	t_mat2	result;
 
-	result.col[0][0] = cosf(rot) * scale.x;
-	result.col[1][1] = sinf(rot + skew) * scale.y;
-	result.col[1][0] = -sinf(rot + skew) * scale.y;
-	result.col[0][1] = cosf(rot) * scale.x;
+	result.col[0].x = cosf(rot) * scale.x;
+	result.col[1].y = sinf(rot + skew) * scale.y;
+	result.col[1].x = -sinf(rot + skew) * scale.y;
+	result.col[0].y = cosf(rot) * scale.x;
 	result.col[2] = pos;
 	return (result);
 }

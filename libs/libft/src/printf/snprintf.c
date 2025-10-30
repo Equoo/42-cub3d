@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dot.c                                              :+:      :+:    :+:   */
+/*   snprintf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/06 16:31:50 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/30 12:07:19 by dderny           ###   ########.fr       */
+/*   Created: 2025/10/30 11:51:10 by dderny            #+#    #+#             */
+/*   Updated: 2025/10/30 11:52:23 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <types/vector2.h>
+#include "ft_printf.h"
+#include "libft.h"
+#include <stddef.h>
+#include <stdlib.h>
 
-float	vec2_dot(t_vec2 a, t_vec2 b)
+void	shame_vsnprintf(t_pdata data, char *str, size_t i)
 {
-	return (a.x * b.x + a.y * b.y);
+	ft_strlcpy(str + data.count, data.str, data.strlen + 1);
+	data.count += data.strlen;
+	free(data.str);
+	i = i + data.next;
+	data.last = i + 1;
 }

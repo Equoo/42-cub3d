@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:35:06 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/06 16:39:18 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/30 12:05:30 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	vec3_norm(t_vec3 *self)
 	if (len == 0)
 	{
 		*self = VEC3_ZERO;
-		return (*self);
+		return ;
 	}
 	self->x /= len;
 	self->y /= len;

@@ -6,16 +6,16 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:45:46 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/07 16:34:41 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/30 13:09:15 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mat2.h"
+#include "types/mat2.h"
 
 void	mat2_scale_basis(t_mat2 *m, t_vec2 s)
 {
-	m->basis.x = vec2_mul(m->basis.x, s);
-	m->basis.y = vec2_mul(m->basis.y, s);
+	m->col[0] = vec2_mul(m->col[0], s);
+	m->col[1] = vec2_mul(m->col[1], s);
 }
 
 void	mat2_scale(t_mat2 *m, t_vec2 v)

@@ -6,13 +6,14 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:10 by dderny            #+#    #+#             */
-/*   Updated: 2025/05/01 14:20:29 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/30 11:52:19 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 #include "unistd.h"
+#include <stddef.h>
 #include <stdlib.h>
 
 static char	*convertany(va_list ap, t_pflag pt, int *len)
@@ -125,5 +126,37 @@ int	ft_vdprintf(int fd, const char *format, va_list ap)
 		data.count += i - data.last;
 	if (write(fd, format + data.last, i - data.last) == -1)
 		return (-1);
+	return (data.count);
+}
+
+
+void	shame_vsnprintf(t_pdata data, char *str, size_t i);
+
+int	ft_vsnprintf(char *str, size_t size, const char *format, va_list ap)
+{
+	size_t		i;
+	t_pdata	data;
+
+	i = -1;
+	data = (t_pdata){0, 0, 0, NULL, 0};
+	while (format[++i] && data.next != -1)
+	{
+		data.next = processflag(ap, (char *)format + i, &data);
+		if ((data.next == -1 && printf_error_free(data))
+			|| data.count + i - data.last >= size)
+			break ;
+		if (data.next == -2)
+			continue ;
+		ft_strlcpy(str + data.count, format + data.last, i - data.last + 1);
+		data.count += i - data.last;
+		if (data.count + i - data.strlen >= size)
+			break ;
+		shame_vsnprintf(data, str, i);
+	}
+	if (data.count + i - data.last > size)
+		return (data.count);
+	ft_strlcpy(str, format + data.last, i - data.last + 1);
+	if (data.count != -1)
+		data.count += i - data.last;
 	return (data.count);
 }

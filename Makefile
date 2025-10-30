@@ -20,26 +20,25 @@ DEPS = ${patsubst %.c,$(DIR_OBJ)%.d, $(SRCS)}
 
 .PHONY: all
 all: export CFLAGS := $(CFLAGS) -D DEBUG=0
-all:
-	$(MAKE) --no-print-directory $(NAME)
-	#$(MAKE) -j $(nproc) --no-print-directory $(NAME)
+all: gen_headers
+	$(MAKE) -j $(nproc) --no-print-directory $(NAME)
 
 .PHONY: debug
 debug: export CFLAGS := $(CFLAGS) -O0 -g3 -D DEBUG=1
 debug: export DEBUG := 1
 debug: export TARGET := debug
-debug:
+debug: gen_headers
 	$(MAKE) -j $(nproc) --no-print-directory $(NAME)
 
 .PHONY: release
 release: export CFLAGS := $(CFLAGS) -O3 -flto -D DEBUG=0
 release: export TARGET := release
-release:
+release: gen_headers
 	$(MAKE) -j $(nproc) --no-print-directory $(NAME)
 
 .PHONY: bonus
 bonus: export SRCS := $(SRCS) $(SRCS_BONUS)
-bonus:
+bonus: gen_headers
 	$(MAKE) --no-print-directory
 
 ###########################################################
@@ -59,7 +58,7 @@ gen_srcs:
 
 .PHONY: gen_headers
 gen_headers:
-	$(shell python3 scripts/expand_base_comments.py --root .)
+	python3 scripts/expand_base_comments.py
 
 .PHONY: cachegrind
 cachegrind:
@@ -89,7 +88,6 @@ mlx:
 
 $(NAME): mlx libft $(DIR_OBJ) $(OBJS) Makefile
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBS)
-
 
 
 .PHONY: clean

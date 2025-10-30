@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 04:36:12 by zsonie            #+#    #+#             */
-/*   Updated: 2025/10/30 05:08:24 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 11:54:57 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ float	fast_sqrt_approx(float number) {
 	if (number == 0.0f) return (0.0f);
 	return (number * fast_inv_sqrt(number));
 }
-	CompactSqrtLUT* create_compact_sqrt_lut(void) {
+CompactSqrtLUT* create_compact_sqrt_lut(void) {
 	CompactSqrtLUT* lut = malloc(sizeof(CompactSqrtLUT));
 	if (!lut) return (NULL);
 

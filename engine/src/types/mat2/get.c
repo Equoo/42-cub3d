@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:51:08 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/07 16:17:46 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/30 12:09:34 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ float	mat2_rotation(t_mat2 m)
 t_vec2	mat2_gscale(t_mat2 m)
 {
 	t_vec2	scale;
-	scale.x = vec2_length(m.col[0]);
+	scale.x = vec2_len(m.col[0]);
 	if (mat2_determinant(m) < 0)
-		scale.y = -vec2_length(m.col[1]);
+		scale.y = -vec2_len(m.col[1]);
 	else
-		scale.y = vec2_length(m.col[1]);
+		scale.y = vec2_len(m.col[1]);
 	return (scale);
 }
 
@@ -52,7 +52,7 @@ float	mat2_skew(t_mat2 m)
 	dot = vec2_dot(
 		vec2_normed(m.col[0]),
 		vec2_mulf(
-			vec2_normalized(m.col[1]),
+			vec2_normed(m.col[1]),
 			det_sign
 		)
 	);

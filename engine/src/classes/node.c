@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 03:46:48 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/29 13:53:46 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/30 12:04:00 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int	node_construct(t_node *self)
 {
 	self->destruct = &node_destruct;
-	if (object_construct(self.object))
+	if (object_construct((t_object *)self))
 		return (1);
 	self->childs = vec_new(sizeof(t_node), 2);
 	if (!self->childs)
@@ -37,13 +37,13 @@ t_node		*node_new()
 {
 	t_node	*node;
 
-	node = ft_xcalloc(size, 0);
+	node = ft_xcalloc(sizeof(t_node), 0);
 	if (!node)
 		return (NULL);
-	node = (t_node){0};
+	*node = (t_node){0};
 	if (node_construct(node))
 	{
-		node.del(node);
+		node->free(node);
 		return (NULL);
 	}
 	return (node);

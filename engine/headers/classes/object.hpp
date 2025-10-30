@@ -15,7 +15,6 @@
 
 # include <stdint.h>
 # include <ft_vector.h>
-# include <ft_string.h>
 # include <sys/types.h>
 # include <unistd.h>
 
@@ -25,21 +24,21 @@ typedef	void *t_self;
 typedef struct s_object t_object;
 struct s_object
 {
-	t_str		*base_classes;
-	t_str		class_name;
+	char		**base_classes;
+	char		*class_name;
 	uint32_t	id;
 
-	void	*(*del)(t_self *self);
+	void	*(*free)(t_self *self);
 	int		(*destruct)(t_self *self);
-	t_str	(*to_string)(t_self *self);
-	int		(*is_class)(t_self *self, t_str class);
+	char	*(*to_string)(t_self *self);
+	int		(*is_class)(t_self *self, char *classn);
 };
 
 int				object_construct(t_object *self);
 int				object_destruct(t_object *self);
-void			*object_del(t_object *self);
+void			*object_free(t_object *self);
 
-t_str			object_to_string(t_object *self);
-int				object_is_class(t_object *self, t_str class);
+char			*object_to_string(t_object *self);
+int				object_is_class(t_object *self, char *classn);
 
 #endif

@@ -13,7 +13,7 @@
 #ifndef DIST_H
 # define DIST_H
 
-# define MAX_DIST 1000
+# define MAX_DIST 10000
 
 typedef struct
 {

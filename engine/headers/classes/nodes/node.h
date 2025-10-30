@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:24:40 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/29 13:56:20 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/30 13:38:16 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,24 @@ struct s_node
 	union {
 		t_object	object;
 		struct {
-	t_str		*base_classes;
-	t_str		class_name;
+	char		**base_classes;
+	char		*class_name;
 	uint32_t	id;
 
-	void	*(*del)(t_node *self);
+	void	*(*free)(t_node *self);
 	int		(*destruct)(t_node *self);
-	t_str	(*to_string)(t_node *self);
-	int		(*is_class)(t_node *self, t_str class);
+	char	*(*to_string)(t_node *self);
+	int		(*is_class)(t_node *self, char *classn);
 		};
 	};
 	t_node	**childs;
 
+	int		(*_enter_tree)(t_node *self);
+	int		(*_exit_tree)(t_node *self);
+	int		(*_process)(t_node *self, float delta);
+	int		(*_physics_process)(t_node *self, float delta);
+	t_node	(*get_parent)(t_node *self);
+	int		(*add_togroup)(t_node *self, char *group);
 	int		(*add_child)(t_node *self, t_node *child);
 	int		(*rm_child)(t_node *self, size_t child);
 };

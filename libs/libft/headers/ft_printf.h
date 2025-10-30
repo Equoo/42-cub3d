@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@42lyon.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:16:10 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/29 16:00:31 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/30 11:54:52 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,13 +165,10 @@ int				ft_printf(const char *format, ...);
 **         end output to strings), or a negative value if an output error occurs.
 */
 int				ft_dprintf(int fd, const char *format, ...);
+int				ft_vsnprintf(char *str, size_t size, const char *format,
+					va_list ap);
+int				ft_snprintf(char *str, size_t size, const char *format, ...);
 
-int				vsprintf(char *str, const char *format, va_list ap);
 
-int				vsnprintf(char *str, size_t size, const char *format, va_list ap);
-
-int				sprintf(char *str, const char *format, ...);
-
-int				snprintf(char *str, size_t size, const char *format, ...);
 
 #endif

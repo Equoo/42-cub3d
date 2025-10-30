@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:50:41 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/07 15:12:35 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/30 12:06:45 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,7 +274,7 @@ t_vec2		vec2_clamped(t_vec2 self, t_vec2 min, t_vec2 max);
  * @return Scalar value: a.x*b.y - a.y*b.x (z-component of 3D cross product)
  * @note Returns a scalar representing the signed area of the parallelogram
  */
-float		vec2_cross(t_vec2 a, t_vec2 b);
+t_vec2		vec2_cross(t_vec2 a, t_vec2 b);
 
 /**
  * @brief Performs linear interpolation between two vectors

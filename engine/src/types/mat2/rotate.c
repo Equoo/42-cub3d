@@ -6,11 +6,11 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:45:46 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/30 01:50:20 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 13:06:09 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mat2.h"
+#include "types/mat2.h"
 
 void	mat2_rotate(t_mat2 *m, float angle)
 {

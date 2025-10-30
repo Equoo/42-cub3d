@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dot.c                                              :+:      :+:    :+:   */
+/*   node3d.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/06 16:31:50 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/30 12:07:19 by dderny           ###   ########.fr       */
+/*   Created: 2025/10/30 13:41:12 by dderny            #+#    #+#             */
+/*   Updated: 2025/10/30 13:42:39 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <types/vector2.h>
+#include "classes/nodes/node3d.h"
 
-float	vec2_dot(t_vec2 a, t_vec2 b)
+int	node3d_construct(t_node3d *self)
 {
-	return (a.x * b.x + a.y * b.y);
+	(void)self->pos;
+	return (0);
 }

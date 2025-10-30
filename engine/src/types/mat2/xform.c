@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 16:08:06 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/07 16:18:00 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/30 13:05:59 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 t_vec2	mat2_xform(t_mat2 m, t_vec2 v)
 {
-	return ((t_vec2){
+	return (vec2_add((t_vec2){
 		mat2_tdotx(m, v),
-		vec2_add(mat2_tdoty(m, v), m.origin)
-	});
+		mat2_tdoty(m, v)
+	}, m.origin));
 }
 
 t_vec2	mat2_xform_inv(t_mat2 m, t_vec2 v)

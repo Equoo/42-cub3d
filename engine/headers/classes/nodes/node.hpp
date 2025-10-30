@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:24:40 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/29 13:56:20 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/30 13:38:16 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ struct s_node
 {
 	t_node	**childs;
 
+	int		(*_enter_tree)(t_self *self);
+	int		(*_exit_tree)(t_self *self);
+	int		(*_process)(t_self *self, float delta);
+	int		(*_physics_process)(t_self *self, float delta);
+	t_node	(*get_parent)(t_self *self);
+	int		(*add_togroup)(t_self *self, char *group);
 	int		(*add_child)(t_self *self, t_node *child);
 	int		(*rm_child)(t_self *self, size_t child);
 };

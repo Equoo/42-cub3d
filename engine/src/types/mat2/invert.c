@@ -6,11 +6,11 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 16:29:29 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/30 04:41:12 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 13:06:30 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mat2.h"
+#include "types/mat2.h"
 
 void	mat2_invert(t_mat2 *m)
 {

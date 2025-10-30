@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:30:59 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/28 23:58:56 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/30 13:03:15 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ t_mat2		mat2_from_rp(float rot, t_vec2 pos);
  * @param pos Position (translation)
  * @return New transformation matrix with all transformations applied
  */
-t_mat2		mat2_from_rssp(float rot, t_vec2 scale, t_vec2 skew, t_vec2 pos);
+t_mat2		mat2_from_rssp(float rot, t_vec2 scale, float skew, t_vec2 pos);
 
 /**
  * @brief Inverts a 2D transformation matrix

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   invert.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 16:29:29 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/07 16:39:23 by dderny           ###   ########.fr       */
+/*   Updated: 2025/10/30 04:41:12 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ void	mat2_invert(t_mat2 *m)
 	tmp = m->col[0].y;
 	m->col[0].y = m->col[1].x;
 	m->col[1].x = tmp;
-	m->col[2] = mat2_basis_xform(m, vec2_mulf(m->col[2], -1));
+	m->col[2] = mat2_basis_xform(*m, vec2_mulf(m->col[2], -1));
 }

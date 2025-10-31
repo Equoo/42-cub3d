@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   engine.c                                           :+:      :+:    :+:   */
+/*   m_cubic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 14:33:22 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/31 05:30:06 by zsonie           ###   ########lyon.fr   */
+/*   Created: 2025/10/31 00:52:33 by zsonie            #+#    #+#             */
+/*   Updated: 2025/10/31 05:34:14 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include <bench.h>
 #include <math_extend.h>
 
-int main(int argc, char *argv[])
+float	easeInCubic(int x)
 {
-    (void)argc;
-    (void)argv;
-    
-	display_trigo_benchmark();
-	display_dist_benchmark();
-	display_sqrtf_benchmark();
-	
-    return (0);
+	return (x * x * x);
+}
+
+float	easeOutCubic(int x)
+{
+	return (1 - pow(1 - x, 3));
+}
+
+float	easeInOutCubic(int x)
+{
+    if (x < 0.5)
+        return (4 * x * x * x);
+    else
+        return (1 - pow(-2 * x + 2, 3) / 2);
 }

@@ -5,7 +5,7 @@ DIR_OBJ = obj/
 SRC_DIR = engine/src/
 INC_DIR = engine/headers/
 
-CFLAGS = -Wall -Wextra -Werror -MMD -mavx2
+CFLAGS = -Wall -Wextra -Werror -MMD -mavx2 -O3 -flto
 INCLUDES = -I $(INC_DIR) -I libs/libft/headers -I libs/minilibx-linux
 LIBS = -Llibs/libft -lft -Llibs/minilibx-linux -lmlx -L/usr/X11/lib -lXext -lX11 -lm
 

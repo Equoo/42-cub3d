@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   engine.c                                           :+:      :+:    :+:   */
+/*   interpolation.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 14:33:22 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/31 05:30:06 by zsonie           ###   ########lyon.fr   */
+/*   Created: 2025/10/31 00:37:59 by zsonie            #+#    #+#             */
+/*   Updated: 2025/10/31 00:58:45 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include <bench.h>
-#include <math_extend.h>
+#ifndef INTERPOLATION_H
+# define INTERPOLATION_H
 
-int main(int argc, char *argv[])
-{
-    (void)argc;
-    (void)argv;
-    
-	display_trigo_benchmark();
-	display_dist_benchmark();
-	display_sqrtf_benchmark();
-	
-    return (0);
-}
+float	lerp(float v0, float v1, float t);
+float	precise_lerp(float v0, float v1, float t);
+
+float	easeInSine(int x);
+float	easeOutSine(int x);
+float	easeInOutSine(int x);
+
+float	easeInCubic(int x);
+float	easeOutCubic(int x);
+float	easeInOutCubic(int x);
+
+#endif

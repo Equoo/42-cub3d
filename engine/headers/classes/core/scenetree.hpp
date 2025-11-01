@@ -1,45 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   node.hpp                                           :+:      :+:    :+:   */
+/*   scenetree.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:24:40 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/30 13:38:16 by dderny           ###   ########.fr       */
+/*   Updated: 2025/11/01 03:10:51 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NODE_H
-# define NODE_H
-
-# include <ft_vector.h>
-# include <stddef.h>
-# include <unistd.h>
+#ifndef SCENETREE_H
+# define SCENETREE_H
 
 # include "classes/object.h"
+# include "classes/core/node.h"
+# include "classes/core/window.h"
 
 /** INHERIT object **/
-typedef struct s_node t_node;
-struct s_node
+typedef struct s_scenetree t_scenetree;
+struct s_scenetree
 {
-	t_node	**childs;
+	t_window	root;
+	t_node		cur_scene;
+	int			phys_interpolation;
 
-	int		(*_enter_tree)(t_self *self);
-	int		(*_exit_tree)(t_self *self);
-	int		(*_process)(t_self *self, float delta);
+	int		(*_finalize)(t_self *self);
+	int		(*_initialize)(t_self *self);
 	int		(*_physics_process)(t_self *self, float delta);
-	t_node	(*get_parent)(t_self *self);
-	int		(*add_togroup)(t_self *self, char *group);
-	int		(*add_child)(t_self *self, t_node *child);
-	int		(*rm_child)(t_self *self, size_t child);
+	int		(*_process)(t_self *self, float delta);
+	int		(*notify_group)(t_self *self, char *group, int type, void *data);
+	int		(*queue_delete)(t_self *self, t_object obj);
 };
 
-t_node		*node_new();
-int			node_construct(t_node *self);
-int			node_destruct(t_node *self);
-
-int			node_add_child(t_node *self, t_node *child);
-int			node_rm_child(t_node *self, size_t child);
+t_scenetree		*scenetree_new();
+int			scenetree_construct(t_scenetree *self);
+int			scenetree_destruct(t_scenetree *self);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:24:40 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/29 00:53:51 by dderny           ###   ########.fr       */
+/*   Updated: 2025/11/01 02:43:28 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ struct s_object
 	uint32_t	id;
 
 	void	*(*free)(t_self *self);
-	int		(*destruct)(t_self *self);
-	char	*(*to_string)(t_self *self);
+	int		(*_destruct)(t_self *self);
+	int		(*_notification)(t_self *self, int type, void *data);
+	char	*(*_to_string)(t_self *self);
+	int		(*notify)(t_self *self, int type, void *data);
 	int		(*is_class)(t_self *self, char *classn);
 };
 

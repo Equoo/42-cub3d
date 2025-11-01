@@ -6,11 +6,11 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 13:41:12 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/30 13:42:39 by dderny           ###   ########.fr       */
+/*   Updated: 2025/11/01 04:36:28 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "classes/nodes/node3d.h"
+#include "classes/core/node3d.h"
 
 int	node3d_construct(t_node3d *self)
 {

@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   node3d.hpp                                         :+:      :+:    :+:   */
+/*   engine.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:24:40 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/30 13:40:35 by dderny           ###   ########.fr       */
+/*   Updated: 2025/11/01 04:35:00 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NODE3D_H
-# define NODE3D_H
+#ifndef ENGINE_H
+# define ENGINE_H
 
-# include <ft_vector.h>
-# include <stddef.h>
-# include <unistd.h>
+# include "classes/object.h"
 
-# include "types/vector3.h"
-# include "classes/nodes/node.h"
-
-/** INHERIT node **/
-typedef struct s_node3d t_node3d;
-struct s_node3d
+/** INHERIT object **/
+typedef struct s_engine t_engine;
+struct s_engine
 {
-	t_vec3	pos;
-	t_vec3	rot;
-	
-	int		(*set_pos)(t_self *self, t_vec3 pos);
+	int		max_fps;
+	int		physics_ticks;
+	void	*singletons;
+
+	int		(*add_singleton)(t_self *self, char *name, void *singleton);
+	void	*(*get_singleton)(t_self *self, char *name);
 };
 
-t_node		*node3d_new();
-int			node3d_construct(t_node3d *self);
-int			node3d_destruct(t_node3d *self);
+t_engine		*engine_new();
+int			engine_construct(t_engine *self);
+int			engine_destruct(t_engine *self);
 
 #endif

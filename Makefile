@@ -20,25 +20,25 @@ DEPS = ${patsubst %.c,$(DIR_OBJ)%.d, $(SRCS)}
 
 .PHONY: all
 all: export CFLAGS := $(CFLAGS) -D DEBUG=0
-all: gen_headers
+all: gen_headers gen_srcs
 	$(MAKE) -j $(nproc) --no-print-directory $(NAME)
 
 .PHONY: debug
 debug: export CFLAGS := $(CFLAGS) -O0 -g3 -D DEBUG=1
 debug: export DEBUG := 1
 debug: export TARGET := debug
-debug: gen_headers
+debug: gen_headers gen_srcs
 	$(MAKE) -j $(nproc) --no-print-directory $(NAME)
 
 .PHONY: release
 release: export CFLAGS := $(CFLAGS) -O3 -flto -D DEBUG=0
 release: export TARGET := release
-release: gen_headers
+release: gen_headers gen_srcs
 	$(MAKE) -j $(nproc) --no-print-directory $(NAME)
 
 .PHONY: bonus
 bonus: export SRCS := $(SRCS) $(SRCS_BONUS)
-bonus: gen_headers
+bonus: gen_headers gen_srcs
 	$(MAKE) --no-print-directory
 
 ###########################################################

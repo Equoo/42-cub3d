@@ -6,18 +6,18 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 03:46:48 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/30 12:04:00 by dderny           ###   ########.fr       */
+/*   Updated: 2025/11/01 04:38:05 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <libft.h>
 
-#include "classes/nodes/node.h"
+#include "classes/core/node.h"
 
 int	node_construct(t_node *self)
 {
-	self->destruct = &node_destruct;
+	self->_destruct = &node_destruct;
+	self->_to_string = &node_to_string;
 	if (object_construct((t_object *)self))
 		return (1);
 	self->childs = vec_new(sizeof(t_node), 2);

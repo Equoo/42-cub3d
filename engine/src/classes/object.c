@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 13:12:19 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/30 12:01:02 by dderny           ###   ########.fr       */
+/*   Updated: 2025/11/01 04:39:08 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int				object_construct(t_object *self)
 	static id_t	last_id = 0;
 
 	self->free = &object_free;
-	self->destruct = &object_destruct;
-	self->to_string = &object_to_string;
+	self->_destruct = &object_destruct;
+	self->_to_string = &object_to_string;
 	self->is_class = &object_is_class;
 	self->base_classes = vec_new(sizeof(char *), 4);
 	if (!self->base_classes)
@@ -71,9 +71,9 @@ int			object_destruct(t_object *self)
 
 void			*object_free(t_object *self)
 {
-	if (self->destruct)
-		self->destruct(self);
-	free(self);
+	if (self->_destruct)
+		self->_destruct(self);
+	ft_free(self);
 	return (NULL);
 }
 

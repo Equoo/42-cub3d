@@ -1,8 +1,8 @@
 # Auto-generated file, do not edit!
-SRCS = classes/node/childs.c \
-classes/node/to_string.c \
-classes/node.c \
+SRCS = classes/node.c \
 classes/object.c \
+classes/node/to_string.c \
+classes/node/childs.c \
 classes/node3d.c \
 types/vector3/comparisons.c \
 types/vector3/operators.c \

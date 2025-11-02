@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:24:40 by dderny            #+#    #+#             */
-/*   Updated: 2025/11/01 04:24:02 by dderny           ###   ########.fr       */
+/*   Updated: 2025/11/01 05:19:25 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ struct s_input
 {
 	t_mousemode	mousemode;
 	
-
 	int		(*is_keypressed)(t_self *self, uint keycode);
 	int		(*is_keydown)(t_self *self, uint keycode);
 	int		(*is_keyreleased)(t_self *self, uint keycode);

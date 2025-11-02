@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 13:12:19 by dderny            #+#    #+#             */
-/*   Updated: 2025/11/01 04:39:08 by dderny           ###   ########.fr       */
+/*   Updated: 2025/11/02 04:34:58 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int				object_construct(t_object *self)
 	self->_destruct = &object_destruct;
 	self->_to_string = &object_to_string;
 	self->is_class = &object_is_class;
-	self->base_classes = vec_new(sizeof(char *), 4);
+	self->base_classes = vec_new(self->garbage, sizeof(char *), 4);
 	if (!self->base_classes)
 		return (1);
 	self->class_name = "object";

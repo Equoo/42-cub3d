@@ -6,13 +6,14 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:24:40 by dderny            #+#    #+#             */
-/*   Updated: 2025/11/01 02:43:28 by dderny           ###   ########.fr       */
+/*   Updated: 2025/11/02 04:32:03 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECT_H
 # define OBJECT_H
 
+# include <libft.h>
 # include <stdint.h>
 # include <ft_vector.h>
 # include <sys/types.h>
@@ -24,6 +25,7 @@ typedef	void *t_self;
 typedef struct s_object t_object;
 struct s_object
 {
+	t__xgarbage	*garbage;
 	char		**base_classes;
 	char		*class_name;
 	uint32_t	id;

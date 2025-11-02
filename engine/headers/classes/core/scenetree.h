@@ -24,6 +24,7 @@ struct s_scenetree
 	union {
 		t_object	object;
 		struct {
+	t__xgarbage	*garbage;
 	char		**base_classes;
 	char		*class_name;
 	uint32_t	id;

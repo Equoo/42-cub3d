@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:24:40 by dderny            #+#    #+#             */
-/*   Updated: 2025/11/01 02:39:19 by dderny           ###   ########.fr       */
+/*   Updated: 2025/11/02 04:34:04 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define NODE_H
 
 # include "classes/object.h"
+# include "libft.h"
 
 struct s_scenetree;
 
@@ -24,6 +25,7 @@ struct s_node
 	union {
 		t_object	object;
 		struct {
+	t__xgarbage	*garbage;
 	char		**base_classes;
 	char		*class_name;
 	uint32_t	id;
@@ -55,7 +57,7 @@ struct s_node
 	int		(*rm_child)(t_node *self, size_t child);
 };
 
-t_node		*node_new();
+t_node		*node_new(t__xgarbage *garbage);
 int			node_construct(t_node *self);
 int			node_destruct(t_node *self);
 

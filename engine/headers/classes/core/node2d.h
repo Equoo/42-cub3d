@@ -24,6 +24,7 @@ struct s_node2d
 		t_object	object;
 		t_node	node;
 		struct {
+	t__xgarbage	*garbage;
 	char		**base_classes;
 	char		*class_name;
 	uint32_t	id;

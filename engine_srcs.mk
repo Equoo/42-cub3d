@@ -1,9 +1,9 @@
 # Auto-generated file, do not edit!
-SRCS = classes/node.c \
+SRCS = classes/core/node/to_string.c \
+classes/core/node/childs.c \
+classes/core/node.c \
+classes/core/engine.c \
 classes/object.c \
-classes/node/to_string.c \
-classes/node/childs.c \
-classes/node3d.c \
 types/vector3/comparisons.c \
 types/vector3/operators.c \
 types/vector3/other_operators.c \
@@ -48,7 +48,7 @@ lut/trigo.c \
 benchmark/debug_bench.c \
 benchmark/lib_bench.c \
 benchmark/lut_bench.c \
-engine.c \
 math/m_cubic.c \
 math/m_lerp.c \
-math/m_sine.c
+math/m_sine.c \
+main.c

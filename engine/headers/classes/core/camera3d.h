@@ -25,6 +25,7 @@ struct s_camera3d
 		t_node	node;
 		t_node3d	node3d;
 		struct {
+	t__xgarbage	*garbage;
 	char		**base_classes;
 	char		*class_name;
 	uint32_t	id;

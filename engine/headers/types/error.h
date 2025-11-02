@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   engine.c                                           :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 14:33:22 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/31 05:30:06 by zsonie           ###   ########lyon.fr   */
+/*   Created: 2025/11/02 04:30:48 by dderny            #+#    #+#             */
+/*   Updated: 2025/11/02 04:31:15 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include <bench.h>
-#include <math_extend.h>
+#ifndef ERROR_H
+# define ERROR_H
 
-int main(int argc, char *argv[])
-{
-    (void)argc;
-    (void)argv;
-    
-	display_trigo_benchmark();
-	display_dist_benchmark();
-	display_sqrtf_benchmark();
-	
-    return (0);
-}
+
+
+#endif
+

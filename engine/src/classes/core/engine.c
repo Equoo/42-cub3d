@@ -18,10 +18,11 @@
 #include "classes/core/engine.hpp"
 #include "classes/object.h"
 
-int	engine_construct(t_engine *self)
+int	engine_construct(t_engine *self, t__xgarbage *garbage)
 {
 	t_singleton	tmp;
 
+	*self = (t_engine){.garbage = garbage};
 	if (object_construct((t_object *)self))
 		return (1);
 	self->_destruct = &engine_destruct;
@@ -32,38 +33,34 @@ int	engine_construct(t_engine *self)
 	self->singletons = vec_new(self->garbage, sizeof(t_singleton), 2);
 	if (!self->singletons)
 		return (1);
-	tmp = (t_singleton){ID_MLX, mlx_init()};
-	if (!tmp.object || vec_append((void *)self->singletons, &tmp))
+	self->mlx = mlx_init();
+	if (!self->mlx)
 		return (1);
+	tmp = (t_singleton){ID_MLX, self->mlx};
+	if (vec_append((void *)&self->singletons, &tmp))
+		return (1);
+	// mlx_do_key_autorepeatoff(env.render.mlx);
+	mlx_loop_hook(self->mlx, &, &self);
+	mlx_loop(env.render.ml);
 	return (0);
 }
 
 int	engine_destruct(t_engine *self)
 {
+	void	*mlx;
+
 	object_destruct((t_object *)self);
 	if (self->singletons)
 	{
-		if (self->get_singleton(self, ID_MLX))
-			free(self->get_singleton(self, ID_MLX));
+		mlx = self->get_singleton(self, ID_MLX);
+		if (mlx)
+		{
+			mlx_destroy_display(mlx);
+			free(mlx);
+		}
 		vec_free(self->singletons);
 	}
 	return (0);
-}
-
-t_engine		*engine_new(t__xgarbage *garbage)
-{
-	t_engine	*engine;
-
-	engine = ft_xcalloc(garbage, sizeof(t_engine), 0);
-	if (!engine)
-		return (NULL);
-	*engine = (t_engine){.garbage = garbage};
-	if (engine_construct(engine))
-	{
-		engine->free(engine);
-		return (NULL);
-	}
-	return (engine);
 }
 
 void	*engine_get_singleton(t_engine *self, id_t id)

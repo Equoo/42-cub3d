@@ -15,6 +15,7 @@
 
 # include <libft.h>
 # include <sys/types.h>
+#include <time.h>
 # include "classes/object.h"
 
 #define ID_MLX 256
@@ -30,14 +31,15 @@ struct s_engine
 {
 	int			max_fps;
 	int			physics_ticks;
+	void		*mlx;
 	t_singleton	*singletons;
+	time_t		deltatime;
 
 	int		(*add_singleton)(t_self *self, id_t id, void *singleton);
 	void	*(*get_singleton)(t_self *self, id_t id);
 };
 
-t_engine	*engine_new(t__xgarbage *garbage);
-int			engine_construct(t_engine *self);
+int			engine_construct(t_engine *self, t__xgarbage *garbage);
 int			engine_destruct(t_engine *self);
 
 int			engine_add_singleton(t_engine *self, id_t id, void *singleton);

@@ -46,6 +46,7 @@ struct s_engine
 	};
 	int			max_fps;
 	int			physics_ticks;
+	void		*mlx;
 	t_singleton	*singletons;
 
 	int		(*add_singleton)(t_engine *self, id_t id, void *singleton);

@@ -20,6 +20,17 @@
 # include "classes/core/engine.h"
 # include "types/vector2.h"
 
+enum
+{
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+};
+
 /** INHERIT viewport **/
 typedef struct s_window t_window;
 struct s_window
@@ -65,13 +76,16 @@ struct s_window
 	t_vec2		(*get_mousepos)(t_window *self);
 		};
 	};
-	void	*mlx;
-	void	*mlx_win;
-	t_vec2	size;
-	t_vec2	pos;
+	void		*mlx;
+	void		*mlx_win;
+	t_engine	*engine;
+	int			width;
+	int			height;
 
-	int		(*resize)(t_window *self, t_vec2 new_size);
+	// int		(*resize)(t_window *self, t_vec2 new_size);
 };
+
+int			window_on_destroy(t_window *self, int (*func)());
 
 t_window		*window_new(t_engine *engine);
 int			window_construct(t_window *self, t_engine *engine);

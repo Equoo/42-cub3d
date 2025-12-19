@@ -17,6 +17,7 @@
 # include <mlx_int.h>
 
 # include "classes/core/viewport.h"
+# include "classes/core/engine.h"
 # include "types/vector2.h"
 
 /** INHERIT viewport **/
@@ -31,8 +32,8 @@ struct s_window
 	int		(*resize)(t_self *self, t_vec2 new_size);
 };
 
-t_window		*window_new();
-int			window_construct(t_window *self);
+t_window		*window_new(t_engine *engine);
+int			window_construct(t_window *self, t_engine *engine);
 int			window_destruct(t_window *self);
 
 #endif

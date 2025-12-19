@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 13:12:19 by dderny            #+#    #+#             */
-/*   Updated: 2025/11/02 04:34:58 by dderny           ###   ########.fr       */
+/*   Updated: 2025/11/18 02:20:09 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ char	*object_to_string(t_object *self)
 {
 	char	buffer[64];
 
-	if (ft_snprintf(buffer, 63, "%s[%d]", self->class_name, self->id) == -1)
-		return (NULL);
+	format(buffer, sizeof(buffer) - 1, "%s[%d]", self->class_name, self->id);
 	return (ft_strdup(buffer));
 }
 
-int				object_is_class(t_object *self, char *classn)
+int	object_is_class(t_object *self, char *classn)
 {
 	size_t	i;
 	size_t	size;
@@ -43,7 +42,7 @@ int				object_is_class(t_object *self, char *classn)
 	return (0);
 }
 
-int				object_construct(t_object *self)
+int	object_construct(t_object *self)
 {
 	static id_t	last_id = 0;
 
@@ -55,7 +54,7 @@ int				object_construct(t_object *self)
 	if (!self->base_classes)
 		return (1);
 	self->class_name = "object";
-	if (!vec_append((t_vec *)&self->base_classes, &self->class_name))
+	if (vec_append((t_vec *)&self->base_classes, &self->class_name))
 		return (1);
 	self->id = last_id;
 	last_id++;
@@ -65,7 +64,7 @@ int				object_construct(t_object *self)
 int			object_destruct(t_object *self)
 {
 	if (self->base_classes)
-		vec_free(&self->base_classes);
+		vec_free(self->base_classes);
 	return (0);
 }
 

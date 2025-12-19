@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   node.c                                             :+:      :+:    :+:   */
+/*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/29 03:46:48 by dderny            #+#    #+#             */
-/*   Updated: 2025/11/02 04:34:10 by dderny           ###   ########.fr       */
+/*   Created: 2025/10/13 13:12:19 by dderny            #+#    #+#             */
+/*   Updated: 2025/12/01 23:04:41 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include <mlx.h>
+#include "classes/core/window.h"
+#include "classes/core/engine.h"
 
-#include "classes/core/node.h"
-
-int	node_construct(t_node *self)
+int	window_construct(t_window *self, t_engine *engine)
 {
 	if (object_construct((t_object *)self))
 		return (1);
-	self->_destruct = &node_destruct;
-	self->_to_string = &node_to_string;
-	self->childs = vec_new(self->garbage, sizeof(t_node), 2);
-	if (!self->childs)
-		return (1);
+	self->_destruct = &window_destruct;
+	self->mlx = engine->get_singleton(engine, ID_MLX);
 	return (0);
 }
 
-int	node_destruct(t_node *self)
+int	window_destruct(t_window *self)
 {
 	object_destruct((t_object *)self);
 	if (self->childs)
@@ -34,18 +31,18 @@ int	node_destruct(t_node *self)
 	return (0);
 }
 
-t_node		*node_new(t__xgarbage *garbage)
+t_window		*window_new(t_engine *engine)
 {
-	t_node	*node;
+	t_window	*window;
 
-	node = ft_xcalloc(garbage, sizeof(t_node), 0);
-	if (!node)
+	window = ft_xcalloc(engine->garbage, sizeof(t_window), 0);
+	if (!window)
 		return (NULL);
-	*node = (t_node){.garbage = garbage};
-	if (node_construct(node))
+	*window = (t_window){.garbage = engine->garbage};
+	if (window_construct(window, engine))
 	{
-		node->free(node);
+		window->free(window);
 		return (NULL);
 	}
-	return (node);
+	return (window);
 }

@@ -3,6 +3,7 @@ SRCS = classes/core/node/to_string.c \
 classes/core/node/childs.c \
 classes/core/node.c \
 classes/core/engine.c \
+classes/core/window.c \
 classes/object.c \
 types/vector3/comparisons.c \
 types/vector3/operators.c \

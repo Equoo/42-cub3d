@@ -1,0 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   window.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/13 13:12:19 by dderny            #+#    #+#             */
+/*   Updated: 2025/12/01 23:04:41 by dderny           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <mlx.h>
+#include "core/window.h"
+
+int	window_create(t_window *out, t_window base)
+{
+	base.mlx = mlx_init();
+	if (!base.mlx)
+		return (1);
+	base.mlx_win = mlx_new_window(base.mlx, base.width,
+				base.height, base.title);
+	if (!base.mlx_win)
+		return (1);
+	mlx_hook(base.mlx_win, ON_DESTROY, 0, base.close, base.engine);
+	mlx_hook(base.mlx_win, ON_KEYDOWN, KeyPressMask, base.keydown, base.engine);
+	mlx_hook(base.mlx_win, ON_KEYUP, KeyReleaseMask, base.keyup, base.engine);
+	mlx_hook(base.mlx_win, ON_MOUSEUP, ButtonPressMask, base.mousedown, base.engine);
+	mlx_hook(base.mlx_win, ON_MOUSEDOWN, ButtonReleaseMask, base.mousedown, base.engine);
+	mlx_hook(base.mlx_win, ON_MOUSEMOVE, 0, base.mousemove, base.engine);
+	mlx_loop_hook(base.mlx, base.update, base.engine);
+	*out = base;
+	return (0);
+}
+

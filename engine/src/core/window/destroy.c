@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   to_string.c                                        :+:      :+:    :+:   */
+/*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/01 02:39:53 by dderny            #+#    #+#             */
-/*   Updated: 2025/11/18 02:20:26 by dderny           ###   ########.fr       */
+/*   Created: 2025/10/13 13:12:19 by dderny            #+#    #+#             */
+/*   Updated: 2025/12/01 23:04:41 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
-#include <libft.h>
+#include <mlx.h>
+#include "core/window.h"
 
-#include "classes/core/node.h"
-
-char	*node_to_string(t_node *self)
+int	window_destruct(t_window *win)
 {
-	char	buffer[64];
-
-	if (format(buffer, 63, "%s[%d][%s]", self->class_name, self->id, self->name) == -1)
-		return (NULL);
-	return (ft_strdup(buffer));
+	if (win->mlx_win)
+		mlx_destroy_window(win->mlx, win->mlx_win);
+	if (win->mlx)
+	{
+		mlx_destroy_display(win->mlx);
+		free(win->mlx);
+	}
+	return (0);
 }
+

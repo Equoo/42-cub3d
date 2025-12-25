@@ -10,39 +10,45 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENGINE_H
-# define ENGINE_H
+#ifndef WINDOW_H
+# define WINDOW_H
+
+# include <mlx.h>
+# include <mlx_int.h>
 
 # include <libft.h>
 # include <sys/types.h>
-#include <time.h>
-# include "classes/object.h"
 
-#define ID_MLX 256
-
-typedef struct {
-	id_t	id;
-	void	*object;
-}		t_singleton;
-
-/** INHERIT object **/
-typedef struct s_engine t_engine;
-struct s_engine
+enum
 {
-	int			max_fps;
-	int			physics_ticks;
-	void		*mlx;
-	t_singleton	*singletons;
-	time_t		deltatime;
-
-	int		(*add_singleton)(t_self *self, id_t id, void *singleton);
-	void	*(*get_singleton)(t_self *self, id_t id);
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
 };
 
-int			engine_construct(t_engine *self, t__xgarbage *garbage);
-int			engine_destruct(t_engine *self);
+typedef struct s_window
+{
+	int			width;
+	int			height;
+	char		*title;
+	void		*engine;
+	void		*mlx;
+	void		*mlx_win;
 
-int			engine_add_singleton(t_engine *self, id_t id, void *singleton);
-void		*engine_get_singleton(t_engine *self, id_t id);
+	int			(*close)();
+	int			(*keyup)();
+	int			(*keydown)();	
+	int			(*mouseup)();
+	int			(*mousedown)();
+	int			(*mousemove)();
+	int			(*update)();
+}	t_window;
+
+int	window_create(t_window *out, t_window base);
+int	window_destruct(t_window *win);
 
 #endif

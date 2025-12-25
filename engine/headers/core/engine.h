@@ -15,49 +15,22 @@
 
 # include <libft.h>
 # include <sys/types.h>
-# include "classes/object.h"
+# include <time.h>
+# include "core/window.h"
 
-#define ID_MLX 256
-
-typedef struct {
-	id_t	id;
-	void	*object;
-}		t_singleton;
-
-/** INHERIT object **/
 typedef struct s_engine t_engine;
 struct s_engine
 {
-	union {
-		t_object	object;
-		struct {
-	t__xgarbage	*garbage;
-	char		**base_classes;
-	char		*class_name;
-	uint32_t	id;
-
-	void	*(*free)(t_engine *self);
-	int		(*_destruct)(t_engine *self);
-	int		(*_notification)(t_engine *self, int type, void *data);
-	char	*(*_to_string)(t_engine *self);
-	int		(*notify)(t_engine *self, int type, void *data);
-	int		(*is_class)(t_engine *self, char *classn);
-		};
-	};
 	int			max_fps;
 	int			physics_ticks;
-	void		*mlx;
-	t_singleton	*singletons;
-
-	int		(*add_singleton)(t_engine *self, id_t id, void *singleton);
-	void	*(*get_singleton)(t_engine *self, id_t id);
+	time_t		deltatime;
+	t_window	window;
+	t__xgarbage *garbage;
 };
 
-t_engine	*engine_new(t__xgarbage *garbage);
-int			engine_construct(t_engine *self);
-int			engine_destruct(t_engine *self);
-
-int			engine_add_singleton(t_engine *self, id_t id, void *singleton);
-void		*engine_get_singleton(t_engine *self, id_t id);
+int			engine_initialize(t_engine *engine,
+						int argc, char *argv[]);
+int			engine_update(t_engine *engine);
+int			engine_close(t_engine *engine);
 
 #endif

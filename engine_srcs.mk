@@ -2,9 +2,8 @@
 SRCS = classes/core/node.c \
 classes/core/node/childs.c \
 classes/core/node/to_string.c \
-classes/core/engine.c \
-classes/core/engine/mlx.c \
 classes/core/window.c \
+classes/core/engine.c \
 classes/object.c \
 types/mat2/dot.c \
 types/mat2/get.c \
@@ -45,8 +44,8 @@ types/vector3/operators_by.c \
 types/vector3/other_operators.c \
 types/vector3/other_operators_by.c \
 benchmark/debug_bench.c \
-benchmark/lib_bench.c \
 benchmark/lut_bench.c \
+benchmark/lib_bench.c \
 lut/dist.c \
 lut/sqrtf.c \
 lut/trigo.c \

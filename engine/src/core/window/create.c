@@ -11,22 +11,26 @@
 /* ************************************************************************** */
 
 #include <mlx.h>
+#include "core/game.h"
 #include "core/window.h"
 
-int	window_create(t_window *out, t_window base)
+int	window_create(t_window *out, t_window base, void *engine)
 {
+	base.engine = engine;
 	base.mlx = mlx_init();
 	if (!base.mlx)
 		return (1);
-	base.mlx_win = mlx_new_window(base.mlx, base.width,
-				base.height, base.title);
+	base.mlx_win = mlx_new_window(base.mlx, g_win_width,
+				g_win_height, (char *)g_win_title);
 	if (!base.mlx_win)
 		return (1);
 	mlx_hook(base.mlx_win, ON_DESTROY, 0, base.close, base.engine);
 	mlx_hook(base.mlx_win, ON_KEYDOWN, KeyPressMask, base.keydown, base.engine);
 	mlx_hook(base.mlx_win, ON_KEYUP, KeyReleaseMask, base.keyup, base.engine);
-	mlx_hook(base.mlx_win, ON_MOUSEUP, ButtonPressMask, base.mousedown, base.engine);
-	mlx_hook(base.mlx_win, ON_MOUSEDOWN, ButtonReleaseMask, base.mousedown, base.engine);
+	mlx_hook(base.mlx_win, ON_MOUSEUP, ButtonPressMask, base.mousedown,
+			base.engine);
+	mlx_hook(base.mlx_win, ON_MOUSEDOWN, ButtonReleaseMask, base.mousedown,
+			base.engine);
 	mlx_hook(base.mlx_win, ON_MOUSEMOVE, 0, base.mousemove, base.engine);
 	mlx_loop_hook(base.mlx, base.update, base.engine);
 	*out = base;

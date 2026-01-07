@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "math_extend.h"
+#include "math/extend.h"
 #include <math.h>
 
 inline float	sin_lut(int angle_deg)

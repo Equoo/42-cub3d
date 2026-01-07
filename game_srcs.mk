@@ -1,2 +1,2 @@
 # Auto-generated file, do not edit!
-SRCS = 
+SRCS += game/src/main.c

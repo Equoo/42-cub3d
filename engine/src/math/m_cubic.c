@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math_extend.h>
+#include <math/extend.h>
 
 float	easeInCubic(int x)
 {

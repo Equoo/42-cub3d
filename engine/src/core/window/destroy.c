@@ -22,6 +22,7 @@ int	window_destruct(t_window *win)
 		mlx_destroy_display(win->mlx);
 		free(win->mlx);
 	}
+	exit(EXIT_SUCCESS);
 	return (0);
 }
 

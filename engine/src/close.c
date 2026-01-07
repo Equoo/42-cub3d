@@ -7,6 +7,5 @@ int	engine_close(t_engine *engine)
 {
 	garbage_collector(engine->garbage);
 	window_destruct(&engine->window);
-
 	return (0);
 }

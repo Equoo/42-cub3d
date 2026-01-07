@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math_extend.h>
+#include <math/extend.h>
 #include <types/vector3.h>
 
 t_bool	vec3_eq(t_vec3 a, t_vec3 b)

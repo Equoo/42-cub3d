@@ -1,6 +1,6 @@
 
-
 #include "core/game.h"
+
 const int	g_win_width = 1920;
 const int	g_win_height = 1080;
 

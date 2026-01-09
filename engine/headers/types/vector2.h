@@ -316,4 +316,14 @@ t_vec2		vec2_abs(t_vec2 self);
  */
 t_vec2		vec2_rot(t_vec2 v, float angle);
 
+typedef struct s_intersect {
+	t_vec2	line_pos;
+	t_vec2	line_dir;
+	t_vec2	sega;
+	t_vec2	segb;
+	t_vec2	*hit_pos;
+}	t_intersect;
+
+int			intersect_line_segment(t_intersect data);
+
 #endif

@@ -26,8 +26,11 @@ typedef struct s_image
 	int		size;
 } t_image;
 
-void put_pixel_color(const t_image img, const int x, const int y, t_rgba color);
-void draw_line(const t_image img, const t_vec2 p1, const t_vec2 p2, const t_rgba color);
-void draw_square(const t_image img, const t_vec2 p1, const t_vec2 p2, const t_rgba color);
+void draw_pixel(const t_image img,
+		const int x, const int y, const t_rgba color);
+void draw_line(const t_image img,
+		t_vec2 p1, const t_vec2 p2, const t_rgba color);
+void draw_square(const t_image img,
+		const t_vec2 p1, const t_vec2 p2, const t_rgba color);
 
 #endif

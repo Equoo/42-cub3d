@@ -1,6 +1,5 @@
 # Auto-generated file, do not edit!
-SRCS += engine/src/main.c \
-engine/src/update.c \
+SRCS += engine/src/update.c \
 engine/src/types/mat2/dot.c \
 engine/src/types/mat2/get.c \
 engine/src/types/mat2/invert.c \
@@ -49,4 +48,5 @@ engine/src/core/window/loop.c \
 engine/src/core/window/destroy.c \
 engine/src/core/inputs/lib.c \
 engine/src/core/inputs/mouse.c \
-engine/src/core/inputs/keyboard.c
+engine/src/core/inputs/keyboard.c \
+engine/src/main.c

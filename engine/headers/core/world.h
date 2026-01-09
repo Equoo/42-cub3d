@@ -6,6 +6,12 @@
 # include "types/vector2.h"
 # include "core/draw.h"
 
+typedef struct s_worldhit {
+	t_vec2	pos;
+	int		sector;
+	int		face;
+}	t_hit;
+
 typedef struct  s_tex_map {
     t_image		*tex;
     t_vec2		uva;

@@ -23,6 +23,7 @@ struct s_engine
 {
 	int			max_fps;
 	int			physics_ticks;
+	time_t		time;
 	time_t		deltatime;
 	t_window	window;
 	t__xgarbage *garbage;
@@ -31,6 +32,7 @@ struct s_engine
 int			engine_initialize(t_engine *engine,
 						int argc, char *argv[]);
 int			engine_update(t_engine *engine);
+int			engine_tick(t_engine *engine, time_t frametime);
 int			engine_close(t_engine *engine);
 
 #endif

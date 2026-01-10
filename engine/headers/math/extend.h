@@ -19,8 +19,8 @@
 # define PI 3.141592
 
 # define TABLE_SIZE 360 //trigo
-float	sin_lut(int angle_deg);
-float	cos_lut(int angle_deg);
+float	sin_lut(float angle_deg);
+float	cos_lut(float angle_deg);
 
 # define MAX_DIST 10000 //dist
 float	get_distance_lut(int dx, int dy);

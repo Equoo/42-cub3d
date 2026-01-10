@@ -19,6 +19,8 @@
 # include <libft.h>
 # include <sys/types.h>
 
+# include "core/draw.h"
+
 enum
 {
 	ON_KEYDOWN = 2,
@@ -35,6 +37,7 @@ typedef struct s_window
 	int			width;
 	int			height;
 	char		*title;
+	t_image		buffer;
 	void		*engine;
 	void		*mlx;
 	void		*mlx_win;

@@ -13,12 +13,14 @@
 #include "math/extend.h"
 #include <math.h>
 
-inline float	sin_lut(int angle_deg)
+inline float	sin_lut(const float angle)
 {
 	static float	sin_table[TABLE_SIZE] = {0};
 	int				i;
 	float			radians;
+	int				angle_deg;
 
+	angle_deg = (int)angle;
 	if (sin_table[TABLE_SIZE - 1] == .0f)
 	{
 		i = 0;
@@ -35,12 +37,14 @@ inline float	sin_lut(int angle_deg)
 	return (sin_table[angle_deg]);
 }
 
-inline float	cos_lut(int angle_deg)
+inline float	cos_lut(const float angle)
 {
 	static float	cos_table[TABLE_SIZE] = {0};
 	int				i;
 	float			radians;
+	int				angle_deg;
 
+	angle_deg = (int)angle;
 	if (cos_table[TABLE_SIZE - 1] == .0f)
 	{
 		i = 0;

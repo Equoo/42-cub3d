@@ -54,5 +54,6 @@ typedef struct s_window
 int	window_create(t_window *out, t_window base, void *engine);
 int	window_destruct(t_window *win);
 int	window_loop(t_window *self);
+int	window_drawbuffer(t_window *self);
 
 #endif

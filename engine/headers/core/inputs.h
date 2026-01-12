@@ -2,15 +2,27 @@
 #ifndef INPUTS_H
 # define INPUTS_H
 # include "core/engine.h"
+# include <sys/types.h>
 
-int	inputs_mousedown(t_engine *engine, int key);
-int	inputs_mousemove(t_engine *engine, int x, int y);
-int	inputs_mouseup(t_engine *engine, int key);
+typedef enum e_key_state
+{
+	KEY_NONE,
+	KEY_PRESSED,
+	KEY_DOWN,
+	KEY_RELEASED
+}		t_key_state;
 
-int	inputs_keydown(t_engine *engine, int key);
-int	inputs_keyup(t_engine *engine, int key);
+int	inputs_mousedown(int key, t_engine *engine);
+int	inputs_mousemove(int x, int y, t_engine *engine);
+int	inputs_mouseup(int key, t_engine *engine);
 
-int	iskeydown(t_engine *engine, int key);
-int	iskeyup(t_engine *engine, int key);
+int	inputs_keydown(int key, t_engine *engine);
+int	inputs_keyup(int key, t_engine *engine);
+
+int	inputs_update(t_engine *engine);
+
+int	iskeydown(t_engine *engine, u_int key);
+int	iskeyreleased(t_engine *engine, u_int key);
+int	iskeyup(t_engine *engine, u_int key);
 
 #endif

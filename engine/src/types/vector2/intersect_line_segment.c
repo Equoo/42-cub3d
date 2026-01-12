@@ -36,12 +36,12 @@ int intersect_line_segment(const t_intersect data)
 
 	if (fabsf(cross_dirs) < 1e-6f)
 		return (0);
-	u = vec2_cross(&data.diff, &data.line_dir) / cross_dirs;
+	u = vec2_cross(diff, data.line_dir).x / cross_dirs;
 	if (u < 0.0f || u > 1.0f)
 		return (0);
-	t = vec2_cross(&data.diff, &seg_dir) / cross_dirs;
-	data->hit_pos->x = data.line_pos.x + data.line_dir.x * t;
-	data->hit_pos->y = data.line_pos.y + data.line_dir.y * t;
+	t = vec2_cross(diff, seg_dir).x / cross_dirs;
+	data.hit_pos->x = data.line_pos.x + data.line_dir.x * t;
+	data.hit_pos->y = data.line_pos.y + data.line_dir.y * t;
 	return (1);
 }
 

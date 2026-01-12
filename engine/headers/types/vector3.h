@@ -33,6 +33,8 @@ typedef struct
 	float		z;
 }				t_vec3;
 
+typedef t_vec3	t_rot;
+
 /**
  * @brief Adds two vectors component-wise
  * @param a First vector
@@ -310,5 +312,10 @@ t_vec3		vec3_max(t_vec3 a, t_vec3 b);
  * @return Vector (|x|, |y|, |z|)
  */
 t_vec3		vec3_abs(t_vec3 self);
+
+
+t_vec3		rot_forward(t_rot r);
+t_vec3		rot_right(t_rot r);
+t_vec3		rot_up(t_rot r);
 
 #endif

@@ -5,6 +5,8 @@
 # include <stdint.h>
 # include "types/vector2.h"
 # include "core/draw.h"
+# include "core/camera.h"
+#define NSECTORS 2
 
 typedef struct s_worldhit {
 	t_vec2	pos;
@@ -44,5 +46,8 @@ typedef struct s_world {
     t_sector    **sectors;
     size_t      n_sectors;
 }   t_world;
+
+int	draw_walls(t_image *buffer, t_world world, t_camera cam, int first_sec);
+int	sector_from_pos(t_world *world, t_vec2 pos);
 
 #endif

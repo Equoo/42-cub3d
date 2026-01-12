@@ -15,6 +15,7 @@
 
 int	window_destruct(t_window *win)
 {
+    mlx_do_key_autorepeaton(win->mlx);
 	if (win->mlx_win)
 		mlx_destroy_window(win->mlx, win->mlx_win);
 	if (win->mlx)

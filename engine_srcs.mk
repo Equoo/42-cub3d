@@ -1,5 +1,5 @@
 # Auto-generated file, do not edit!
-SRCS += engine/src/update.c \
+SRCS += engine/src/close.c \
 engine/src/types/mat2/dot.c \
 engine/src/types/mat2/get.c \
 engine/src/types/mat2/invert.c \
@@ -24,6 +24,7 @@ engine/src/types/vector2/operators_by.c \
 engine/src/types/vector2/other_operators.c \
 engine/src/types/vector2/other_operators_by.c \
 engine/src/types/vector2/comparisons.c \
+engine/src/types/vector2/intersect_line_segment.c \
 engine/src/types/vector3/abs.c \
 engine/src/types/vector3/clamp.c \
 engine/src/types/vector3/cross.c \
@@ -38,15 +39,19 @@ engine/src/types/vector3/operators_by.c \
 engine/src/types/vector3/other_operators.c \
 engine/src/types/vector3/other_operators_by.c \
 engine/src/types/vector3/comparisons.c \
-engine/src/close.c \
+engine/src/types/vector3/rotation.c \
 engine/src/math/m_lerp.c \
-engine/src/math/trigo.c \
 engine/src/math/m_sine.c \
 engine/src/math/m_cubic.c \
-engine/src/core/window/create.c \
+engine/src/math/trigo.c \
 engine/src/core/window/loop.c \
+engine/src/core/window/drawbuffer.c \
 engine/src/core/window/destroy.c \
-engine/src/core/inputs/lib.c \
-engine/src/core/inputs/mouse.c \
+engine/src/core/window/create.c \
 engine/src/core/inputs/keyboard.c \
-engine/src/main.c
+engine/src/core/inputs/mouse.c \
+engine/src/core/inputs/lib.c \
+engine/src/core/world/sector.c \
+engine/src/core/draw/drawing.c \
+engine/src/main.c \
+engine/src/update.c

@@ -12,10 +12,16 @@ int	game_initialize(t_engine *engine)
 	return (0);
 }
 
-int	game_update(t_engine *engine, time_t frametime)
+int	game_update(t_engine *engine)
 {
 	(void)engine;
-	(void)frametime;
 	return (0);
 }
+
+int game_tick(t_engine *engine)
+{
+	(void)engine;
+	return (0);
+}
+
 

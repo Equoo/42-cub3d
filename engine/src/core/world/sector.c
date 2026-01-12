@@ -1,6 +1,7 @@
 
 #include "core/draw.h"
 #include "core/world.h"
+#include "core/camera.h"
 #include "math/extend.h"
 #include "types/vector2.h"
 
@@ -90,13 +91,13 @@ static int draw_wall(t_image *buffer, int x, t_vec2 origin, t_vec2 hit_pos)
     int height = 1 / length * 500000;
     int i = 0;
 	const float dark = 1 - 0.05 - (length / 4000);
-	const uint color = (t_rgba){.r=190*dark, .g=190*dark, .b=134*dark}.rgb;
+	const t_rgba color = (t_rgba){.r=190*dark, .g=190*dark, .b=134*dark};
     while (i < height)
         draw_pixel(buffer, 200 + x, 1080 / 2 - height / 2 + i++, color);
     return (0);
 }
 
-static int  draw_walls(t_image *buffer, t_world world, t_camera cam, int first_sec)
+int  draw_walls(t_image *buffer, t_world world, t_camera cam, int first_sec)
 {
     const int   rays = buffer->width - 200;
     // const int   slice_width = render->width / rays;

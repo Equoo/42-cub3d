@@ -1,14 +1,14 @@
 
 #include "core/inputs.h"
 
-int	inputs_mousedown(t_engine *engine, int key)
+int	inputs_mousedown(int key, t_engine *engine)
 {
 	(void)engine;
 	(void)key;
 	return (0);
 }
 
-int	inputs_mousemove(t_engine *engine, int x, int y)
+int	inputs_mousemove(int x, int y, t_engine *engine)
 {
 
 	(void)engine;
@@ -17,7 +17,7 @@ int	inputs_mousemove(t_engine *engine, int x, int y)
 	return (0);
 }
 
-int	inputs_mouseup(t_engine *engine, int key)
+int	inputs_mouseup(int key, t_engine *engine)
 {
 	(void)engine;
 	(void)key;

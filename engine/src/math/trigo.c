@@ -20,20 +20,20 @@ inline float	sin_lut(const float angle)
 	float			radians;
 	int				angle_deg;
 
-	angle_deg = (int)angle;
+	angle_deg = (int)(angle * 10);
 	if (sin_table[TABLE_SIZE - 1] == .0f)
 	{
 		i = 0;
 		while (i < TABLE_SIZE)
 		{
-			radians = i * (PI / 180.0);
+			radians = i * (PI / (180.0 * 10));
 			sin_table[i] = sin(radians);
 			i++;
 		}
 	}
-	angle_deg = angle_deg % 360;
+	angle_deg = angle_deg % 3600;
 	if (angle_deg < 0)
-		angle_deg += 360;
+		angle_deg += 3600;
 	return (sin_table[angle_deg]);
 }
 
@@ -44,19 +44,19 @@ inline float	cos_lut(const float angle)
 	float			radians;
 	int				angle_deg;
 
-	angle_deg = (int)angle;
+	angle_deg = (int)(angle * 10);
 	if (cos_table[TABLE_SIZE - 1] == .0f)
 	{
 		i = 0;
 		while (i < TABLE_SIZE)
 		{
-			radians = i * (PI / 180.0);
+			radians = i * (PI / (180.0 * 10));
 			cos_table[i] = cos(radians);
 			i++;
 		}
 	}
-	angle_deg = angle_deg % 360;
+	angle_deg = angle_deg % 3600;
 	if (angle_deg < 0)
-		angle_deg += 360;
+		angle_deg += 3600;
 	return (cos_table[angle_deg]);
 }

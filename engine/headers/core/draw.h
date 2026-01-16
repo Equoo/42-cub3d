@@ -24,6 +24,8 @@ typedef struct s_image
 	int		width;
 	int		height;
 	int		size;
+	int		byte_size_line;
+	int		byte_size;
 } t_image;
 
 void draw_pixel(const t_image *img,

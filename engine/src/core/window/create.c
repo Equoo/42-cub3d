@@ -19,12 +19,13 @@ static int image_new(void *mlx, int width, int height, t_image *out)
 	out->img = mlx_new_image(mlx, width, height);
 	if (!out->img)
 		return (1);
-	out->data = (t_rgba *)mlx_get_data_addr(out->img, &out->size_line,
-			&out->size_line, &out->height);
-	out->size_line /= 4;
+	out->data = (t_rgba *)mlx_get_data_addr(out->img, &out->byte_size_line,
+			&out->byte_size_line, &out->height);
+	out->size_line = out->byte_size_line / 4;
 	out->width = width;
 	out->height = height;
 	out->size = out->size_line * out->height;
+	out->byte_size = out->byte_size_line * out->height;
 	return (0);
 }
 

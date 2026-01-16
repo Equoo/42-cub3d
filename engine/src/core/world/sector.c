@@ -53,7 +53,7 @@ int sector_from_pos(t_world *world, t_vec2 pos)
 
 static int  trace_wall(t_sector **sectors, int sec_id, t_vec2 pos, float angle, t_hit *hit, int face_ignore)
 {
-	t_vec2  	dir = {cos(angle), sin(angle)};
+	t_vec2  	dir = {cos_lut(angle), sin_lut(angle)};
 	t_vec2  	hit_dir;
 	int     	i;
 	const t_sector	*sector = sectors[sec_id];
@@ -112,7 +112,7 @@ int  draw_walls(t_image *buffer, t_world world, t_camera cam, int first_sec)
     {
 		if (i % rays_filling && ++i)
 			continue;
-        ray_angle = (M_PI / 180) * (cam.rot.z - ((float)cam.fov / 2) + i * angle_steps);
+        ray_angle = (cam.rot.z - ((float)cam.fov / 2) + i * angle_steps);
         t_vec2 off = (t_vec2){100, 500};
         t_vec2 origin = vec2_add(vec2_divf((t_vec2){cam.pos.x, cam.pos.y}, 20), off);
         if (trace_wall(world.sectors, first_sec, (t_vec2){cam.pos.x, cam.pos.y}, ray_angle, &hit, -1))

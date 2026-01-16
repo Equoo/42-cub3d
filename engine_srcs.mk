@@ -45,9 +45,9 @@ engine/src/math/m_sine.c \
 engine/src/math/m_cubic.c \
 engine/src/math/trigo.c \
 engine/src/core/window/loop.c \
-engine/src/core/window/drawbuffer.c \
 engine/src/core/window/destroy.c \
 engine/src/core/window/create.c \
+engine/src/core/window/drawbuffer.c \
 engine/src/core/inputs/keyboard.c \
 engine/src/core/inputs/mouse.c \
 engine/src/core/inputs/lib.c \

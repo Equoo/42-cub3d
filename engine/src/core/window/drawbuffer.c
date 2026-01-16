@@ -5,6 +5,7 @@
 int	window_drawbuffer(t_window *self)
 {
 	mlx_put_image_to_window(self->mlx, self->mlx_win, self->buffer.img, 0, 0);
+	ft_memset(self->buffer.data, 0, self->buffer.byte_size);
 	return (0);
 }
 

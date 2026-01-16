@@ -18,7 +18,7 @@
 # define EPSILON 0.0001
 # define PI 3.141592
 
-# define TABLE_SIZE 360 //trigo
+# define TABLE_SIZE 3600 //trigo
 float	sin_lut(float angle_deg);
 float	cos_lut(float angle_deg);
 

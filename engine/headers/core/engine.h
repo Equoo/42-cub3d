@@ -35,7 +35,7 @@ struct s_engine
 	uint		internal_last_keys[32];
 	uint		keys_states[32][2];
 
-	t_world		*world;
+	t_map		*map;
 	t_camera	camera;
 	t_window	window;
 	t__xgarbage *garbage;

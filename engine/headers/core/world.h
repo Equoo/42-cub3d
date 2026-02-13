@@ -6,22 +6,18 @@
 # include "types/vector2.h"
 # include "core/draw.h"
 # include "core/camera.h"
-#define NSECTORS 2
 
-typedef struct s_worldhit {
-	t_vec2	pos;
-	int		sector;
-	int		face;
-}	t_hit;
+# define TRACE_LEN 1000
+//65536
 
-typedef struct  s_tex_map {
+typedef struct {
     t_image		*tex;
     t_vec2		uva;
     t_vec2		uvb;
     uint16_t	alpha;
 }   t_tex_map;
 
-typedef struct s_face {
+typedef struct {
 	int32_t		portal;
 	int32_t		portal_face;
     t_vec2		pos;
@@ -29,25 +25,19 @@ typedef struct s_face {
     //t_tex_map   *texture;
 }   t_face;
 
-// Minimum 4 faces;
-// have to be CONVEX
-typedef struct s_sector {
-    float       pos_z;
-    float       height;
-    //t_tex_map   *top_face;
-    //t_tex_map   *bot_face;
-    t_rgba      top_face;
-    t_rgba      bot_face;
-    int         n_points;
-    t_face      faces[];
-}   t_sector;
+typedef struct {
+	int		hit;
+	t_vec2	pos;
+	int		dir;
+	float	dist;
+}	t_hit;
 
-typedef struct s_world {
-    t_sector    **sectors;
-    size_t      n_sectors;
-}   t_world;
+typedef struct {
+	char *cells;
+	int width;
+	int	height;
+}	t_map;
 
-int	draw_walls(t_image *buffer, t_world world, t_camera cam, int first_sec);
-int	sector_from_pos(t_world *world, t_vec2 pos);
+int  draw_walls(t_image *buffer, t_map map, t_camera cam);
 
 #endif

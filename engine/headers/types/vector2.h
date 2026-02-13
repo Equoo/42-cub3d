@@ -316,6 +316,8 @@ t_vec2		vec2_abs(t_vec2 self);
  */
 t_vec2		vec2_rot(t_vec2 v, float angle);
 
+int	vec2_index(t_vec2 self, int width);
+
 typedef struct s_intersect {
 	t_vec2	line_pos;
 	t_vec2	line_dir;

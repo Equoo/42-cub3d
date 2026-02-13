@@ -2,6 +2,7 @@
 #include <ft_time.h>
 #include <sys/types.h>
 
+#include "core/draw.h"
 #include "core/game.h"
 #include "core/engine.h"
 #include "core/inputs.h"
@@ -12,43 +13,36 @@ static int	work(t_engine *engine)
 {
 	t_camera *camera = &engine->camera;
     if (iskeydown(engine, (uint)'w'))
-		camera->pos = vec3_add(camera->pos, vec3_mulf(rot_forward(camera->rot), 250 * engine->frametime));
+		camera->pos = vec3_add(camera->pos, vec3_mulf(rot_forward(camera->rot), 2 * engine->frametime));
 	if (iskeydown(engine, (uint)'a'))
-		camera->pos = vec3_add(camera->pos, vec3_mulf(rot_right(camera->rot), -250 * engine->frametime));
+		camera->pos = vec3_add(camera->pos, vec3_mulf(rot_right(camera->rot), -2 * engine->frametime));
 	if (iskeydown(engine, (uint)'d'))
-		camera->pos = vec3_add(camera->pos, vec3_mulf(rot_right(camera->rot), 250 * engine->frametime));
+		camera->pos = vec3_add(camera->pos, vec3_mulf(rot_right(camera->rot), 2 * engine->frametime));
 	if (iskeydown(engine, (uint)'s'))
-		camera->pos = vec3_add(camera->pos, vec3_mulf(rot_forward(camera->rot), -250 * engine->frametime));
+		camera->pos = vec3_add(camera->pos, vec3_mulf(rot_forward(camera->rot), -2 * engine->frametime));
 
 	if (iskeydown(engine, (uint)'q'))
 		camera->rot.z += -70 * engine->frametime;
 	if (iskeydown(engine, (uint)'e'))
 		camera->rot.z += 70 * engine->frametime;
 
-	//    draw_square(&engine->window.buffer, (t_vec2){0, 400}, (t_vec2){300, 600}, (t_rgba){.rgb=0xff999999});
-	//    int i = 0;
-	//    int j = 0;
-	//    t_vec2 off = (t_vec2){100, 500};
-	// while (j < NSECTORS) {
-	// 	i = 0;
-	// 	t_sector *sec = engine->world->sectors[j];
-	// 	while (i < sec->n_points)
-	// 	{
-	// 		t_face face_a = sec->faces[i];
-	// 		t_face face_b = sec->faces[(i + 1) % sec->n_points];
-	// 		draw_line(&engine->window.buffer, vec2_add(vec2_divf(face_a.pos, 20), off), vec2_add(vec2_divf(face_b.pos, 20), off), face_a.color);
-	// 		i++;
-	// 	}
-	// 	j++;
-	// }
-	//
-
 	window_drawbuffer(&engine->window);
-	int main_sector = sector_from_pos(engine->world, (t_vec2){engine->camera.pos.x, engine->camera.pos.y});
+
+
+	int i = 0;
+	while (i < engine->map->height * engine->map->width) {
+		if (engine->map->cells[i] != '1' && ++i)
+			continue;
+		t_vec2 a = {100 + (i % engine->map->width) * 10, 500 + i / engine->map->height * 10};
+		t_vec2 b = vec2_add(a, (t_vec2){10, 10});
+		draw_square(&engine->window.buffer, a, b, (t_rgba)0xffff00ff);
+		i++;
+	}
+
 	draw_walls(
 			&engine->window.buffer,
-			*engine->world,
-			engine->camera, main_sector);
+			*engine->map,
+			engine->camera);
 
 	__builtin_printf("FPS: %f\n", engine->frametime > 0 ? 1 / engine->frametime : 0);
 

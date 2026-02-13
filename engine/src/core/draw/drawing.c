@@ -44,7 +44,7 @@ void draw_square(const t_image *img,
 	y_end = ft_clamp(p2.y, 0, img->height - 1);
 	while (y < y_end)
 	{
-		ft_memset(img->data + y * img->size + x, color.rgb, (x_end - x) * sizeof(u_int));
+		ft_memsetint((uint *)img->data + y * img->width + x, color.rgb, (x_end - x));
 		y++;
 	}
 }

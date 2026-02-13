@@ -36,12 +36,6 @@ const static t_window	g_window = {
 	.update = &engine_update
 };
 
-
-#define RED 0xff00ffff
-#define BLUE 0xffff00ff
-#define GREEN 0xffffff00
-#define RDM 0xfff0fef0
-
 int	engine_initialize(t_engine *engine, int argc, char *argv[])
 {
 	if (window_create(&engine->window, g_window, engine))
@@ -49,25 +43,13 @@ int	engine_initialize(t_engine *engine, int argc, char *argv[])
 	(void)argc;
 	(void)argv;
 
-	engine->camera = (t_camera){.fov = 90};
-	t_world     world = (t_world){.n_sectors = NSECTORS};
-	engine->world = &world;
-
-	world.sectors = ft_xalloc(engine->garbage, sizeof(t_sector) * NSECTORS, 0);
-	world.sectors[0] = ft_xalloc(engine->garbage, sizeof(t_sector) + sizeof(t_face) * 5, 1024);
-	*world.sectors[0] = (t_sector){ 0, 100, {.rgb=0xffffffff}, {.rgb=0xfffffff}, 5};
-	world.sectors[0]->faces[0] = (t_face){-1, -1, {-1000, -1000}, {.rgb=RED}};
-	world.sectors[0]->faces[1] = (t_face){1, 3, {1000, -1000}, {.rgb=BLUE}};
-	world.sectors[0]->faces[2] = (t_face){-1, -1, {1000, 1000}, {.rgb=GREEN}};
-	world.sectors[0]->faces[3] = (t_face){-1, -1, {0, 1450}, {.rgb=RDM}};
-	world.sectors[0]->faces[4] = (t_face){-1, -1, {-1000, 1000}, {.rgb=RDM}};
-
-	world.sectors[1] = ft_xalloc(engine->garbage, sizeof(t_sector) + sizeof(t_face) * 4, 1024);
-	*world.sectors[1] = (t_sector){ 0, 100, {.rgb=0xffffffff}, {.rgb=0xfffffff}, 4};
-	world.sectors[1]->faces[0] = (t_face){-1, -1, {1000, -1000}, {.rgb=RED}};
-	world.sectors[1]->faces[1] = (t_face){-1, -1, {3000, -1000}, {.rgb=BLUE}};
-	world.sectors[1]->faces[2] = (t_face){-1, -1, {3000, 1000}, {.rgb=GREEN}};
-	world.sectors[1]->faces[3] = (t_face){0, 1, {1000, 1000}, {.rgb=RDM}};
+	engine->camera = (t_camera){.fov = 80};
+	t_map     map = (t_map){
+		.width = 10,
+		.height = 10,
+		.cells = "1111111111110000110111000011011100001101111000000111100000011110000001111000000111100000011111111111"
+	};
+	engine->map = &map;
 
 	if (game_initialize(engine))
 		return (1);

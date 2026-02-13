@@ -61,6 +61,12 @@ int	engine_initialize(t_engine *engine, int argc, char *argv[])
 
 	if (image_from_xpm(engine->window.mlx, "game/textures/background0.xpm", &map.textures[0].tex))
 		return (1);
+	if (image_from_xpm(engine->window.mlx, "game/textures/test.xpm", &map.textures[1].tex))
+		return (1);
+	if (image_from_xpm(engine->window.mlx, "game/textures/background0.xpm", &map.textures[2].tex))
+		return (1);
+	if (image_from_xpm(engine->window.mlx, "game/textures/background0.xpm", &map.textures[3].tex))
+		return (1);
 
 	if (game_initialize(engine))
 		return (1);

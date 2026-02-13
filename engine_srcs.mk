@@ -13,6 +13,7 @@ engine/src/math/m_lerp.c \
 engine/src/math/m_cubic.c \
 engine/src/math/m_sine.c \
 engine/src/math/trigo.c \
+engine/src/math/dda.c \
 engine/src/types/vector2/comparisons.c \
 engine/src/types/vector2/abs.c \
 engine/src/types/vector2/clamp.c \

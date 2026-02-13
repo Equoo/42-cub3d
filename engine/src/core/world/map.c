@@ -1,116 +1,43 @@
 
-
 #include "core/draw.h"
 #include "core/world.h"
 #include "core/camera.h"
 #include "libft.h"
 #include "math/extend.h"
+#include "types/image.h"
 #include "types/vector2.h"
-#include <math.h>
+#include "math/algorithm.h"
 
-static char get_cell(t_map grid, int x, int y)
+static void draw_wall(t_image *buffer, int x, float dist, t_hit hit, t_image img)
 {
-    if (x < 0 || x >= grid.width || y < 0 || y >= grid.height)
-        return '1';
-    return grid.cells[y * grid.width + x];
-}
+    const int	w_height = 1 / dist * 1200;
+    const int	s_height = ft_clamp(w_height, 0, buffer->height);
+	float 		img_off;
+	float		img_step;
+	uint 		img_x;
+    int 		i;
 
-int	dda_core(t_vec2 *origin, t_dda data, t_map grid)
-{
-	t_vec2	pos;
-	int		max_steps;
-	int		side;
-
-	max_steps = grid.width + grid.height;
-	pos = (t_vec2){(int)origin->x, (int)origin->y};
-	side = 0;
-    while (get_cell(grid, (int)pos.x, (int)pos.y) != '1' && max_steps-- > 0) {
-        if (data.sided.x < data.sided.y) {
-            data.sided.x += data.deltad.x;
-            pos.x += data.step.x;
-            side = 0;
-        } else {
-            data.sided.y += data.deltad.y;
-            pos.y += data.step.y;
-            side = 1;
-        }
-    }
-	*origin = pos;
-	return (side);
-}
-
-void	dda_init(t_vec2 posdir, float *delta, float *side, float *step)
-{
-	*delta = fabsf(1.0f / posdir.y);
-	if (posdir.y == 0)
-		*delta = 1e30f;
-    if (posdir.y < 0) {
-        *step = -1;
-        *side = (posdir.x - (int)posdir.x) * *delta;
-    } else {
-        *step = 1;
-        *side = ((int)posdir.x + 1.0f - posdir.x) * *delta;
-    }
-}
-
-t_hit dda_trace(t_vec2 pos, t_vec2 dir, t_map grid)
-{
-    const t_vec2	origin = pos;
-    t_dda			data;
-	int				side;
-    t_hit			res;
-
-	dda_init((t_vec2){origin.x, dir.x}, &data.deltad.x, &data.sided.x, &data.step.x);
-	dda_init((t_vec2){origin.y, dir.y}, &data.deltad.y, &data.sided.y, &data.step.y);
-	side = dda_core(&pos, data, grid);
-	if (side == 0)
-	{
-		res.dist = (pos.x - origin.x + (1 - data.step.x) / 2) / dir.x;
-        res.dir = WEST;
-		if (data.step.x > 0)
-			res.dir = EAST;
-	}
-	else
-	{
-		res.dist = (pos.y - origin.y + (1 - data.step.y) / 2) / dir.y;
-        res.dir = NORTH;
-		if (data.step.y > 0)
-			res.dir = SOUTH;
-	}
-    res.pos = vec2_add(origin, vec2_mulf(dir, res.dist));
-	res.hit = get_cell(grid, (int)pos.x, (int)pos.y) == '1';
-    return res;
-}
-
-static int draw_wall(t_image *buffer, int x, float dist, t_hit hit, t_tex_map textures[4])
-{
-    int height = ft_clamp(1 / dist * 1200, 0, buffer->height);
-	int scrhalf = buffer->height / 2;
-	int heighthalf = height / 2;
-    int i = 0;
-
-	t_image img = textures[0].tex;
-
-	if (height == 0)
-		return (0);
-	float off = (float)img.height / (float)height;
-	float u = hit.pos.y;
-	if (hit.dir == 1 || hit.dir == 0)
-		u = hit.pos.x;
-	uint imgx = (int)(u * 512) % img.width;
-	while (i < scrhalf - heighthalf + 1)
+	i = 0;
+	if (s_height == 0)
+		return ;
+	img_off = (float)(w_height - s_height) / 2 / (float)w_height * img.height;
+	img_x = (int)(hit.pos.y * img.width) % img.width;
+	if (hit.dir == 0 || hit.dir == 1)
+		img_x = (int)(hit.pos.x * img.width) % img.width;
+	img_step = (float)img.height / (float)w_height;
+	while (i < buffer->height / 2 - s_height / 2 + 1)
 	{
 		draw_pixel(buffer, x, i, (t_rgba)0x00005624);
 		draw_pixel(buffer, x, buffer->height - i, (t_rgba)(uint)0x00671200);
 		i++;
 	}
 	i = 0;
-	while (i < height)
+	while (i < s_height)
 	{
-		draw_pixel(buffer, x, scrhalf - heighthalf + i, img.data[imgx + (int)(i * off) * img.width]);
+		draw_pixel(buffer, x, buffer->height / 2 - s_height / 2 + i,
+				img.data[img_x + (int)(i * img_step + img_off) * img.width]);
 		i++;
 	}
-    return (0);
 }
 
 int  draw_walls(t_image *buffer, t_map map, t_camera cam)
@@ -136,9 +63,7 @@ int  draw_walls(t_image *buffer, t_map map, t_camera cam)
 
         if (hit.hit)
         {
-			float correction = cos_lut(-(float)cam.fov / 2 + i * angle_steps);
-
-			draw_wall(buffer, i, hit.dist * correction, hit, map.textures);
+			draw_wall(buffer, i, hit.dist * cos_lut(-(float)cam.fov / 2 + i * angle_steps), hit, map.textures[hit.dir].tex);
             draw_line(buffer, origin, vec2_add(vec2_mulf((t_vec2){
 							cos_lut(ray_angle), sin_lut(ray_angle)}, 100), origin), (t_rgba)0xff00ff00);
 			t_vec2 a = (t_vec2){100 + hit.pos.x * 10, 500 + hit.pos.y * 10};

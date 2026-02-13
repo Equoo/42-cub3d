@@ -8,12 +8,6 @@
 #include "types/vector2.h"
 #include <math.h>
 
-typedef struct {
-	t_vec2 sided;
-	t_vec2 deltad;
-	t_vec2 step;
-}	t_dda;
-
 static char get_cell(t_map grid, int x, int y)
 {
     if (x < 0 || x >= grid.width || y < 0 || y >= grid.height)
@@ -78,21 +72,26 @@ t_hit dda_trace(t_vec2 pos, t_vec2 dir, t_map grid)
     return res;
 }
 
+// static int	draw_texture(t_image *buffer, )
+
 static int draw_wall(t_image *buffer, int x, float dist)
 {
     int height = ft_clamp(1 / dist * 1200, 0, 1080);
     int i = 0;
 	const float dark = 1 - 0.05 - (dist / 20);
 	const t_rgba color = (t_rgba){.r=190*dark, .g=190*dark, .b=134*dark};
+
+	// textures[0].tex
+
     while (i < height) {
-        draw_pixel(buffer, 200 + x, 1080 / 2 - height / 2 + i++, color);
+        draw_pixel(buffer, x, 1080 / 2 - height / 2 + i++, color);
 	}
     return (0);
 }
 
 int  draw_walls(t_image *buffer, t_map map, t_camera cam)
 {
-    const int   rays = buffer->width - 200;
+    const int   rays = buffer->width;
     // const int   slice_width = render->width / rays;
     const float angle_steps = (float)cam.fov / (float)rays;
 	const int	rays_filling = 1;

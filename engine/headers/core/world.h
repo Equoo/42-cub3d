@@ -7,23 +7,14 @@
 # include "core/draw.h"
 # include "core/camera.h"
 
-# define TRACE_LEN 1000
-//65536
+# define TRACE_LEN 65536
 
 typedef struct {
-    t_image		*tex;
+    t_image		tex;
     t_vec2		uva;
     t_vec2		uvb;
     uint16_t	alpha;
 }   t_tex_map;
-
-typedef struct {
-	int32_t		portal;
-	int32_t		portal_face;
-    t_vec2		pos;
-    t_rgba		color;
-    //t_tex_map   *texture;
-}   t_face;
 
 typedef struct {
 	int		hit;
@@ -33,9 +24,16 @@ typedef struct {
 }	t_hit;
 
 typedef struct {
-	char *cells;
-	int width;
-	int	height;
+	t_vec2 sided;
+	t_vec2 deltad;
+	t_vec2 step;
+}	t_dda;
+
+typedef struct {
+	char		*cells;
+	int			width;
+	int			height;
+	t_tex_map	textures[4];
 }	t_map;
 
 int  draw_walls(t_image *buffer, t_map map, t_camera cam);

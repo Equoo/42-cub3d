@@ -27,7 +27,10 @@ static int	work(t_engine *engine)
 		camera->rot.z += 70 * engine->frametime;
 
 	window_drawbuffer(&engine->window);
-
+	draw_walls(
+			&engine->window.buffer,
+			*engine->map,
+			engine->camera);
 
 	int i = 0;
 	while (i < engine->map->height * engine->map->width) {
@@ -39,10 +42,6 @@ static int	work(t_engine *engine)
 		i++;
 	}
 
-	draw_walls(
-			&engine->window.buffer,
-			*engine->map,
-			engine->camera);
 
 	__builtin_printf("FPS: %f\n", engine->frametime > 0 ? 1 / engine->frametime : 0);
 

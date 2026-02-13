@@ -2,31 +2,8 @@
 #ifndef GUI_H
 # define GUI_H
 # include <sys/types.h>
+# include "types/image.h"
 # include "types/vector2.h"
-
-typedef union u_rgba
-{
-	unsigned int	rgb;
-	struct
-	{
-		unsigned char	b;
-		unsigned char	g;
-		unsigned char	r;
-		unsigned char	a;
-	};
-	}			t_rgba;
-
-typedef struct s_image
-{
-	void	*img;
-	t_rgba	*data;
-	int		size_line;
-	int		width;
-	int		height;
-	int		size;
-	int		byte_size_line;
-	int		byte_size;
-} t_image;
 
 void draw_pixel(const t_image *img,
 		const int x, const int y, const t_rgba color);

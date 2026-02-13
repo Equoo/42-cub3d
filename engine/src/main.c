@@ -58,7 +58,7 @@ int	engine_initialize(t_engine *engine, int argc, char *argv[])
 		}
 	};
 	engine->map = &map;
-	
+
 	if (image_from_xpm(engine->window.mlx, "game/textures/background0.xpm", &map.textures[0].tex))
 		return (1);
 

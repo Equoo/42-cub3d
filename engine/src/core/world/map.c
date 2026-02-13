@@ -63,28 +63,52 @@ t_hit dda_trace(t_vec2 pos, t_vec2 dir, t_map grid)
 	dda_init((t_vec2){origin.x, dir.x}, &data.deltad.x, &data.sided.x, &data.step.x);
 	dda_init((t_vec2){origin.y, dir.y}, &data.deltad.y, &data.sided.y, &data.step.y);
 	side = dda_core(&pos, data, grid);
-    if (side == 0)
-        res.dist = (pos.x - origin.x + (1 - data.step.x) / 2) / dir.x;
-    else
-        res.dist = (pos.y - origin.y + (1 - data.step.y) / 2) / dir.y;
-    res.pos = pos;
+	if (side == 0)
+	{
+		res.dist = (pos.x - origin.x + (1 - data.step.x) / 2) / dir.x;
+        res.dir = WEST;
+		if (data.step.x > 0)
+			res.dir = EAST;
+	}
+	else
+	{
+		res.dist = (pos.y - origin.y + (1 - data.step.y) / 2) / dir.y;
+        res.dir = NORTH;
+		if (data.step.y > 0)
+			res.dir = SOUTH;
+	}
+    res.pos = vec2_add(origin, vec2_mulf(dir, res.dist));
 	res.hit = get_cell(grid, (int)pos.x, (int)pos.y) == '1';
     return res;
 }
 
-// static int	draw_texture(t_image *buffer, )
-
-static int draw_wall(t_image *buffer, int x, float dist)
+static int draw_wall(t_image *buffer, int x, float dist, t_hit hit, t_tex_map textures[4])
 {
-    int height = ft_clamp(1 / dist * 1200, 0, 1080);
+    int height = ft_clamp(1 / dist * 1200, 0, buffer->height);
+	int scrhalf = buffer->height / 2;
+	int heighthalf = height / 2;
     int i = 0;
-	const float dark = 1 - 0.05 - (dist / 20);
-	const t_rgba color = (t_rgba){.r=190*dark, .g=190*dark, .b=134*dark};
 
-	// textures[0].tex
+	t_image img = textures[0].tex;
 
-    while (i < height) {
-        draw_pixel(buffer, x, 1080 / 2 - height / 2 + i++, color);
+	if (height == 0)
+		return (0);
+	float off = (float)img.height / (float)height;
+	float u = hit.pos.y;
+	if (hit.dir == 1 || hit.dir == 0)
+		u = hit.pos.x;
+	uint imgx = (int)(u * 512) % img.width;
+	while (i < scrhalf - heighthalf + 1)
+	{
+		draw_pixel(buffer, x, i, (t_rgba)0x00005624);
+		draw_pixel(buffer, x, buffer->height - i, (t_rgba)(uint)0x00671200);
+		i++;
+	}
+	i = 0;
+	while (i < height)
+	{
+		draw_pixel(buffer, x, scrhalf - heighthalf + i, img.data[imgx + (int)(i * off) * img.width]);
+		i++;
 	}
     return (0);
 }
@@ -113,7 +137,8 @@ int  draw_walls(t_image *buffer, t_map map, t_camera cam)
         if (hit.hit)
         {
 			float correction = cos_lut(-(float)cam.fov / 2 + i * angle_steps);
-			draw_wall(buffer, i, hit.dist * correction);
+
+			draw_wall(buffer, i, hit.dist * correction, hit, map.textures);
             draw_line(buffer, origin, vec2_add(vec2_mulf((t_vec2){
 							cos_lut(ray_angle), sin_lut(ray_angle)}, 100), origin), (t_rgba)0xff00ff00);
 			t_vec2 a = (t_vec2){100 + hit.pos.x * 10, 500 + hit.pos.y * 10};

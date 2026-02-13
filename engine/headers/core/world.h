@@ -16,11 +16,18 @@ typedef struct {
     uint16_t	alpha;
 }   t_tex_map;
 
+typedef enum {
+    NORTH = 0,
+    SOUTH = 1,
+	EAST = 2,
+    WEST = 3
+} t_orient;
+
 typedef struct {
-	int		hit;
-	t_vec2	pos;
-	int		dir;
-	float	dist;
+	int			hit;
+	t_vec2		pos;
+	t_orient	dir;
+	float		dist;
 }	t_hit;
 
 typedef struct {

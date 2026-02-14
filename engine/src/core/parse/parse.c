@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 18:06:36 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/14 17:50:47 by dderny                  ###   ########   */
+/*   Updated: 2026/02/14 20:02:14 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ static int	assign_map(int fd, t_map *map)
 		return (0);
 	}
 	map->height = i;
-	ft_printf("%d, %d, map->cells=\n %s\n", map->width, map->height,
-		map->cells);
+	// ft_printf("%d, %d, map->cells=\n %s\n", map->width, map->height,
+		// map->cells);
 	return (1);
 }
 

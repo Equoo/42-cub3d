@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rgba_from_str.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:38:05 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 18:20:06 by dderny                  ###   ########   */
+/*   Updated: 2026/02/14 20:01:51 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include "libft.h"
 #include "types/rgba.h"
 #include <asm-generic/errno.h>
@@ -30,7 +31,7 @@ static int	col_from_str(char *str)
 		errno = EOVERFLOW;
 		return (-1);
 	}
-	return (0);
+	return (col);
 }
 
 int	rgba_from_str(char *str, t_rgba *out)
@@ -48,8 +49,8 @@ int	rgba_from_str(char *str, t_rgba *out)
 		ft_freearray((void **)cols);
 		return (1);
 	}
-	i = 0;
-	while (i < 3)
+	i = -1;
+	while (++i < 3)
 	{
 		col = col_from_str(cols[i]);
 		if (col == -1)
@@ -57,8 +58,7 @@ int	rgba_from_str(char *str, t_rgba *out)
 			ft_freearray((void **)cols);
 			return (1);
 		}
-		*out = (t_rgba)(out->rgb + (col << (28 - i * 4)));
-		i++;
+		*out = (t_rgba)(out->rgb | (col << (16 - i * 8)));
 	}
 	return (0);
 }

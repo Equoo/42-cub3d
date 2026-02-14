@@ -54,3 +54,6 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+#Binary
+cub3d

@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   engine.hpp                                         :+:      :+:    :+:   */
+/*   window.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:24:40 by dderny            #+#    #+#             */
-/*   Updated: 2025/12/01 23:32:21 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/14 15:29:07 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WINDOW_H
 # define WINDOW_H
-
+# include "types/image.h"
+# include <libft.h>
 # include <mlx.h>
 # include <mlx_int.h>
-
-# include <libft.h>
 # include <sys/types.h>
-
-# include "core/draw.h"
 
 enum
 {
@@ -34,26 +31,26 @@ enum
 
 typedef struct s_window
 {
-	int			width;
-	int			height;
-	char		*title;
-	t_image		buffer;
-	void		*engine;
-	void		*mlx;
-	void		*mlx_win;
+	int		width;
+	int		height;
+	char	*title;
+	t_image	buffer;
+	void	*engine;
+	void	*mlx;
+	void	*mlx_win;
 
-	int			(*close)();
-	int			(*keyup)();
-	int			(*keydown)();
-	int			(*mouseup)();
-	int			(*mousedown)();
-	int			(*mousemove)();
-	int			(*update)();
-}	t_window;
+	int		(*close)();
+	int		(*keyup)();
+	int		(*keydown)();
+	int		(*mouseup)();
+	int		(*mousedown)();
+	int		(*mousemove)();
+	int		(*update)();
+}			t_window;
 
-int	window_create(t_window *out, t_window base, void *engine);
-int	window_destruct(t_window *win);
-int	window_loop(t_window *self);
-int	window_drawbuffer(t_window *self);
+int			window_create(t_window *out, t_window base, void *engine);
+int			window_destruct(t_window *win);
+int			window_loop(t_window *self);
+int			window_drawbuffer(t_window *self);
 
 #endif

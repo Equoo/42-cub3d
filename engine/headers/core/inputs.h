@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   inputs.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/14 15:28:02 by dderny            #+#    #+#             */
+/*   Updated: 2026/02/14 16:07:20 by dderny                  ###   ########   */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef INPUTS_H
 # define INPUTS_H
@@ -10,7 +21,7 @@ typedef enum e_key_state
 	KEY_PRESSED,
 	KEY_DOWN,
 	KEY_RELEASED
-}		t_key_state;
+}	t_key_state;
 
 int	inputs_mousedown(int key, t_engine *engine);
 int	inputs_mousemove(int x, int y, t_engine *engine);

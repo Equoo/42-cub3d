@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:33:22 by dderny            #+#    #+#             */
-/*   Updated: 2025/11/18 02:20:46 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/14 06:02:20 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 
 // Using global variables that are **not marked const or static** is forbidden
 // and is considered a norm error, unless the project explicitly allows them.
-const static t_engine	g_engine = {
+static const t_engine	g_engine = {
 	.max_fps = 0,
 	.physics_ticks = 20
 };
 
-const static t_window	g_window = {
+static const t_window	g_window = {
 	.mousedown = &inputs_mousedown,
 	.mousemove = &inputs_mousemove,
 	.mouseup = &inputs_mouseup,

@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 19:35:20 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/14 23:22:38 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 #include "core/engine.h"
 #include "core/game.h"
 #include "core/inputs.h"
+#include "core/parse.h"
 #include "core/window.h"
 #include "core/world.h"
+#include "ft_printf.h"
 #include "libft.h"
 #include "types/image.h"
+#include <stdio.h>
 
 // Using global variables that are **not marked const or static** is forbidden
 // and is considered a norm error, unless the project explicitly allows them.
@@ -28,28 +31,39 @@ const static t_window	g_window = {.mousedown = &inputs_mousedown,
 		.keydown = &inputs_keydown, .keyup = &inputs_keyup,
 		.close = &engine_close, .update = &engine_update};
 
+int	load_textures(t_engine *engine, t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (image_from_xpm(engine->window.mlx, map->tex_paths[i],
+				&map->textures[i]))
+			return (1);
+	}
+	return (0);
+}
+
 int	engine_initialize(t_engine *engine, int argc, char *argv[])
 {
 	t_map	map;
 
+	if (argc != 2)
+	{
+		ft_dprintf(2, "./cub3d exemple.cub\n");
+		return (1);
+	}
 	if (window_create(&engine->window, g_window, engine))
 		return (1);
 	(void)argc;
 	(void)argv;
-	engine->camera = (t_camera){.fov = 75};
 	map = (t_map){0};
+	engine->camera = (t_camera){.fov = 75, .pos = {6., 2., 8.}};
 	engine->map = &map;
-	if (image_from_xpm(engine->window.mlx, "game/textures/background0.xpm",
-			&map.textures[0]))
+	if (check_map_validity(argv[1], engine->map) < 1)
 		return (1);
-	if (image_from_xpm(engine->window.mlx, "game/textures/test.xpm",
-			&map.textures[1]))
-		return (1);
-	if (image_from_xpm(engine->window.mlx, "game/textures/background0.xpm",
-			&map.textures[2]))
-		return (1);
-	if (image_from_xpm(engine->window.mlx, "game/textures/background0.xpm",
-			&map.textures[3]))
+	if (load_textures(engine, &map))
 		return (1);
 	if (game_initialize(engine))
 		return (1);
@@ -68,6 +82,7 @@ int	main(int argc, char *argv[])
 	engine.garbage = &garbage;
 	if (engine_initialize(&engine, argc, argv))
 	{
+		perror("Failed to launch");
 		engine_close(&engine);
 		return (1);
 	}

@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   destroy.c                                          :+:      :+:    :+:   */
+/*   apply_darkness.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/13 13:12:19 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 23:12:26 by dderny           ###   ########.fr       */
+/*   Created: 2026/02/14 21:44:14 by dderny            #+#    #+#             */
+/*   Updated: 2026/02/14 21:44:30 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/window.h"
-#include <mlx.h>
+#include "types/rgba.h"
 
-int	window_destruct(t_window *win)
+t_rgba	apply_darkness(t_rgba color, float darkness)
 {
-	if (win->mlx_win)
-		mlx_destroy_window(win->mlx, win->mlx_win);
-	if (win->mlx)
-	{
-		mlx_do_key_autorepeaton(win->mlx);
-		mlx_destroy_display(win->mlx);
-		free(win->mlx);
-	}
-	exit(EXIT_SUCCESS);
-	return (0);
+	t_rgba	result;
+
+	result = color;
+	result.r *= darkness;
+	result.g *= darkness;
+	result.b *= darkness;
+	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:21 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 19:24:41 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/14 22:26:00 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,22 @@
 # include <stdint.h>
 
 # define TRACE_LEN 65536
+# define PROJECTION_SCALE 1200.0f
+# define DIST_ATTENUATION 0.8f
+# define DIST_OFFSET 0.3f
+# define MIN_DARKNESS 0.05f
+# define MAX_DARKNESS 1.0f
+# define HALF_DIVISOR 2.0f
+
+typedef struct s_wall_params
+{
+	int			w_height;
+	int			s_height;
+	float		img_off;
+	float		img_step;
+	uint		img_x;
+	int			wall_start_y;
+}				t_wall_params;
 
 typedef enum e_orient
 {
@@ -52,7 +68,25 @@ typedef struct s_map
 	char		*tex_paths[4];
 	t_rgba		ceiling;
 	t_rgba		floor;
+	t_vec2		spawn;
 }				t_map;
+
+typedef struct s_draw_ctx
+{
+	t_image		*buffer;
+	t_image		img;
+	t_map		map;
+	int			x;
+	int			half_height;
+}				t_draw_ctx;
+
+void			calc_wall_dimensions(t_wall_params *params, float dist,
+					int buffer_height);
+void			calc_texture_params(t_wall_params *params, t_hit hit,
+					t_image img);
+float			calc_sky_darkness(int y, float inv_half_height);
+
+void			draw_wall(t_draw_ctx ctx, float dist, t_hit hit);
 
 int				draw_walls(t_image *buffer, t_map map, t_camera cam);
 

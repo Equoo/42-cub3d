@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 21:10:07 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/14 22:26:33 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/15 00:05:31 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	check_floor_and_ceiling(char *line, t_map *map, int valid[])
 int textures_path_checker(t_map *map)
 {
     int i;
+	int fd;
 
     i = 0;
     while (i < 4)
@@ -104,6 +105,14 @@ int textures_path_checker(t_map *map)
             ft_printf("Error:\nTexturespath issue at index[%d]\n", i);
             return -1;
         }
+        ft_printf("Debug: tex_paths[%d]: %s\n", i, map->tex_paths[i]);
+		fd = open(map->tex_paths[i], O_RDONLY);
+		if (fd == -1)
+		{
+            ft_printf("Error:\nopen issue at index[%d]\n", i);
+			close(fd);
+			return -1;
+		}
         i++;
     }
     return 0;

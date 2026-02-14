@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 06:31:54 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/14 22:38:57 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/15 00:06:38 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	map_debug(t_map *map)
 	ft_printf("/-----------------------------------------/\n");
 	ft_printf("/----------------MAP-DEBUG----------------/\n");
 	ft_printf("/-----------------------------------------/\n");
-	ft_printf("map cells: %s\n", map->cells);
+	ft_printf("map cells:\n%s\n", map->cells);
 	ft_printf("width: %d\t height: %d\n", map->width, map->height);
 	ft_printf("Ceiling color:\trgb:%x\tr:%d\tg:%d\tb:%d\n", map->ceiling.rgb,
 		map->ceiling.r, map->ceiling.g, map->ceiling.b);

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 22:18:22 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/14 21:45:18 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/15 00:04:26 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 // #define EAST "E"
 
 # define MAP_FOLDER "game/maps/"
+# define TEXTURE_FOLDER "game/textures/"
 # define MAP_FORMAT ".cub"
 # define MAP_MAXSIZE 1024
 # define MAP_NORTH "NO "

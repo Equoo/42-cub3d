@@ -10,7 +10,7 @@ const char	*g_win_title = "Cub3d";
 int	game_initialize(t_engine *engine)
 {
 	// (void)engine;
-	check_map_validity("exemple.cub", engine->map);
+	check_map_validity("owntest.cub", engine->map);
 	return (0);
 }
 

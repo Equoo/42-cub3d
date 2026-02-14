@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 22:18:22 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/14 16:33:14 by dderny                  ###   ########   */
+/*   Updated: 2026/02/14 21:45:18 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,20 @@
 
 # include "world.h"
 
+// parse_checker.c
 int		suffix_format_checker(char *to_check, char *suffix);
 int		check_floor_and_ceiling(char *line, t_map *map, int valid[]);
 void	check_textures(char *tex_path, char *line, t_map *map, int valid[]);
+int		map_path_checker(char *map_name, char **path);
+int		assign_textures_and_colors(int fd, t_map *map);
 
+// parse_utils.c
+int		secure_open(char *path);
+int		texture_path_assign(char *line, t_map *map, int valid[]);
+void	map_debug(t_map *map);
+int		textures_path_checker(t_map *map);
+
+// parse.c
 int		check_map_validity(char *map_name, t_map *map);
 
 #endif

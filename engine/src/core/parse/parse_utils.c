@@ -6,74 +6,99 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 06:31:54 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/14 20:01:27 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/14 22:38:57 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core/parse.h"
 #include "ft_printf.h"
+#include "get_next_line.h"
 #include "libft.h"
 #include "types/rgba.h"
 
-int	suffix_format_checker(char *to_check, char *suffix)
+int	secure_open(char *path)
 {
-	int	format_start;
+	int	fd;
 
-	format_start = ft_strlen(to_check) - ft_strlen(suffix);
-	if (ft_strncmp(&to_check[format_start], suffix, ft_strlen(suffix)) != 0)
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
 	{
-		perror("Error\n: Wrong format\n");
-		return (0);
+		free(path);
+		close(fd);
+		perror("Error\n");
+		return (-1);
+	}
+	return (fd);
+}
+
+int	texture_path_assign(char *line, t_map *map, int valid[])
+{
+	int		i;
+	char	*tex_path;
+
+	if (ft_strncmp(line, MAP_NORTH, 3) == 0 || ft_strncmp(line, MAP_WEST,
+			3) == 0 || ft_strncmp(line, MAP_SOUTH, 3) == 0 || ft_strncmp(line,
+			MAP_EAST, 3) == 0 || ft_strncmp(line, MAP_FLOOR, 2) == 0
+		|| ft_strncmp(line, MAP_CEILING, 2) == 0)
+	{
+		i = 3;
+		while (line[i] == ' ')
+			i++;
+		tex_path = ft_strdup(&line[i]);
+		if (!tex_path)
+			return (1);
+		check_textures(tex_path, line, map, valid);
+		if (check_floor_and_ceiling(line, map, valid))
+			return (1);
+	}
+	else
+		return (1);
+	return (0);
+}
+
+int	assign_textures_and_colors(int fd, t_map *map)
+{
+	int		valid[6];
+	int		i;
+	char	*line;
+
+	i = -1;
+	while (++i < 6)
+		valid[i] = 0;
+	while ((line = get_next_line(fd)) != 0)
+		texture_path_assign(line, map, valid);
+	free(line);
+	close(fd);
+	i = -1;
+	while (++i < 6)
+	{
+		if (valid[i] != 1)
+		{
+			perror("Error\n");
+			return (0);
+		}
 	}
 	return (1);
 }
 
-void	check_textures(char *tex_path, char *line, t_map *map, int valid[])
+void	map_debug(t_map *map)
 {
-	if (ft_strncmp(line, MAP_NORTH, 3) == 0)
-	{
-		map->tex_paths[0] = tex_path;
-		valid[0]++;
-	}
-	else if (ft_strncmp(line, MAP_SOUTH, 3) == 0)
-	{
-		map->tex_paths[1] = tex_path;
-		valid[1]++;
-	}
-	else if (ft_strncmp(line, MAP_WEST, 3) == 0)
-	{
-		map->tex_paths[2] = tex_path;
-		valid[2]++;
-	}
-	else if (ft_strncmp(line, MAP_EAST, 3) == 0)
-	{
-		map->tex_paths[3] = tex_path;
-		valid[3]++;
-	}
-}
+	int	i;
 
-int	check_floor_and_ceiling(char *line, t_map *map, int valid[])
-{
-	int		i;
-	t_rgba	color;
-
-	i = 2;
-	while (line[i] == ' ')
+	ft_printf("/-----------------------------------------/\n");
+	ft_printf("/----------------MAP-DEBUG----------------/\n");
+	ft_printf("/-----------------------------------------/\n");
+	ft_printf("map cells: %s\n", map->cells);
+	ft_printf("width: %d\t height: %d\n", map->width, map->height);
+	ft_printf("Ceiling color:\trgb:%x\tr:%d\tg:%d\tb:%d\n", map->ceiling.rgb,
+		map->ceiling.r, map->ceiling.g, map->ceiling.b);
+	ft_printf("Floor color:\trgb:%x\tr:%d\tg:%d\tb:%d\n", map->floor.rgb,
+		map->floor.r, map->floor.g, map->floor.b);
+	i = 0;
+	while (i < 4)
+	{
+		ft_printf("tex_paths[%d]: %s\n", i, map->tex_paths[i]);
 		i++;
-	if (ft_strncmp(line, MAP_FLOOR, 2) == 0)
-	{
-		if (rgba_from_str(line + i, &color))
-			return(1);
-		map->floor = color;
-		valid[4]++;
 	}
-	else if (ft_strncmp(line, MAP_CEILING, 2) == 0)
-	{
-		if (rgba_from_str(line + i, &color))
-			return(1);
-		map->ceiling = color;
-		// ft_printf("ceiling: %x \n", map->ceiling.rgb);
-		valid[5]++;
-	}
-	return (0);
+	ft_printf("/-----------------------------------------/\n");
 }

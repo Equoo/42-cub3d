@@ -11,6 +11,7 @@ engine/src/core/window/create.c \
 engine/src/core/world/map.c \
 engine/src/core/parse/parse.c \
 engine/src/core/parse/parse_utils.c \
+engine/src/core/parse/parse_checker.c \
 engine/src/math/m_cubic.c \
 engine/src/math/m_lerp.c \
 engine/src/math/m_sine.c \

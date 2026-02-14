@@ -41,6 +41,8 @@ typedef struct {
 	int			width;
 	int			height;
 	t_tex_map	textures[4];
+	char		*colors[2];
+	char		*tex_paths[4];
 }	t_map;
 
 int  draw_walls(t_image *buffer, t_map map, t_camera cam);

@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 18:06:36 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/14 22:40:24 by zsonie           ###   ########lyon.fr   */
+/*   Created: 2026/02/14 23:23:51 by dderny            #+#    #+#             */
+/*   Updated: 2026/02/14 23:23:53 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "core/engine.h"
 #include "core/parse.h"
 #include "core/world.h"
-#include "core/engine.h"
-#include "ft_printf.h"
 #include "get_next_line.h"
 #include "libft.h"
 #include <fcntl.h>
@@ -60,7 +59,7 @@ static int	assign_map(int fd, t_map *map)
 	}
 	map->height = i;
 	// ft_printf("%d, %d, map->cells=\n %s\n", map->width, map->height,
-		// map->cells);
+	// map->cells);
 	return (1);
 }
 
@@ -70,7 +69,7 @@ int	check_map_validity(char *map_name, t_map *map)
 	char	*path;
 
 	if (!map_path_checker(map_name, &path))
-		return 1;
+		return (1);
 	fd = secure_open(path);
 	if (fd == -1)
 		return (1);
@@ -83,7 +82,7 @@ int	check_map_validity(char *map_name, t_map *map)
 	assign_map(fd, map);
 	close(fd);
 	if (textures_path_checker(map))
-		return 1;
+		return (1);
 	if (DEBUG)
 		map_debug(map);
 	return (0);

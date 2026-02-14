@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 04:30:48 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 16:55:01 by dderny                  ###   ########   */
+/*   Updated: 2026/02/14 21:44:54 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ typedef union u_rgba
 }						t_rgba;
 
 int						rgba_from_str(char *str, t_rgba *out);
+t_rgba					apply_darkness(t_rgba color, float darkness);
 
 #endif

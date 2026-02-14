@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 15:10:14 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 16:07:35 by dderny                  ###   ########   */
+/*   Updated: 2026/02/14 18:44:00 by dderny                  ###   ########   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "math/algorithm.h"
 #include "math/extend.h"
 #include "types/image.h"
+#include "types/rgba.h"
 #include "types/vector2.h"
 
 static void	draw_wall(t_image *buffer, int x, float dist, t_hit hit,
@@ -28,6 +29,9 @@ static void	draw_wall(t_image *buffer, int x, float dist, t_hit hit,
 	float		img_step;
 	uint		img_x;
 	int			i;
+	const float	darkness = ft_fclamp(1 / (dist * 0.8), 0.05, 1);
+	float		darkness2;
+	t_rgba		color;
 
 	i = 0;
 	if (s_height == 0)
@@ -39,15 +43,27 @@ static void	draw_wall(t_image *buffer, int x, float dist, t_hit hit,
 	img_step = (float)img.height / (float)w_height;
 	while (i < buffer->height / 2 - s_height / 2 + 1)
 	{
-		draw_pixel(buffer, x, i, (t_rgba)0x00005624);
-		draw_pixel(buffer, x, buffer->height - i, (t_rgba)(uint)0x00671200);
+		darkness2 = ft_fclamp(1. / i, 0.05, 1);
+		color = (t_rgba)(0x002e5a89);
+		color.r *= darkness2;
+		color.g *= darkness2;
+		color.b *= darkness2;
+		draw_pixel(buffer, x, i, color);
+		color = (t_rgba)(0x004e89c6);
+		color.r *= darkness2;
+		color.g *= darkness2;
+		color.b *= darkness2;
+		draw_pixel(buffer, x, buffer->height - i, color);
 		i++;
 	}
 	i = 0;
 	while (i < s_height)
 	{
-		draw_pixel(buffer, x, buffer->height / 2 - s_height / 2 + i,
-			img.data[img_x + (int)(i * img_step + img_off) * img.width]);
+		color = img.data[img_x + (int)(i * img_step + img_off) * img.width];
+		color.r *= darkness;
+		color.g *= darkness;
+		color.b *= darkness;
+		draw_pixel(buffer, x, buffer->height / 2 - s_height / 2 + i, color);
 		i++;
 	}
 }

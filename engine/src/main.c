@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 16:14:46 by dderny                  ###   ########   */
+/*   Updated: 2026/02/14 18:21:37 by dderny                  ###   ########   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,12 @@ int	engine_initialize(t_engine *engine, int argc, char *argv[])
 	(void)argc;
 	(void)argv;
 	engine->camera = (t_camera){.fov = 75};
-	map = (t_map){.width = 10, .height = 10,
-		.cells = "1111111111110000110111000011011100001101111000000111100000011110000001111000000111100000011111111111",
-		.textures = {{.uvb = {1, 1}}, {0}, {0}, {0}}};
+	map = (t_map){0};
 	engine->map = &map;
 	if (image_from_xpm(engine->window.mlx, "game/textures/background0.xpm",
 			&map.textures[0].tex))
 		return (1);
-	if (image_from_xpm(engine->window.mlx, "game/textures/test.xpm",
+	if (image_from_xpm(engine->window.mlx, "game/textures/background0.xpm",
 			&map.textures[1].tex))
 		return (1);
 	if (image_from_xpm(engine->window.mlx, "game/textures/background0.xpm",

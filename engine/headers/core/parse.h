@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 22:18:22 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/14 07:10:36 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/14 16:33:14 by dderny                  ###   ########   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@
 // #define WEST "W"
 // #define EAST "E"
 
-#define MAP_FOLDER "game/maps/"
-#define MAP_FORMAT ".cub"
-#define MAP_MAXSIZE 1024
-#define MAP_NORTH "NO "
-#define MAP_SOUTH "SO "
-#define MAP_WEST "WE "
-#define MAP_EAST "EA "
-#define MAP_FLOOR "F "
-#define MAP_CEILING "C "
+# define MAP_FOLDER "game/maps/"
+# define MAP_FORMAT ".cub"
+# define MAP_MAXSIZE 1024
+# define MAP_NORTH "NO "
+# define MAP_SOUTH "SO "
+# define MAP_WEST "WE "
+# define MAP_EAST "EA "
+# define MAP_FLOOR "F "
+# define MAP_CEILING "C "
 
-#include "world.h"
+# include "world.h"
 
-int	suffix_format_checker(char *to_check, char *suffix);
-void check_floor_and_ceiling(char *line, t_map *map, int valid[]);
+int		suffix_format_checker(char *to_check, char *suffix);
+int		check_floor_and_ceiling(char *line, t_map *map, int valid[]);
 void	check_textures(char *tex_path, char *line, t_map *map, int valid[]);
 
-int check_map_validity(char *map_name, t_map *map);
+int		check_map_validity(char *map_name, t_map *map);
 
 #endif

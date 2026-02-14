@@ -6,10 +6,9 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:10:24 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 16:10:24 by dderny                  ###   ########   */
+/*   Updated: 2026/02/14 18:15:36 by dderny                  ###   ########   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "core/draw.h"
 #include "core/engine.h"
@@ -47,12 +46,14 @@ static int	work(t_engine *engine)
 	i = 0;
 	while (i < engine->map->height * engine->map->width)
 	{
-		if (engine->map->cells[i] != '1' && ++i)
+		if (!(engine->map->cells[i] == '1' || engine->map->cells[i] == ' ')
+			&& ++i)
 			continue ;
-		a = {100 + (i % engine->map->width) * 10, 500 + i / engine->map->height
-			* 10};
+		a = (t_vec2){100 + (i % engine->map->width) * 10, 500 + i
+			/ engine->map->width * 10};
 		b = vec2_add(a, (t_vec2){10, 10});
-		draw_square(&engine->window.buffer, a, b, (t_rgba)0xffff00ff);
+		draw_square(&engine->window.buffer, a, b, (t_rgba)(0x10101010 + ((i
+						* 10) << 2)));
 		i++;
 	}
 	__builtin_printf("FPS: %f\n", engine->frametime > 0 ? 1

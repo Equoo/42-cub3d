@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 18:06:36 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/14 07:10:20 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/14 17:50:47 by dderny                  ###   ########   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,18 @@ static int	texture_path_assign(char *line, t_map *map, int valid[])
 		while (line[i] == ' ')
 			i++;
 		tex_path = ft_strdup(&line[i]);
+		if (!tex_path)
+			return (1);
 		check_textures(tex_path, line, map, valid);
-		check_floor_and_ceiling(line, map, valid);
+		if (check_floor_and_ceiling(line, map, valid))
+			return (1);
 	}
 	else
-		return 1;
+		return (1);
 	return (0);
 }
 
-static int check_textures_and_colors(int fd, t_map *map)
+static int	check_textures_and_colors(int fd, t_map *map)
 {
 	int		valid[6];
 	int		i;
@@ -58,36 +61,62 @@ static int check_textures_and_colors(int fd, t_map *map)
 		if (valid[i] != 1)
 		{
 			perror("Error\nWrong parse");
-			return 0;
+			return (0);
 		}
 	}
-	return 1;
+	return (1);
 }
 
-static int assign_map(int fd, t_map *map)
+static int	assign_map(int fd, t_map *map)
 {
-	char *line;
-	char *result;
+	char	*line;
+	char	*result;
+	int		i;
 
-	result = "";
 	line = get_next_line(fd);
+	i = 0;
+	result = NULL;
 	while (line)
 	{
 		if (line[0] == '0' || line[0] == '1' || line[0] == ' ')
-			result = ft_strjoin(result, line);
-		line = get_next_line(fd);
-		if (!line)
+		{
+			line[ft_strlen(line) - 1] = 0;
+			if (ft_strlen(line) > (unsigned long)map->width)
+				map->width = ft_strlen(line);
+			if (!result)
+				result = line;
+			else
+			{
+				result = ft_strjoin(result, line); // note: add spaces at right
+				free(line);
+			}
+			if (map->cells)
+				free(map->cells);
+			map->cells = result;
+			i++;
+			if (!result)
+				break ;
+		}
+		else
 			free(line);
+		line = get_next_line(fd);
 	}
-	map->cells = result;
-	ft_printf("map->cells=\n %s\n", map->cells);
-	return 1;
+	if (!result)
+	{
+		if (line)
+			free(line);
+		return (0);
+	}
+	map->height = i;
+	ft_printf("%d, %d, map->cells=\n %s\n", map->width, map->height,
+		map->cells);
+	return (1);
 }
 
-static int secure_open(char *path)
+static int	secure_open(char *path)
 {
-	int fd;
-	
+	int	fd;
+
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
@@ -96,7 +125,7 @@ static int secure_open(char *path)
 		perror("Error\n");
 		return (-1);
 	}
-	return fd;
+	return (fd);
 }
 
 int	check_map_validity(char *map_name, t_map *map)
@@ -114,13 +143,13 @@ int	check_map_validity(char *map_name, t_map *map)
 	}
 	fd = secure_open(path);
 	if (fd == -1)
-		return -1;
-	if (!check_textures_and_colors(fd,map))
-		return 0;
+		return (-1);
+	if (!check_textures_and_colors(fd, map))
+		return (0);
 	close(fd);
 	fd = secure_open(path);
 	if (fd == -1)
-		return -1;
+		return (-1);
 	assign_map(fd, map);
 	close(fd);
 	return (1);

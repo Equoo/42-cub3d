@@ -6,20 +6,20 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 06:31:54 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/14 07:10:06 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/14 16:57:12 by dderny                  ###   ########   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"core/parse.h"
-#include"libft.h"
+#include "core/parse.h"
+#include "libft.h"
+#include "types/rgba.h"
 
 int	suffix_format_checker(char *to_check, char *suffix)
 {
 	int	format_start;
 
 	format_start = ft_strlen(to_check) - ft_strlen(suffix);
-	if (ft_strncmp(&to_check[format_start], suffix,
-			ft_strlen(suffix)) != 0)
+	if (ft_strncmp(&to_check[format_start], suffix, ft_strlen(suffix)) != 0)
 	{
 		perror("Error\n: Wrong format\n");
 		return (0);
@@ -51,23 +51,25 @@ void	check_textures(char *tex_path, char *line, t_map *map, int valid[])
 	}
 }
 
-void check_floor_and_ceiling(char *line, t_map *map, int valid[])
+int	check_floor_and_ceiling(char *line, t_map *map, int valid[])
 {
-	int i;
-	char *color;
+	int		i;
+	t_rgba	color;
 
 	i = 2;
-	while(line[i] == ' ')
+	while (line[i] == ' ')
 		i++;
-	color = ft_strdup(&line[i]);
+	if (rgba_from_str(&line[i] + 2, &color))
+		return (1);
 	if (ft_strncmp(line, MAP_FLOOR, 2) == 0)
 	{
-		map->colors[0] = color;
+		map->floor = color;
 		valid[4]++;
 	}
 	else if (ft_strncmp(line, MAP_CEILING, 2) == 0)
 	{
-		map->colors[1] = color;
+		map->ceiling = color;
 		valid[5]++;
 	}
+	return (0);
 }

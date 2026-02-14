@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/14 15:10:14 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 18:44:00 by dderny                  ###   ########   */
+/*   Created: 2026/02/14 19:02:12 by dderny            #+#    #+#             */
+/*   Updated: 2026/02/14 20:04:22 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,52 +20,139 @@
 #include "types/rgba.h"
 #include "types/vector2.h"
 
-static void	draw_wall(t_image *buffer, int x, float dist, t_hit hit,
-		t_image img)
+#define PROJECTION_SCALE 1200.0f
+#define DIST_ATTENUATION 0.8f
+#define DIST_OFFSET 0.3f
+#define MIN_DARKNESS 0.05f
+#define MAX_DARKNESS 1.0f
+#define HALF_DIVISOR 2.0f
+
+typedef struct s_wall_params
 {
-	const int	w_height = 1 / dist * 1200;
-	const int	s_height = ft_clamp(w_height, 0, buffer->height);
+	int			w_height;
+	int			s_height;
 	float		img_off;
 	float		img_step;
 	uint		img_x;
-	int			i;
-	const float	darkness = ft_fclamp(1 / (dist * 0.8), 0.05, 1);
-	float		darkness2;
-	t_rgba		color;
+	int			wall_start_y;
+}				t_wall_params;
+
+typedef struct s_draw_ctx
+{
+	t_image		*buffer;
+	t_image		img;
+	t_map		map;
+	int			x;
+	int			half_height;
+}				t_draw_ctx;
+
+static t_rgba	apply_darkness(t_rgba color, float darkness)
+{
+	t_rgba	result;
+
+	result = color;
+	result.r *= darkness;
+	result.g *= darkness;
+	result.b *= darkness;
+	return (result);
+}
+
+static void	calc_wall_dimensions(t_wall_params *params, float dist,
+		int buffer_height)
+{
+	params->w_height = PROJECTION_SCALE / dist;
+	params->s_height = ft_clamp(params->w_height, 0, buffer_height);
+	params->wall_start_y = (buffer_height - params->s_height) / 2;
+}
+
+static void	calc_texture_params(t_wall_params *params, t_hit hit, t_image img)
+{
+	float	height_diff;
+
+	height_diff = (float)(params->w_height - params->s_height);
+	params->img_off = (height_diff * img.height) / (HALF_DIVISOR
+			* params->w_height);
+	params->img_x = (int)(hit.pos.y * img.width) % img.width;
+	if (hit.dir == 0 || hit.dir == 1)
+		params->img_x = (int)(hit.pos.x * img.width) % img.width;
+	params->img_step = (float)img.height / (float)params->w_height;
+}
+
+static float	calc_sky_darkness(int y, float inv_half_height)
+{
+	float	dist_from_center;
+	float	darkness;
+
+	dist_from_center = fabsf((float)y * inv_half_height - MAX_DARKNESS);
+	darkness = ft_fclamp(dist_from_center, MIN_DARKNESS, MAX_DARKNESS);
+	return (darkness);
+}
+
+static void	draw_sky_ground_pixel(t_draw_ctx *ctx, int i)
+{
+	float	darkness2;
+	float	inv_half_height;
+	t_rgba	color;
+
+	inv_half_height = MAX_DARKNESS / (float)ctx->half_height;
+	darkness2 = calc_sky_darkness(i, inv_half_height);
+	color = apply_darkness(ctx->map.floor, darkness2);
+	draw_pixel(ctx->buffer, ctx->x, i, color);
+	color = apply_darkness(ctx->map.ceiling, darkness2);
+	draw_pixel(ctx->buffer, ctx->x, ctx->buffer->height - i, color);
+}
+
+static void	draw_ceiling_floor(t_draw_ctx *ctx, int limit)
+{
+	int	i;
 
 	i = 0;
-	if (s_height == 0)
-		return ;
-	img_off = (float)(w_height - s_height) / 2 / (float)w_height * img.height;
-	img_x = (int)(hit.pos.y * img.width) % img.width;
-	if (hit.dir == 0 || hit.dir == 1)
-		img_x = (int)(hit.pos.x * img.width) % img.width;
-	img_step = (float)img.height / (float)w_height;
-	while (i < buffer->height / 2 - s_height / 2 + 1)
+	while (i < limit)
 	{
-		darkness2 = ft_fclamp(1. / i, 0.05, 1);
-		color = (t_rgba)(0x002e5a89);
-		color.r *= darkness2;
-		color.g *= darkness2;
-		color.b *= darkness2;
-		draw_pixel(buffer, x, i, color);
-		color = (t_rgba)(0x004e89c6);
-		color.r *= darkness2;
-		color.g *= darkness2;
-		color.b *= darkness2;
-		draw_pixel(buffer, x, buffer->height - i, color);
+		draw_sky_ground_pixel(ctx, i);
 		i++;
 	}
+}
+
+static void	draw_wall_pixel(t_draw_ctx *ctx, t_wall_params *params,
+		float darkness)
+{
+	int		i;
+	t_rgba	color;
+	int		tex_y;
+
 	i = 0;
-	while (i < s_height)
+	while (i < params->s_height)
 	{
-		color = img.data[img_x + (int)(i * img_step + img_off) * img.width];
-		color.r *= darkness;
-		color.g *= darkness;
-		color.b *= darkness;
-		draw_pixel(buffer, x, buffer->height / 2 - s_height / 2 + i, color);
+		tex_y = (int)(i * params->img_step + params->img_off);
+		color = ctx->img.data[params->img_x + tex_y * ctx->img.width];
+		color = apply_darkness(color, darkness);
+		draw_pixel(ctx->buffer, ctx->x, params->wall_start_y + i, color);
 		i++;
 	}
+}
+
+static void	draw_wall(t_image *buffer, int x, float dist, t_hit hit,
+		t_image img, t_map map)
+{
+	t_wall_params	params;
+	t_draw_ctx		ctx;
+	const float		darkness = ft_fclamp(MAX_DARKNESS / (dist * DIST_ATTENUATION
+						+ DIST_OFFSET), MIN_DARKNESS, MAX_DARKNESS);
+	int				limit;
+
+	calc_wall_dimensions(&params, dist, buffer->height);
+	if (params.s_height == 0)
+		return ;
+	limit = params.wall_start_y + 1;
+	calc_texture_params(&params, hit, img);
+	ctx.buffer = buffer;
+	ctx.img = img;
+	ctx.map = map;
+	ctx.x = x;
+	ctx.half_height = buffer->height / 2;
+	draw_ceiling_floor(&ctx, limit);
+	draw_wall_pixel(&ctx, &params, darkness);
 }
 
 int	draw_walls(t_image *buffer, t_map map, t_camera cam)
@@ -96,7 +183,7 @@ int	draw_walls(t_image *buffer, t_map map, t_camera cam)
 		if (hit.hit)
 		{
 			draw_wall(buffer, i, hit.dist * cos_lut(-(float)cam.fov / 2 + i
-					* angle_steps), hit, map.textures[hit.dir].tex);
+					* angle_steps), hit, map.textures[hit.dir], map);
 			draw_line(buffer, origin,
 				vec2_add(vec2_mulf((t_vec2){cos_lut(ray_angle),
 						sin_lut(ray_angle)}, 100), origin), (t_rgba)0xff00ff00);

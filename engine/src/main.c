@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 18:21:37 by dderny                  ###   ########   */
+/*   Updated: 2026/02/14 19:35:20 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ int	engine_initialize(t_engine *engine, int argc, char *argv[])
 	map = (t_map){0};
 	engine->map = &map;
 	if (image_from_xpm(engine->window.mlx, "game/textures/background0.xpm",
-			&map.textures[0].tex))
+			&map.textures[0]))
+		return (1);
+	if (image_from_xpm(engine->window.mlx, "game/textures/test.xpm",
+			&map.textures[1]))
 		return (1);
 	if (image_from_xpm(engine->window.mlx, "game/textures/background0.xpm",
-			&map.textures[1].tex))
+			&map.textures[2]))
 		return (1);
 	if (image_from_xpm(engine->window.mlx, "game/textures/background0.xpm",
-			&map.textures[2].tex))
-		return (1);
-	if (image_from_xpm(engine->window.mlx, "game/textures/background0.xpm",
-			&map.textures[3].tex))
+			&map.textures[3]))
 		return (1);
 	if (game_initialize(engine))
 		return (1);

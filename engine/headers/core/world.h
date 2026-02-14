@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:21 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 16:16:53 by dderny                  ###   ########   */
+/*   Updated: 2026/02/14 19:24:41 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,6 @@
 # include <stdint.h>
 
 # define TRACE_LEN 65536
-
-typedef struct s_tex_map
-{
-	t_image		tex;
-	t_vec2		uva;
-	t_vec2		uvb;
-	uint16_t	alpha;
-}				t_tex_map;
 
 typedef enum e_orient
 {
@@ -56,7 +48,7 @@ typedef struct s_map
 	char		*cells;
 	int			width;
 	int			height;
-	t_tex_map	textures[4];
+	t_image		textures[4];
 	char		*tex_paths[4];
 	t_rgba		ceiling;
 	t_rgba		floor;

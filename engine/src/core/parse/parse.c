@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 18:06:36 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/15 01:06:31 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/15 01:22:19 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,30 @@
 #include "libft.h"
 #include <fcntl.h>
 
-static void	map_format_check(t_map *map, char *line, char **result)
+static int	map_format_check(t_map *map, char *line, char **result, int *i)
 {
-	line[ft_strlen(line) - 1] = 0;
-	if (ft_strlen(line) > (unsigned long)map->width)
-		map->width = ft_strlen(line);
-	if (!*result)
-		*result = line;
-	else
+	if (line[0] == '0' || line[0] == '1' || line[0] == ' ')
 	{
-		*result = ft_strjoin(*result, line);
-		free(line);
+		line[ft_strlen(line) - 1] = 0;
+		if (ft_strlen(line) > (unsigned long)map->width)
+			map->width = ft_strlen(line);
+		if (!*result)
+			*result = line;
+		else
+		{
+			*result = ft_strjoin(*result, line);
+			free(line);
+		}
+		if (map->cells)
+			free(map->cells);
+		map->cells = *result;
+		(*i)++;
+		if (!result)
+			return -1;
 	}
-	if (map->cells)
-		free(map->cells);
-	map->cells = *result;
+	else
+		free(line);
+	return 0;
 }
 
 static int	assign_map(int fd, t_map *map)
@@ -46,15 +55,8 @@ static int	assign_map(int fd, t_map *map)
 	result = NULL;
 	while (line)
 	{
-		if (line[0] == '0' || line[0] == '1' || line[0] == ' ')
-		{
-			map_format_check(map, line, &result);
-			i++;
-			if (!result)
-				break ;
-		}
-		else
-			free(line);
+		if (map_format_check(map, line, &result, &i) == -1)
+			break;
 		line = get_next_line(fd);
 	}
 	if (!result)

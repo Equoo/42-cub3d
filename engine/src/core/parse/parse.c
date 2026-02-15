@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 18:06:36 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/15 01:02:29 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/15 01:06:31 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@
 #include "libft.h"
 #include <fcntl.h>
 
-static void	map_format_check(t_map *map, char *line, char *result)
+static void	map_format_check(t_map *map, char *line, char **result)
 {
 	line[ft_strlen(line) - 1] = 0;
 	if (ft_strlen(line) > (unsigned long)map->width)
 		map->width = ft_strlen(line);
-	if (!result)
-		result = line;
+	if (!*result)
+		*result = line;
 	else
 	{
-		result = ft_strjoin(result, line);
+		*result = ft_strjoin(*result, line);
 		free(line);
 	}
 	if (map->cells)
 		free(map->cells);
-	map->cells = result;
+	map->cells = *result;
 }
 
 static int	assign_map(int fd, t_map *map)
@@ -48,7 +48,7 @@ static int	assign_map(int fd, t_map *map)
 	{
 		if (line[0] == '0' || line[0] == '1' || line[0] == ' ')
 		{
-			map_format_check(map, line, result);
+			map_format_check(map, line, &result);
 			i++;
 			if (!result)
 				break ;

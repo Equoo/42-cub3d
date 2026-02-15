@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_checker.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 03:00:01 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/15 03:00:04 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/15 04:10:08 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ int	textures_path_checker(t_map *map)
 	int	i;
 	int	fd;
 
-<<<<<<< HEAD
 	i = 0;
 	while (i < 4)
 	{
@@ -106,18 +105,6 @@ int	textures_path_checker(t_map *map)
 			ft_printf("Error:\nTexturespath issue at index[%d]\n", i);
 			return (-1);
 		}
-=======
-	i = 0;
-	while (i < 4)
-	{
-		map->tex_paths[i][ft_strlen(map->tex_paths[i]) - 1] = '\0';
-		if (!suffix_format_checker(map->tex_paths[i], ".xpm\0"))
-		{
-			ft_printf("Error:\nTexturespath issue at index[%d]\n", i);
-			return (-1);
-		}
-		ft_printf("Debug: tex_paths[%d]: %s\n", i, map->tex_paths[i]);
->>>>>>> 40422ca (add: map destroying)
 		fd = open(map->tex_paths[i], O_RDONLY);
 		if (fd == -1)
 		{

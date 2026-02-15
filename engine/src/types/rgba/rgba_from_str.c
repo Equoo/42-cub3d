@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:38:05 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 20:01:51 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/15 00:41:36 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <asm-generic/errno.h>
 #include <errno.h>
 #include <stdlib.h>
+#include <string.h>
 
 static int	col_from_str(char *str)
 {
@@ -24,9 +25,9 @@ static int	col_from_str(char *str)
 
 	errno = 0;
 	col = ft_strtoi(str, &endptr, 0);
-	if (errno || *endptr)
+	if (errno || (*endptr && *endptr != '\n'))
 		return (-1);
-	if (col > 255)
+	if (col > 255 || col < 0)
 	{
 		errno = EOVERFLOW;
 		return (-1);

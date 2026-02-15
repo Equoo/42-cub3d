@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 23:22:38 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/15 00:34:17 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,17 @@ int	load_textures(t_engine *engine, t_map *map)
 {
 	int	i;
 
+	map->tex_paths[0] = "game/textures/background0.xpm";
+	map->tex_paths[1] = "game/textures/background0.xpm";
+	map->tex_paths[2] = "game/textures/test.xpm";
+	map->tex_paths[3] = "game/textures/background0.xpm";
 	i = 0;
 	while (i < 4)
 	{
 		if (image_from_xpm(engine->window.mlx, map->tex_paths[i],
 				&map->textures[i]))
 			return (1);
+		i++;
 	}
 	return (0);
 }
@@ -61,7 +66,7 @@ int	engine_initialize(t_engine *engine, int argc, char *argv[])
 	map = (t_map){0};
 	engine->camera = (t_camera){.fov = 75, .pos = {6., 2., 8.}};
 	engine->map = &map;
-	if (check_map_validity(argv[1], engine->map) < 1)
+	if (check_map_validity(argv[1], engine->map))
 		return (1);
 	if (load_textures(engine, &map))
 		return (1);

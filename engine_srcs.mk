@@ -1,16 +1,20 @@
 # Auto-generated file, do not edit!
 SRCS += engine/src/close.c \
-engine/src/main.c \
 engine/src/core/inputs/lib.c \
 engine/src/core/inputs/mouse.c \
 engine/src/core/inputs/keyboard.c \
-engine/src/core/world/draw.c \
-engine/src/core/world/calc.c \
-engine/src/core/world/render.c \
 engine/src/core/draw/drawing.c \
 engine/src/core/window/loop.c \
 engine/src/core/window/create.c \
 engine/src/core/window/drawbuffer.c \
+engine/src/core/window/destroy.c \
+engine/src/core/parse/parse_checker.c \
+engine/src/core/parse/parse_utils.c \
+engine/src/core/parse/parse.c \
+engine/src/core/world/calc.c \
+engine/src/core/world/draw.c \
+engine/src/core/world/render.c \
+engine/src/math/m_lerp.c \
 engine/src/math/m_cubic.c \
 engine/src/math/m_sine.c \
 engine/src/math/trigo.c \
@@ -49,6 +53,7 @@ engine/src/types/vector3/rotation.c \
 engine/src/types/image/from_mlx.c \
 engine/src/types/image/new.c \
 engine/src/types/image/from_xpm.c \
-engine/src/types/rgba/rgba_from_str.c \
 engine/src/types/rgba/apply_darkness.c \
-engine/src/update.c
+engine/src/types/rgba/rgba_from_str.c \
+engine/src/update.c \
+engine/src/main.c

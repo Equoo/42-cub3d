@@ -6,14 +6,14 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 22:18:22 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/15 00:04:26 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/15 01:44:55 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-// #define POSSIBLE_CHAR "01NWSE"
+#define POSSIBLE_CHAR "01NWSE "
 // #define FLOOR "0"
 // #define WALL "1"
 // #define NORTH "N"
@@ -42,7 +42,7 @@ int		map_path_checker(char *map_name, char **path);
 int		assign_textures_and_colors(int fd, t_map *map);
 
 // parse_utils.c
-int		secure_open(char *path);
+int		secure_open(char *path, int *fd);
 int		texture_path_assign(char *line, t_map *map, int valid[]);
 void	map_debug(t_map *map);
 int		textures_path_checker(t_map *map);

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 06:31:54 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/15 00:06:38 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/15 01:44:18 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,17 @@
 #include "libft.h"
 #include "types/rgba.h"
 
-int	secure_open(char *path)
+int	secure_open(char *path, int *fd)
 {
-	int	fd;
-
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
+	*fd = open(path, O_RDONLY);
+	if (*fd == -1)
 	{
 		free(path);
-		close(fd);
+		close(*fd);
 		perror("Error\n");
-		return (-1);
+		return (1);
 	}
-	return (fd);
+	return 0;
 }
 
 int	texture_path_assign(char *line, t_map *map, int valid[])

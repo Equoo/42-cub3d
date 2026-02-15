@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 21:10:07 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/15 00:05:31 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/15 01:31:10 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ int textures_path_checker(t_map *map)
             ft_printf("Error:\nTexturespath issue at index[%d]\n", i);
             return -1;
         }
-        ft_printf("Debug: tex_paths[%d]: %s\n", i, map->tex_paths[i]);
 		fd = open(map->tex_paths[i], O_RDONLY);
 		if (fd == -1)
 		{

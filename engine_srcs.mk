@@ -1,32 +1,31 @@
 # Auto-generated file, do not edit!
-SRCS += engine/src/close.c \
-engine/src/core/draw/drawing.c \
-engine/src/core/inputs/keyboard.c \
-engine/src/core/inputs/lib.c \
+SRCS += engine/src/core/inputs/lib.c \
 engine/src/core/inputs/mouse.c \
+engine/src/core/inputs/keyboard.c \
+engine/src/core/draw/drawing.c \
 engine/src/core/window/loop.c \
 engine/src/core/window/create.c \
 engine/src/core/window/drawbuffer.c \
 engine/src/core/window/destroy.c \
-engine/src/core/parse/parse_utils.c \
 engine/src/core/parse/parse_checker.c \
+engine/src/core/parse/parse_utils.c \
 engine/src/core/parse/parse.c \
 engine/src/core/world/calc.c \
 engine/src/core/world/draw.c \
 engine/src/core/world/render.c \
-engine/src/math/m_cubic.c \
+engine/src/core/world/destroy.c \
 engine/src/math/m_lerp.c \
+engine/src/math/m_cubic.c \
 engine/src/math/m_sine.c \
 engine/src/math/trigo.c \
 engine/src/math/dda.c \
+engine/src/types/vector2/comparisons.c \
 engine/src/types/vector2/abs.c \
 engine/src/types/vector2/clamp.c \
-engine/src/types/vector2/comparisons.c \
+engine/src/types/vector2/intersect_line_segment.c \
 engine/src/types/vector2/cross.c \
 engine/src/types/vector2/dist.c \
 engine/src/types/vector2/dot.c \
-engine/src/types/vector2/index.c \
-engine/src/types/vector2/intersect_line_segment.c \
 engine/src/types/vector2/len.c \
 engine/src/types/vector2/max.c \
 engine/src/types/vector2/min.c \
@@ -35,9 +34,9 @@ engine/src/types/vector2/operators.c \
 engine/src/types/vector2/operators_by.c \
 engine/src/types/vector2/other_operators.c \
 engine/src/types/vector2/other_operators_by.c \
+engine/src/types/vector2/index.c \
 engine/src/types/vector3/abs.c \
 engine/src/types/vector3/clamp.c \
-engine/src/types/vector3/comparisons.c \
 engine/src/types/vector3/cross.c \
 engine/src/types/vector3/dist.c \
 engine/src/types/vector3/dot.c \
@@ -49,11 +48,13 @@ engine/src/types/vector3/operators.c \
 engine/src/types/vector3/operators_by.c \
 engine/src/types/vector3/other_operators.c \
 engine/src/types/vector3/other_operators_by.c \
+engine/src/types/vector3/comparisons.c \
 engine/src/types/vector3/rotation.c \
 engine/src/types/image/from_mlx.c \
-engine/src/types/image/from_xpm.c \
 engine/src/types/image/new.c \
+engine/src/types/image/from_xpm.c \
 engine/src/types/rgba/apply_darkness.c \
 engine/src/types/rgba/rgba_from_str.c \
 engine/src/update.c \
+engine/src/close.c \
 engine/src/main.c

@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:21 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 22:26:00 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/15 02:53:05 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,7 @@ float			calc_sky_darkness(int y, float inv_half_height);
 void			draw_wall(t_draw_ctx ctx, float dist, t_hit hit);
 
 int				draw_walls(t_image *buffer, t_map map, t_camera cam);
+
+int				map_destroy(void *mlx, t_map *map);
 
 #endif

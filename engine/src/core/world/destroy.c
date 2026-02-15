@@ -1,23 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close.c                                            :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/15 02:53:52 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/15 02:54:00 by dderny           ###   ########.fr       */
+/*   Created: 2026/02/15 02:47:47 by dderny            #+#    #+#             */
+/*   Updated: 2026/02/15 02:57:19 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/engine.h"
-#include "core/window.h"
 #include "core/world.h"
+#include "mlx.h"
 
-int	engine_close(t_engine *engine)
+int	map_destroy(void *mlx, t_map *map)
 {
-	map_destroy(engine->window.mlx, engine->map);
-	garbage_collector(engine->garbage);
-	window_destruct(&engine->window);
+	int	i;
+
+	if (map->cells)
+		free(map->cells);
+	i = 0;
+	while (i < 4)
+	{
+		if (map->tex_paths[i])
+			free(map->tex_paths[i]);
+		i++;
+	}
+	i = 0;
+	while (i < 4)
+	{
+		if (map->textures[i].img)
+			mlx_destroy_image(mlx, map->textures[i].img);
+		i++;
+	}
 	return (0);
 }

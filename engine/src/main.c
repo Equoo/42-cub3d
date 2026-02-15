@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/15 00:34:17 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/15 02:55:05 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ int	load_textures(t_engine *engine, t_map *map)
 {
 	int	i;
 
-	map->tex_paths[0] = "game/textures/background0.xpm";
-	map->tex_paths[1] = "game/textures/background0.xpm";
-	map->tex_paths[2] = "game/textures/test.xpm";
-	map->tex_paths[3] = "game/textures/background0.xpm";
 	i = 0;
 	while (i < 4)
 	{

@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 17:00:33 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 17:16:11 by dderny                  ###   ########   */
+/*   Updated: 2026/02/17 03:14:53 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,28 @@ void	dda_init(t_vec2 posdir, float *delta, float *side, float *step)
 	}
 }
 
+t_hit	define_orient(int side, t_vec2 diff, t_vec2 dir, t_dda data)
+{
+	t_hit	res;
+
+	res = (t_hit){0};
+	if (side == 0)
+	{
+		res.dist = (diff.x + (1 - data.step.x) / 2) / dir.x;
+		res.dir = WEST;
+		if (data.step.x > 0)
+			res.dir = EAST;
+	}
+	else
+	{
+		res.dist = (diff.y + (1 - data.step.y) / 2) / dir.y;
+		res.dir = NORTH;
+		if (data.step.y > 0)
+			res.dir = SOUTH;
+	}
+	return (res);
+}
+
 t_hit	dda_trace(t_vec2 pos, t_vec2 dir, t_map grid)
 {
 	const t_vec2	origin = pos;
@@ -81,20 +103,7 @@ t_hit	dda_trace(t_vec2 pos, t_vec2 dir, t_map grid)
 	dda_init((t_vec2){origin.y, dir.y}, &data.deltad.y, &data.sided.y,
 		&data.step.y);
 	side = dda_core(&pos, data, grid);
-	if (side == 0)
-	{
-		res.dist = (pos.x - origin.x + (1 - data.step.x) / 2) / dir.x;
-		res.dir = WEST;
-		if (data.step.x > 0)
-			res.dir = EAST;
-	}
-	else
-	{
-		res.dist = (pos.y - origin.y + (1 - data.step.y) / 2) / dir.y;
-		res.dir = NORTH;
-		if (data.step.y > 0)
-			res.dir = SOUTH;
-	}
+	res = define_orient(side, vec2_sub(pos, origin), dir, data);
 	res.pos = vec2_add(origin, vec2_mulf(dir, res.dist));
 	res.hit = get_cell(grid, (int)pos.x, (int)pos.y);
 	return (res);

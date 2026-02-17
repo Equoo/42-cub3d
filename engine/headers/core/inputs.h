@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 15:28:02 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 16:07:20 by dderny                  ###   ########   */
+/*   Updated: 2026/02/17 03:49:41 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ int	inputs_update(t_engine *engine);
 int	iskeydown(t_engine *engine, u_int key);
 int	iskeyreleased(t_engine *engine, u_int key);
 int	iskeyup(t_engine *engine, u_int key);
+
+int	apply_inputs(t_engine *engine);
 
 #endif

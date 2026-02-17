@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 04:30:48 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 21:44:54 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/17 02:56:28 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <mm256.h>
 # include <sys/types.h>
 
-typedef struct
+typedef struct s_m256i_rgba
 {
 	struct
 	{
@@ -25,7 +25,7 @@ typedef struct
 		__m256i_u		a;
 	};
 	__m256i_u			rgba;
-}						t_m256i_color;
+}						t_m256i_rgba;
 
 typedef union u_rgba
 {

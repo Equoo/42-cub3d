@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 14:32:44 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 16:56:04 by dderny                  ###   ########   */
+/*   Updated: 2026/02/17 02:55:35 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,13 +135,5 @@ t_bool		aabb_intersects_ray(t_aabb a, t_vec3 ray_origin, t_vec3 ray_dir,
  */
 t_bool		aabb_intersects_segment(t_aabb a, t_vec3 ray_from, t_vec3 ray_to,
 				t_vec3 *hit_point);
-
-/**
- * @brief Tests if an AABB intersects with a plane
- * @param a AABB to test against
- * @param b Plane to test intersection with
- * @return true if AABB intersects or touches the plane, false otherwise
- */
-t_bool		aabb_intersects_plane(t_aabb a, t_plane b);
 
 #endif

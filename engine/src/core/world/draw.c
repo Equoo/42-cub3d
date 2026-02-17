@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 21:40:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 22:43:22 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/17 03:50:54 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,6 @@ static void	draw_wall_pixel(t_draw_ctx *ctx, t_wall_params *params,
 	while (i < params->s_height)
 	{
 		tex_y = (int)(i * params->img_step + params->img_off);
-		if (params->img_x + tex_y * ctx->img.width > (uint)ctx->img.width
-			* (uint)ctx->img.height)
-		{
-			__builtin_printf("TEST CRAsg: %d, %d, %d; res %d, size: %d\n",
-				params->img_x, tex_y, ctx->img.width, params->img_x + tex_y
-				* ctx->img.width, ctx->img.width * ctx->img.height);
-		}
 		color = ctx->img.data[params->img_x + tex_y * ctx->img.width];
 		color = apply_darkness(color, darkness);
 		draw_pixel(ctx->buffer, ctx->x, params->wall_start_y + i, color);
@@ -77,7 +70,7 @@ void	draw_wall(t_draw_ctx ctx, float dist, t_hit hit)
 	calc_wall_dimensions(&params, dist, ctx.buffer->height);
 	if (params.s_height == 0)
 		return ;
-	limit = params.wall_start_y + 1;
+	limit = params.wall_start_y + 2;
 	calc_texture_params(&params, hit, ctx.img);
 	ctx.half_height = ctx.buffer->height / 2;
 	draw_ceiling_floor(&ctx, limit);

@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:45:37 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/06 16:47:23 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/17 03:43:02 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,5 @@
 
 t_vec2	vec2_abs(t_vec2 self)
 {
-	return ((t_vec2){
-		fabsf(self.x),
-		fabsf(self.y)
-	});
+	return ((t_vec2){fabsf(self.x), fabsf(self.y)});
 }

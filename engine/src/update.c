@@ -6,64 +6,46 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:10:24 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 21:33:56 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/17 05:00:23 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/draw.h"
 #include "core/engine.h"
 #include "core/game.h"
 #include "core/inputs.h"
+#include <ft_printf.h>
 #include <ft_time.h>
+#include <math.h>
 #include <sys/types.h>
 
-static int	work(t_engine *engine)
-{
-	t_camera	*camera;
-	int			i;
-	t_vec2		a;
-	t_vec2		b;
+// void	printticks(t_gameenv *env)
+// {
+// 	static double	last = 0;
+// 	static double	middle = 0;
+// 	static int		fps = TICK;
+// 	static int		count = 0;
+//
+// 	middle = middle + env->frametime;
+// 	count++;
+// 	if (env->time - last >= 1)
+// 	{
+// 		middle /= count;
+// 		count = 0;
+// 		fps = 1 / middle;
+// 		env->smooth_fps = fps;
+// 		middle = env->frametime;
+// 		last = env->time;
+// 	}
+// }
 
-	camera = &engine->camera;
-	if (iskeydown(engine, (uint)'w'))
-		camera->pos = vec3_add(camera->pos, vec3_mulf(rot_forward(camera->rot),
-					2 * engine->frametime));
-	if (iskeydown(engine, (uint)'a'))
-		camera->pos = vec3_add(camera->pos, vec3_mulf(rot_right(camera->rot), -2
-					* engine->frametime));
-	if (iskeydown(engine, (uint)'d'))
-		camera->pos = vec3_add(camera->pos, vec3_mulf(rot_right(camera->rot), 2
-					* engine->frametime));
-	if (iskeydown(engine, (uint)'s'))
-		camera->pos = vec3_add(camera->pos, vec3_mulf(rot_forward(camera->rot),
-					-2 * engine->frametime));
-	if (iskeydown(engine, (uint)'q'))
-		camera->rot.z += -70 * engine->frametime;
-	if (iskeydown(engine, (uint)'e'))
-		camera->rot.z += 70 * engine->frametime;
-	window_drawbuffer(&engine->window);
-	draw_walls(&engine->window.buffer, *engine->map, engine->camera);
-	i = 0;
-	while (i < engine->map->height * engine->map->width)
-	{
-		if (!(engine->map->cells[i] == '1' || engine->map->cells[i] == ' ')
-			&& ++i)
-			continue ;
-		a = (t_vec2){100 + (i % engine->map->width) * 10, 500 + i
-			/ engine->map->width * 10};
-		b = vec2_add(a, (t_vec2){10, 10});
-		draw_square(&engine->window.buffer, a, b, (t_rgba)(0x10101010 + ((i
-						* 10) << 2)));
-		i++;
-	}
-	__builtin_printf("FPS: %f\n", engine->frametime > 0 ? 1
-		/ engine->frametime : 0);
+int	engine_tick(t_engine *engine)
+{
+	game_tick(engine);
 	return (0);
 }
 
 static int	time_update(t_engine *engine)
 {
-	static double	lastrealtime = 0;
 	static double	elapsed = 0;
 
 	engine->time = curtime_us();
@@ -71,9 +53,9 @@ static int	time_update(t_engine *engine)
 		engine->start_time = engine->time;
 	if (!engine->last_frame)
 		engine->last_frame = engine->time;
-	if (!lastrealtime)
-		lastrealtime = engine->time;
-	elapsed += engine->time - lastrealtime;
+	if (!engine->lastrealtime)
+		engine->lastrealtime = engine->time;
+	elapsed += engine->time - engine->lastrealtime;
 	if (elapsed >= 1.f / ((double)engine->physics_ticks))
 	{
 		elapsed -= 1.f / ((double)engine->physics_ticks);
@@ -82,24 +64,25 @@ static int	time_update(t_engine *engine)
 			return (1);
 		engine->last_frame = engine->time;
 	}
-	engine->frametime = (engine->time - lastrealtime);
-	work(engine);
-	lastrealtime = engine->time;
+	engine->frametime = (engine->time - engine->lastrealtime);
+	return (0);
+}
+
+static int	render_update(t_engine *engine)
+{
+	window_drawbuffer(&engine->window);
+	draw_walls(&engine->window.buffer, *engine->map, engine->camera);
 	return (0);
 }
 
 int	engine_update(t_engine *engine)
 {
-	if (time_update(engine) || game_update(engine))
+	if (time_update(engine) || inputs_update(engine) || apply_inputs(engine)
+		|| render_update(engine) || game_update(engine))
 	{
 		engine_close(engine);
 	}
-	inputs_update(engine);
-	return (0);
-}
-
-int	engine_tick(t_engine *engine)
-{
-	game_tick(engine);
+	ft_printf("FPS: %f\n", engine->frametime > 0 ? (1 / engine->frametime) : 0);
+	engine->lastrealtime = engine->time;
 	return (0);
 }

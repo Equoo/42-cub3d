@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:43:47 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/06 16:44:01 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/17 03:01:28 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 t_vec3	vec3_cross(t_vec3 a, t_vec3 b)
 {
-	return ((t_vec3){
-		a.y * b.z - a.z * b.y,
-		a.z * b.x - a.x * b.z,
-		a.x * b.y - a.y * b.x
-	});
+	return ((t_vec3){a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y
+		- a.y * b.x});
 }

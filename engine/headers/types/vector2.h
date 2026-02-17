@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:50:41 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/30 12:06:45 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/17 02:58:04 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@
 # include <ft_bool.h>
 # include <math.h>
 
-# define VEC2_ZERO (t_vec2){0, 0}
-# define VEC2_ONE (t_vec2){1, 1}
-# define VEC2_UP (t_vec2){0, 1}
-# define VEC2_DOWN (t_vec2){0, -1}
-# define VEC2_RIGHT (t_vec2){1, 0}
-# define VEC2_LEFT (t_vec2){-1, 0}
-# define VEC2_INF (t_vec2){INFINITY, INFINITY}
+// # define VEC2_ZERO (t_vec2){0, 0}
+// # define VEC2_ONE (t_vec2){1, 1}
+// # define VEC2_UP (t_vec2){0, 1}
+// # define VEC2_DOWN (t_vec2){0, -1}
+// # define VEC2_RIGHT (t_vec2){1, 0}
+// # define VEC2_LEFT (t_vec2){-1, 0}
+// # define VEC2_INF (t_vec2){INFINITY, INFINITY}
 
-typedef struct
+typedef struct s_vec2
 {
-	float		x;
-	float		y;
-}				t_vec2;
+	float	x;
+	float	y;
+}			t_vec2;
 
 /**
  * @brief Adds two vectors component-wise
@@ -239,7 +239,8 @@ float		vec2_sqrdist(t_vec2 a, t_vec2 b);
 /**
  * @brief Normalizes a vector in-place (makes its length 1)
  * @param self Pointer to vector to normalize
- * @note After normalization, the vector maintains its direction but has unit length
+ * @note After normalization,
+	the vector maintains its direction but has unit length
  */
 void		vec2_norm(t_vec2 *self);
 
@@ -316,15 +317,16 @@ t_vec2		vec2_abs(t_vec2 self);
  */
 t_vec2		vec2_rot(t_vec2 v, float angle);
 
-int	vec2_index(t_vec2 self, int width);
+int			vec2_index(t_vec2 self, int width);
 
-typedef struct s_intersect {
+typedef struct s_intersect
+{
 	t_vec2	line_pos;
 	t_vec2	line_dir;
 	t_vec2	sega;
 	t_vec2	segb;
 	t_vec2	*hit_pos;
-}	t_intersect;
+}			t_intersect;
 
 int			intersect_line_segment(t_intersect data);
 

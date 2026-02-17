@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:21 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/15 02:53:05 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/17 03:50:09 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define MIN_DARKNESS 0.05f
 # define MAX_DARKNESS 1.0f
 # define HALF_DIVISOR 2.0f
+# define RAYS_FILLING 1
+# define RAYS_DENSITY 1
 
 typedef struct s_wall_params
 {
@@ -91,5 +93,7 @@ void			draw_wall(t_draw_ctx ctx, float dist, t_hit hit);
 int				draw_walls(t_image *buffer, t_map map, t_camera cam);
 
 int				map_destroy(void *mlx, t_map *map);
+
+int				load_map(void *mlx, t_map *map);
 
 #endif

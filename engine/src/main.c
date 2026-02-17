@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/15 02:55:05 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/17 03:16:06 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 #include "core/world.h"
 #include "ft_printf.h"
 #include "libft.h"
-#include "types/image.h"
 #include <stdio.h>
 
+// NORM V.4
 // Using global variables that are **not marked const or static** is forbidden
 // and is considered a norm error, unless the project explicitly allows them.
 const static t_engine	g_engine = {.max_fps = 0, .physics_ticks = 20};
@@ -30,21 +30,6 @@ const static t_window	g_window = {.mousedown = &inputs_mousedown,
 		.mousemove = &inputs_mousemove, .mouseup = &inputs_mouseup,
 		.keydown = &inputs_keydown, .keyup = &inputs_keyup,
 		.close = &engine_close, .update = &engine_update};
-
-int	load_textures(t_engine *engine, t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (i < 4)
-	{
-		if (image_from_xpm(engine->window.mlx, map->tex_paths[i],
-				&map->textures[i]))
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 int	engine_initialize(t_engine *engine, int argc, char *argv[])
 {
@@ -57,14 +42,12 @@ int	engine_initialize(t_engine *engine, int argc, char *argv[])
 	}
 	if (window_create(&engine->window, g_window, engine))
 		return (1);
-	(void)argc;
-	(void)argv;
 	map = (t_map){0};
 	engine->camera = (t_camera){.fov = 75, .pos = {6., 2., 8.}};
 	engine->map = &map;
 	if (check_map_validity(argv[1], engine->map))
 		return (1);
-	if (load_textures(engine, &map))
+	if (load_map(engine->window.mlx, &map))
 		return (1);
 	if (game_initialize(engine))
 		return (1);

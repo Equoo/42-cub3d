@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 20:07:23 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/14 20:09:01 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/17 03:24:52 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,5 @@ t_vec3	rot_up(t_rot r)
 
 t_vec3	rot_right(t_rot r)
 {
-	t_vec3	rot;
-
-	rot.x = sin_lut(r.z * cos_lut(r.x));
-	rot.y = cos_lut(r.z * cos_lut(r.x));
-	rot.z = sin_lut(r.x);
-	return (rot);
+	return (vec3_cross(rot_forward(r), (t_vec3){0, 0, 1}));
 }

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 06:31:54 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/15 01:44:18 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/17 03:42:13 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	secure_open(char *path, int *fd)
 		perror("Error\n");
 		return (1);
 	}
-	return 0;
+	return (0);
 }
 
 int	texture_path_assign(char *line, t_map *map, int valid[])

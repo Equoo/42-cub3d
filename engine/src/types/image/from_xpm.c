@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   from_xpm.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/17 03:00:15 by dderny            #+#    #+#             */
+/*   Updated: 2026/02/17 03:00:18 by dderny           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "types/image.h"
 #include <mlx.h>
 
-int image_from_xpm(void *mlx, char *path, t_image *out)
+int	image_from_xpm(void *mlx, char *path, t_image *out)
 {
 	void	*img;
 	int		nil;

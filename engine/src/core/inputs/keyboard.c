@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keyboard.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/17 02:53:19 by dderny            #+#    #+#             */
+/*   Updated: 2026/02/17 02:53:23 by dderny           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "core/inputs.h"
 #include "core/engine.h"
+#include "core/inputs.h"
 
 int	inputs_keydown(int key, t_engine *engine)
 {
@@ -40,4 +51,3 @@ int	inputs_keyup(int key, t_engine *engine)
 	}
 	return (0);
 }
-

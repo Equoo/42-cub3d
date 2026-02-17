@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 16:00:55 by dderny            #+#    #+#             */
-/*   Updated: 2025/10/06 16:02:23 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/17 03:01:26 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 t_bool	vec3_eq(t_vec3 a, t_vec3 b)
 {
-	return (fabsf(a.x - b.x) < EPSILON
-		&& fabsf(a.y - b.y) < EPSILON
+	return (fabsf(a.x - b.x) < EPSILON && fabsf(a.y - b.y) < EPSILON
 		&& fabsf(a.z - b.z) < EPSILON);
 }
 

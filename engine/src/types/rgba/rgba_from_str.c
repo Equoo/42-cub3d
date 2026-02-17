@@ -6,17 +6,14 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:38:05 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/15 00:41:36 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/17 03:00:35 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "libft.h"
 #include "types/rgba.h"
 #include <asm-generic/errno.h>
 #include <errno.h>
-#include <stdlib.h>
-#include <string.h>
 
 static int	col_from_str(char *str)
 {

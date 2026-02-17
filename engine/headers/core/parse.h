@@ -6,20 +6,14 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 22:18:22 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/15 01:44:55 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/17 03:50:00 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-#define POSSIBLE_CHAR "01NWSE "
-// #define FLOOR "0"
-// #define WALL "1"
-// #define NORTH "N"
-// #define SOUTH "S"
-// #define WEST "W"
-// #define EAST "E"
+# define POSSIBLE_CHAR "01NWSE "
 
 # define MAP_FOLDER "game/maps/"
 # define TEXTURE_FOLDER "game/textures/"

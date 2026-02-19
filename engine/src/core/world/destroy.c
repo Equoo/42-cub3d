@@ -3,22 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 02:47:47 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/15 02:57:19 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/19 06:12:48 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core/world.h"
 #include "mlx.h"
 
-int	map_destroy(void *mlx, t_map *map)
+static void free_map_grid(t_map *map)
 {
-	int	i;
+	int i;
+
+	i = 0;
+	while (i < map->height)
+	{
+		free(map->grid[i]);
+		i++;
+	}
+	free(map->grid);
+}
+
+int map_destroy(void *mlx, t_map *map)
+{
+	int i;
 
 	if (map->cells)
 		free(map->cells);
+	if (map->grid)
+		free_map_grid(map);
 	i = 0;
 	while (i < 4)
 	{

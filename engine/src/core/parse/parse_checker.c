@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 03:00:01 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/15 04:10:08 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/19 06:02:31 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,6 @@
 #include "ft_printf.h"
 #include "get_next_line.h"
 #include "libft.h"
-
-int	suffix_format_checker(char *to_check, char *suffix)
-{
-	int	format_start;
-
-	format_start = ft_strlen(to_check) - ft_strlen(suffix);
-	if (ft_strncmp(&to_check[format_start], suffix, ft_strlen(suffix)) != 0)
-	{
-		perror("Error\n: Wrong format\n");
-		return (0);
-	}
-	return (1);
-}
-
-int	map_path_checker(char *map_name, char **path)
-{
-	ft_printf("map: %s\n", map_name);
-	if (!suffix_format_checker(map_name, ".cub"))
-		return (0);
-	*path = ft_strjoin(MAP_FOLDER, map_name);
-	if (!*path)
-	{
-		free(*path);
-		return (0);
-	}
-	return (1);
-}
 
 void	check_textures(char *tex_path, char *line, t_map *map, int valid[])
 {
@@ -91,28 +64,62 @@ int	check_floor_and_ceiling(char *line, t_map *map, int valid[])
 	return (0);
 }
 
-int	textures_path_checker(t_map *map)
+int	check_player_position(t_map *map)
 {
 	int	i;
-	int	fd;
+	int	player_count;
 
-	i = 0;
-	while (i < 4)
+	i = -1;
+	player_count = 0;
+	while (++i < map->height)
 	{
-		map->tex_paths[i][ft_strlen(map->tex_paths[i]) - 1] = '\0';
-		if (!suffix_format_checker(map->tex_paths[i], ".xpm\0"))
+		int j = -1;
+		while (++j < map->width && map->grid[i][j])
 		{
-			ft_printf("Error:\nTexturespath issue at index[%d]\n", i);
-			return (-1);
+			if (map->grid[i][j] == 'N' || map->grid[i][j] == 'S' 
+				|| map->grid[i][j] == 'E' || map->grid[i][j] == 'W')
+			{
+				player_count++;
+				map->spawn.x = j;
+				map->spawn.y = i;
+			}
 		}
-		fd = open(map->tex_paths[i], O_RDONLY);
-		if (fd == -1)
+	}
+	if (player_count != 1)
+	{
+		ft_printf("Error: player_count != 1 in the map\n");
+		return (1);
+	}
+	return (0);
+}
+
+int	possible_char_checker(t_map *map)
+{
+	int	specific;
+	int	i;
+	int	j;
+
+	i = -1;
+	specific = 0;
+	while (map->cells[++i])
+	{
+		if (map->cells[i] == '\n')
+			continue ;
+		j = 0;
+		while (POSSIBLE_CHAR[j])
 		{
-			ft_printf("Error:\nopen issue at index[%d]\n", i);
-			close(fd);
-			return (-1);
+			if (map->cells[i] != POSSIBLE_CHAR[j])
+				j++;
+			else
+			{
+				if (POSSIBLE_CHAR[j] == 'N' || POSSIBLE_CHAR[j] == 'S'
+					|| POSSIBLE_CHAR[j] == 'W' || POSSIBLE_CHAR[j] == 'E')
+					specific++;
+				break ;
+			}
+			if (j >= 7 || specific > 1)
+				return (-1);
 		}
-		i++;
 	}
 	return (0);
 }

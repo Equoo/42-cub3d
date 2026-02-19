@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 02:53:52 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/17 03:01:50 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/19 19:59:49 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 int	engine_close(t_engine *engine)
 {
-	map_destroy(engine->window.mlx, engine->map);
+	if (engine && engine->map)
+		map_destroy(engine->window.mlx, engine->map);
 	garbage_collector(engine->garbage);
 	window_destruct(&engine->window);
 	return (0);

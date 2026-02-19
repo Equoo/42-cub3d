@@ -6,17 +6,22 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 22:35:51 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/19 05:58:37 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/19 19:57:12 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "types/vector2.h"
+#include "libft.h"
 
 static void	fill(char **tab, t_vec2 size, t_vec2 cur, char to_fill)
 {
 	if (cur.y < 0 || cur.y >= size.y)
 		return ;
 	if (cur.x < 0 || cur.x >= size.x)
+		return ;
+	if (!tab[(int)cur.y])
+		return ;
+	if (cur.x >= (int)ft_strlen(tab[(int)cur.y]))
 		return ;
 	if (tab[(int)cur.y][(int)cur.x] == '1')
 		return ;

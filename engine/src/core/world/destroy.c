@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 02:47:47 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/19 06:12:48 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/19 19:59:49 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ static void free_map_grid(t_map *map)
 int map_destroy(void *mlx, t_map *map)
 {
 	int i;
+
+	if (!map)
+		return (0);
 
 	if (map->cells)
 		free(map->cells);

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 06:31:54 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/19 06:40:46 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/19 20:03:23 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ static int	texture_path_assign(char *line, t_map *map, int valid[])
 
 	if (ft_strncmp(line, MAP_NORTH, 3) == 0 || ft_strncmp(line, MAP_WEST,
 			3) == 0 || ft_strncmp(line, MAP_SOUTH, 3) == 0 || ft_strncmp(line,
-			MAP_EAST, 3) == 0 || ft_strncmp(line, MAP_FLOOR, 2) == 0
-		|| ft_strncmp(line, MAP_CEILING, 2) == 0)
+			MAP_EAST, 3) == 0)
 	{
 		i = 3;
 		while (line[i] == ' ')
@@ -62,6 +61,10 @@ static int	texture_path_assign(char *line, t_map *map, int valid[])
 		if (len > 0 && tex_path[len - 1] == '\n')
 			tex_path[len - 1] = '\0';
 		check_textures(tex_path, line, map, valid);
+	}
+	else if (ft_strncmp(line, MAP_FLOOR, 2) == 0 || ft_strncmp(line, MAP_CEILING, 2) == 0)
+	{
+		/* floor/ceiling: do not allocate a texture path, just parse colors */
 		if (check_floor_and_ceiling(line, map, valid))
 			return (1);
 	}

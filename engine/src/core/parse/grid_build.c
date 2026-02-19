@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 05:10:10 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/19 05:15:19 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/19 19:55:33 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ static char	*create_row(char *cell_ptr, int row_len)
 		end--;
 	if (end < 0)
 	{
-		row = (char *)malloc(1);
+		row = ft_calloc(1, sizeof(char));
 		if (!row)
 			return (NULL);
 		row[0] = '\0';
 	}
 	else
 	{
-		row = (char *)malloc(end + 2);
+		row = ft_calloc(end + 2, sizeof(char));
 		if (!row)
 			return (NULL);
 		ft_memcpy(row, cell_ptr, end + 1);
@@ -56,7 +56,7 @@ int	build_map_grid(t_map *map)
 	char	*row;
 	char	*cell_ptr;
 
-	map->grid = (char **)malloc(sizeof(char *) * (map->height + 1));
+	map->grid = ft_calloc((map->height + 1), sizeof(char *));
 	if (!map->grid)
 		return (1);
 	i = -1;

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:38:05 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/17 03:00:35 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/19 20:03:23 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ int	rgba_from_str(char *str, t_rgba *out)
 		}
 		*out = (t_rgba)(out->rgb | (col << (16 - i * 8)));
 	}
+	ft_freearray((void **)cols);
 	return (0);
 }

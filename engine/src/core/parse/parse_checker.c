@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 03:00:01 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/19 06:02:31 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/19 19:55:32 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,14 @@ int	check_player_position(t_map *map)
 	player_count = 0;
 	while (++i < map->height)
 	{
-		int j = -1;
-		while (++j < map->width && map->grid[i][j])
+		int j;
+		size_t row_len;
+
+		if (!map->grid[i])
+			continue ;
+		row_len = ft_strlen(map->grid[i]);
+		j = -1;
+		while (++j < (int)row_len)
 		{
 			if (map->grid[i][j] == 'N' || map->grid[i][j] == 'S' 
 				|| map->grid[i][j] == 'E' || map->grid[i][j] == 'W')

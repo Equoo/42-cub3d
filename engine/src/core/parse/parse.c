@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 18:06:36 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/19 06:35:03 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/19 20:03:28 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,41 @@
 #include "get_next_line.h"
 #include "libft.h"
 #include <fcntl.h>
+
+static void	cleanup_map_resources(t_map *map)
+{
+	int i;
+
+	if (!map)
+		return ;
+	if (map->cells)
+	{
+		free(map->cells);
+		map->cells = NULL;
+	}
+	if (map->grid)
+	{
+		i = 0;
+		while (i < map->height)
+		{
+			if (map->grid[i])
+				free(map->grid[i]);
+			i++;
+		}
+		free(map->grid);
+		map->grid = NULL;
+	}
+	i = 0;
+	while (i < 4)
+	{
+		if (map->tex_paths[i])
+		{
+			free(map->tex_paths[i]);
+			map->tex_paths[i] = NULL;
+		}
+		i++;
+	}
+}
 
 static int	map_format_check(t_map *map, char *line, char **result, int *i)
 {
@@ -99,7 +134,7 @@ static char	**duplicate_map_grid(t_map *map)
 	char	**dup;
 	int		i;
 
-	dup = (char **)malloc(sizeof(char *) * (map->height + 1));
+	dup = ft_calloc(map->height + 1,sizeof(char *));
 	if (!dup)
 		return (NULL);
 	i = -1;
@@ -128,11 +163,11 @@ static int	check_filled_boundaries_copy(char **map_copy, t_map *map)
 	int	i;
 	int	j;
 
-	i = -1;
-	while (++i < map->height)
+	i = 0;
+	while (i < map->height)
 	{
-		j = -1;
-		while (++j < (int)ft_strlen(map_copy[i]))
+		j = 0;
+		while (j < (int)ft_strlen(map_copy[i]))
 		{
 			if (map_copy[i][j] == 'F')
 			{
@@ -141,7 +176,9 @@ static int	check_filled_boundaries_copy(char **map_copy, t_map *map)
 				if (j == 0 || j == (int)ft_strlen(map_copy[i]) - 1)
 					return (ft_printf("Error: Map not properly surrounded - filled area touches edge\n"), 1);
 			}
+			j++;
 		}
+		i++;
 	}
 	return (0);
 }
@@ -231,13 +268,25 @@ int	check_map_validity(char *map_name, t_map *map)
 	close(fd);
 	free(path);
 	if (possible_char_checker(map) || textures_path_checker(map))
+	{
+		cleanup_map_resources(map);
 		return (1);
+	}
 	if (build_map_grid(map))
+	{
+		cleanup_map_resources(map);
 		return (1);
+	}
 	if (check_player_position(map))
+	{
+		cleanup_map_resources(map);
 		return (1);
+	}
 	if (check_surrounded_with_flood_fill(map))
+	{
+		cleanup_map_resources(map);
 		return (1);
+	}
 	if (DEBUG)
 		map_debug(map);
 	return (0);

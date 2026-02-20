@@ -3,8 +3,8 @@ SRCS += engine/src/close.c \
 engine/src/core/draw/drawing.c \
 engine/src/core/inputs/lib.c \
 engine/src/core/inputs/keyboard.c \
-engine/src/core/inputs/apply.c \
 engine/src/core/inputs/mouse.c \
+engine/src/core/inputs/apply.c \
 engine/src/core/parse/debug.c \
 engine/src/core/parse/flood_fill.c \
 engine/src/core/parse/free.c \

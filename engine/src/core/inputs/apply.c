@@ -6,13 +6,14 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 03:07:08 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 21:23:44 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 22:07:55 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core/engine.h"
 #include "core/inputs.h"
 #include "core/physics.h"
+#include "math/extend.h"
 #include <X11/keysym.h>
 
 int	apply_inputs(t_engine *engine)
@@ -36,6 +37,7 @@ int	apply_inputs(t_engine *engine)
 		camera->rot.z += -100 * engine->frametime;
 	if (iskeydown(engine, XK_Right))
 		camera->rot.z += 100 * engine->frametime;
+	camera->rot.z = sanitize_angle(camera->rot.z);
 	return (0);
 }
 

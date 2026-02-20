@@ -56,4 +56,4 @@ dkms.conf
 *.dwo
 
 #Binary
-cub3d
+cub3D

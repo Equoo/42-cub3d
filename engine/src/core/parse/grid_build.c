@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 05:10:10 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/19 22:29:13 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 22:52:17 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static char	*create_row(char *cell_ptr, int row_len)
 	int		end;
 
 	end = row_len - 1;
-	while (end >= 0 && cell_ptr[end] == ' ')
-		end--;
 	if (end < 0)
 	{
 		row = ft_calloc(1, sizeof(char));

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 22:18:22 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 22:19:10 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 23:35:29 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	cleanup_map_resources(t_map *map);
 int		secure_open(char *path, int *fd);
 int		is_empty_line(char *line);
 int		is_player_char(char c);
-int	    dir_to_int(char c);
+int		dir_to_int(char c);
+char	*ft_rmcharfromstr(char *cells, char clear);
 
 // parse.c
 int		map_init(char *map_name, t_map *map);

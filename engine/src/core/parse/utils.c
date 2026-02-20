@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 06:31:54 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 22:22:41 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 23:35:56 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,33 @@ int	dir_to_int(char c)
 	else
 		ft_dprintf(1, "Error: wrong char in dir_to_int()\n");
 	return (res);
+}
+
+char *ft_rmcharfromstr(char *cells, char clear)
+{
+	int i;
+	int j;
+	char *res;
+	
+	i = -1;
+	j = 0;
+	while (cells[++i])
+	{
+		if (cells[i] == clear)
+			j++;
+	}
+	res = malloc(sizeof(char) * (ft_strlen(cells) - j) + 1);
+	if (!res)
+		return NULL;
+	i = -1;
+	j = 0;
+	while (cells[++i])
+	{
+		if (cells[i] == clear)
+			i++;
+		res[j] = cells[i]; 
+		j++;
+	}
+	free(cells);
+	return res;
 }

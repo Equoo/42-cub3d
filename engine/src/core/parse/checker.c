@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 03:00:01 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 06:23:09 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 21:02:49 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	check_floor_and_ceiling(char *line, t_map *map, int valid[])
 	i = 2;
 	while (line[i] == ' ')
 		i++;
+	color.rgb = 0;
 	if (ft_strncmp(line, COL_FLOOR, 2) == 0)
 	{
 		if (rgba_from_str(line + i, &color))

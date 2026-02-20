@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 21:40:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/17 03:50:54 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/20 20:57:35 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	draw_wall(t_draw_ctx ctx, float dist, t_hit hit)
 {
 	t_wall_params	params;
 	const float		darkness = ft_fclamp(MAX_DARKNESS / (dist * DIST_ATTENUATION
-						+ DIST_OFFSET), MIN_DARKNESS, MAX_DARKNESS);
+				+ DIST_OFFSET), MIN_DARKNESS, MAX_DARKNESS);
 	int				limit;
 
 	calc_wall_dimensions(&params, dist, ctx.buffer->height);

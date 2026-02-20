@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 19:42:31 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/20 21:04:01 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
 static const t_engine	g_engine = {.max_fps = 0, .physics_ticks = 20};
 
 static const t_window	g_window = {.mousedown = &inputs_mousedown,
-		.mousemove = &inputs_mousemove, .mouseup = &inputs_mouseup,
-		.keydown = &inputs_keydown, .keyup = &inputs_keyup,
-		.close = &engine_close, .update = &engine_update};
+	.mousemove = &inputs_mousemove, .mouseup = &inputs_mouseup,
+	.keydown = &inputs_keydown, .keyup = &inputs_keyup,
+	.close = &engine_close, .update = &engine_update};
 
 int	engine_initialize(t_engine *engine, int argc, char *argv[])
 {
@@ -45,7 +45,6 @@ int	engine_initialize(t_engine *engine, int argc, char *argv[])
 	map = (t_map){0};
 	if (map_init(argv[1], &map))
 		return (1);
-	// Need to check for rotation in parsing and assign (WIP)
 	if (load_map(engine->window.mlx, &map))
 		return (1);
 	engine->map = &map;

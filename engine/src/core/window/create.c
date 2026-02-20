@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 13:12:19 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 08:40:23 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 20:54:26 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	window_create(t_window *out, t_window base, void *engine)
 		base.engine);
 	mlx_hook(base.mlx_win, ON_MOUSEDOWN, ButtonReleaseMask, base.mousedown,
 		base.engine);
-	mlx_hook(base.mlx_win, ON_MOUSEMOVE, PointerMotionMask, base.mousemove, base.engine);
+	mlx_hook(base.mlx_win, ON_MOUSEMOVE, PointerMotionMask, base.mousemove,
+		base.engine);
 	mlx_loop_hook(base.mlx, base.update, base.engine);
 	*out = base;
 	return (0);

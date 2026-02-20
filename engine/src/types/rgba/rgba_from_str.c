@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:38:05 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/19 20:03:23 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 21:03:00 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	rgba_from_str(char *str, t_rgba *out)
 	cols = ft_split(str, ',');
 	if (!cols)
 		return (1);
-	out->rgb = 0;
 	if (ft_arraylen((void **)cols) > 3)
 	{
 		ft_freearray((void **)cols);

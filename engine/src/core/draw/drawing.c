@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 02:53:54 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/17 03:50:21 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/20 20:53:27 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	draw_line(const t_image *img, t_vec2 p1, const t_vec2 p2,
 	const t_vec2	delta = (t_vec2){p2.x - p1.x, p2.y - p1.y};
 	const int		total = ft_fmax(fabs(delta.x), fabs(delta.y));
 	const t_vec2	step = (t_vec2){delta.x / (float)total, delta.y
-			/ (float)total};
+		/ (float)total};
 	int				i;
 
 	i = 0;

@@ -6,16 +6,16 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 02:47:47 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/19 19:59:49 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 20:54:38 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core/world.h"
 #include "mlx.h"
 
-static void free_map_grid(t_map *map)
+static void	free_map_grid(t_map *map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < map->height)
@@ -26,13 +26,12 @@ static void free_map_grid(t_map *map)
 	free(map->grid);
 }
 
-int map_destroy(void *mlx, t_map *map)
+int	map_destroy(void *mlx, t_map *map)
 {
-	int i;
+	int	i;
 
 	if (!map)
 		return (0);
-
 	if (map->cells)
 		free(map->cells);
 	if (map->grid)

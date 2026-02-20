@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 03:00:01 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 23:40:11 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 23:49:01 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,7 @@ int	check_map_format(t_map *map, char *line, char **result, int *i)
 		map->cells = *result;
 		(*i)++;
 	}
+	else
+		free(line);
 	return (0);
 }

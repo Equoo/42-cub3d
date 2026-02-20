@@ -15,6 +15,7 @@ engine/src/core/parse/parse_checker.c \
 engine/src/core/parse/parse_debug.c \
 engine/src/core/parse/parse_files.c \
 engine/src/core/parse/parse_utils.c \
+engine/src/core/parse/parse_assign.c \
 engine/src/core/world/calc.c \
 engine/src/core/world/draw.c \
 engine/src/core/world/load.c \

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 04:43:58 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/19 06:01:29 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/19 23:46:42 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-static int suffix_format_checker(char *to_check, char *suffix)
+static int	suffix_format_checker(char *to_check, char *suffix)
 {
-	int format_start;
+	int	format_start;
 
 	format_start = ft_strlen(to_check) - ft_strlen(suffix);
 	if (ft_strncmp(&to_check[format_start], suffix, ft_strlen(suffix)) != 0)
@@ -27,30 +27,25 @@ static int suffix_format_checker(char *to_check, char *suffix)
 	return (1);
 }
 
-int map_path_checker(char *map_name, char **path)
+int	map_path_checker(char *map_name, char **path)
 {
 	ft_printf("map: %s\n", map_name);
 	if (!suffix_format_checker(map_name, ".cub"))
 		return (0);
 	if (map_name[0] == '.' || map_name[0] == '/')
-	{
 		*path = ft_strdup(map_name);
-	}
 	else
-	{
 		*path = ft_strjoin(MAP_FOLDER, map_name);
-	}
 	if (!*path)
-	{
 		return (0);
-	}
 	return (1);
 }
-static int check_xpm_format(char *path)
+
+static int	check_xpm_format(char *path)
 {
-	int fd;
-	char header[9];
-	int bytes_read;
+	int		fd;
+	char	header[9];
+	int		bytes_read;
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
@@ -74,28 +69,28 @@ static int check_xpm_format(char *path)
 	return (0);
 }
 
-int textures_path_checker(t_map *map)
+int	textures_path_checker(t_map *map)
 {
-	int i;
-	int fd;
+	int	i;
+	int	fd;
 
 	i = -1;
 	while (++i < 4)
 	{
 		if (!suffix_format_checker(map->tex_paths[i], ".xpm"))
 		{
-			ft_printf("Error: Texture path format issue at index[%d]: %s\n", i, map->tex_paths[i]);
+			ft_printf(ERR_TEXTURE_PATH, map->tex_paths[i]);
 			return (-1);
 		}
 		if (check_xpm_format(map->tex_paths[i]))
 		{
-			ft_printf("Error: XPM validation failed at index[%d]\n", i);
+			ft_printf(ERR_XPM_FORMAT, i);
 			return (-1);
 		}
 		fd = open(map->tex_paths[i], O_RDONLY);
 		if (fd == -1)
 		{
-			ft_printf("Error: Cannot open texture at index[%d]: %s\n", i, map->tex_paths[i]);
+			ft_printf(ERR_TEXTURE_OPEN, i, map->tex_paths[i]);
 			return (-1);
 		}
 		close(fd);

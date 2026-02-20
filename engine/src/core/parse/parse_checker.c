@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 03:00:01 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/19 19:55:32 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 04:01:03 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,49 +64,12 @@ int	check_floor_and_ceiling(char *line, t_map *map, int valid[])
 	return (0);
 }
 
-int	check_player_position(t_map *map)
+int	check_possible_char(t_map *map)
 {
-	int	i;
-	int	player_count;
-
-	i = -1;
-	player_count = 0;
-	while (++i < map->height)
-	{
-		int j;
-		size_t row_len;
-
-		if (!map->grid[i])
-			continue ;
-		row_len = ft_strlen(map->grid[i]);
-		j = -1;
-		while (++j < (int)row_len)
-		{
-			if (map->grid[i][j] == 'N' || map->grid[i][j] == 'S' 
-				|| map->grid[i][j] == 'E' || map->grid[i][j] == 'W')
-			{
-				player_count++;
-				map->spawn.x = j;
-				map->spawn.y = i;
-			}
-		}
-	}
-	if (player_count != 1)
-	{
-		ft_printf("Error: player_count != 1 in the map\n");
-		return (1);
-	}
-	return (0);
-}
-
-int	possible_char_checker(t_map *map)
-{
-	int	specific;
 	int	i;
 	int	j;
 
 	i = -1;
-	specific = 0;
 	while (map->cells[++i])
 	{
 		if (map->cells[i] == '\n')
@@ -117,15 +80,55 @@ int	possible_char_checker(t_map *map)
 			if (map->cells[i] != POSSIBLE_CHAR[j])
 				j++;
 			else
-			{
-				if (POSSIBLE_CHAR[j] == 'N' || POSSIBLE_CHAR[j] == 'S'
-					|| POSSIBLE_CHAR[j] == 'W' || POSSIBLE_CHAR[j] == 'E')
-					specific++;
 				break ;
-			}
-			if (j >= 7 || specific > 1)
-				return (-1);
+			if (j >= 7)
+				return (1);
 		}
 	}
+	return (0);
+}
+
+int	check_map_format(t_map *map, char *line, char **result, int *i)
+{
+	int		line_len;
+	char	*temp;
+
+	if (!line || !line[0])
+		return (0);
+	if (is_empty_line(line))
+	{
+		free(line);
+		return (0);
+	}
+	if (line[0] == '0' || line[0] == '1' || line[0] == ' ')
+	{
+		line_len = ft_strlen(line);
+		if (line[line_len - 1] == '\n')
+			line[line_len - 1] = '\0';
+		if (ft_strlen(line) > (unsigned long)map->width)
+			map->width = ft_strlen(line);
+		if (!*result)
+		{
+			*result = ft_strdup(line);
+			if (!*result)
+				return (-1);
+		}
+		else
+		{
+			temp = ft_strjoin(*result, "\n");
+			free(*result);
+			if (!temp)
+				return (-1);
+			*result = ft_strjoin(temp, line);
+			free(temp);
+			if (!*result)
+				return (-1);
+		}
+		free(line);
+		map->cells = *result;
+		(*i)++;
+		return (0);
+	}
+	free(line);
 	return (0);
 }

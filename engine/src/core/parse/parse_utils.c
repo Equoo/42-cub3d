@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 06:31:54 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/19 20:03:23 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 03:50:40 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,75 +41,6 @@ int	is_empty_line(char *line)
 	return (1);
 }
 
-static int	texture_path_assign(char *line, t_map *map, int valid[])
-{
-	int		i;
-	int		len;
-	char	*tex_path;
-
-	if (ft_strncmp(line, MAP_NORTH, 3) == 0 || ft_strncmp(line, MAP_WEST,
-			3) == 0 || ft_strncmp(line, MAP_SOUTH, 3) == 0 || ft_strncmp(line,
-			MAP_EAST, 3) == 0)
-	{
-		i = 3;
-		while (line[i] == ' ')
-			i++;
-		tex_path = ft_strdup(&line[i]);
-		if (!tex_path)
-			return (1);
-		len = ft_strlen(tex_path);
-		if (len > 0 && tex_path[len - 1] == '\n')
-			tex_path[len - 1] = '\0';
-		check_textures(tex_path, line, map, valid);
-	}
-	else if (ft_strncmp(line, MAP_FLOOR, 2) == 0 || ft_strncmp(line, MAP_CEILING, 2) == 0)
-	{
-		/* floor/ceiling: do not allocate a texture path, just parse colors */
-		if (check_floor_and_ceiling(line, map, valid))
-			return (1);
-	}
-	else
-		return (1);
-	return (0);
-}
-
-int	assign_textures_and_colors(int fd, t_map *map)
-{
-	int		valid[6];
-	int		i;
-	char	*line;
-
-	i = -1;
-	while (++i < 6)
-		valid[i] = 0;
-	line = get_next_line(fd);
-	while (line)
-	{
-		texture_path_assign(line, map, valid);
-		free(line);
-		line = get_next_line(fd);
-	}
-	i = -1;
-	while (++i < 6)
-	{
-		if (valid[i] != 1)
-		{
-			perror("Error");
-			i = -1;
-			while (++i < 4)
-			{
-				if (map->tex_paths[i])
-				{
-					free(map->tex_paths[i]);
-					map->tex_paths[i] = NULL;
-				}
-			}
-			return (0);
-		}
-	}
-	return (1);
-}
-
 void	free_map_copy(char **dup, int height)
 {
 	int	i;
@@ -121,4 +52,44 @@ void	free_map_copy(char **dup, int height)
 			free(dup[i]);
 	}
 	free(dup);
+}
+
+void	cleanup_map_resources(t_map *map)
+{
+	int	i;
+
+	if (!map)
+		return ;
+	if (map->cells)
+	{
+		free(map->cells);
+		map->cells = NULL;
+	}
+	if (map->grid)
+	{
+		i = 0;
+		while (i < map->height)
+		{
+			if (map->grid[i])
+				free(map->grid[i]);
+			i++;
+		}
+		free(map->grid);
+		map->grid = NULL;
+	}
+	i = 0;
+	while (i < 4)
+	{
+		if (map->tex_paths[i])
+		{
+			free(map->tex_paths[i]);
+			map->tex_paths[i] = NULL;
+		}
+		i++;
+	}
+}
+
+int	is_player_char(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }

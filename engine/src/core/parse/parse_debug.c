@@ -6,12 +6,12 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 04:47:45 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/19 04:48:39 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/19 21:06:24 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "core/parse.h"
+#include "ft_printf.h"
 
 void	map_debug(t_map *map)
 {

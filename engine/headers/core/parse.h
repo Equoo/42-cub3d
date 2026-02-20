@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 22:18:22 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 04:00:54 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 04:51:33 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char	**duplicate_map_grid(t_map *map);
 // parse_assign.c
 int		assign_map(int fd, t_map *map);
 int		assign_player_pos(t_map *map);
+int		assign_textures_and_colors(int fd, t_map *map);
 
 // parse_checker.c
 void	check_textures(char *tex_path, char *line, t_map *map, int valid[]);
@@ -59,12 +60,13 @@ void	map_debug(t_map *map);
 int		map_path_checker(char *map_name, char **path);
 int		textures_path_checker(t_map *map);
 
+// parse_free.c
+void	free_map_copy(char **dup, int height);
+void	cleanup_map_resources(t_map *map);
+
 // parse_utils.c
 int		secure_open(char *path, int *fd);
 int		is_empty_line(char *line);
-int		assign_textures_and_colors(int fd, t_map *map);
-void	free_map_copy(char **dup, int height);
-void	cleanup_map_resources(t_map *map);
 int	    is_player_char(char c);
 
 // parse.c

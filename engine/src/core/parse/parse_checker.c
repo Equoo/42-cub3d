@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 03:00:01 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 04:01:03 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 04:45:11 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,35 @@ int	check_possible_char(t_map *map)
 	return (0);
 }
 
-int	check_map_format(t_map *map, char *line, char **result, int *i)
+static int	append_line_to_result(char **result, char *line)
 {
-	int		line_len;
 	char	*temp;
 
-	if (!line || !line[0])
-		return (0);
-	if (is_empty_line(line))
+	if (!*result)
+	{
+		*result = ft_strdup(line);
+		if (!*result)
+			return (-1);
+	}
+	else
+	{
+		temp = ft_strjoin(*result, "\n");
+		free(*result);
+		if (!temp)
+			return (-1);
+		*result = ft_strjoin(temp, line);
+		free(temp);
+		if (!*result)
+			return (-1);
+	}
+	return (0);
+}
+
+int	check_map_format(t_map *map, char *line, char **result, int *i)
+{
+	int	line_len;
+
+	if (!line || !line[0] || is_empty_line(line))
 	{
 		free(line);
 		return (0);
@@ -107,28 +128,11 @@ int	check_map_format(t_map *map, char *line, char **result, int *i)
 			line[line_len - 1] = '\0';
 		if (ft_strlen(line) > (unsigned long)map->width)
 			map->width = ft_strlen(line);
-		if (!*result)
-		{
-			*result = ft_strdup(line);
-			if (!*result)
-				return (-1);
-		}
-		else
-		{
-			temp = ft_strjoin(*result, "\n");
-			free(*result);
-			if (!temp)
-				return (-1);
-			*result = ft_strjoin(temp, line);
-			free(temp);
-			if (!*result)
-				return (-1);
-		}
+		if (append_line_to_result(result, line) == -1)
+			return (-1);
 		free(line);
 		map->cells = *result;
 		(*i)++;
-		return (0);
 	}
-	free(line);
 	return (0);
 }

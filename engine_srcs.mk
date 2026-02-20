@@ -12,13 +12,13 @@ engine/src/core/parse/grid_build.c \
 engine/src/core/parse/parse.c \
 engine/src/core/parse/path_format.c \
 engine/src/core/parse/utils.c \
-engine/src/core/parse/checker.c \
 engine/src/core/parse/assign.c \
+engine/src/core/parse/checker.c \
 engine/src/core/physics/collision.c \
-engine/src/core/window/destroy.c \
 engine/src/core/window/drawbuffer.c \
 engine/src/core/window/loop.c \
 engine/src/core/window/create.c \
+engine/src/core/window/destroy.c \
 engine/src/core/world/calc.c \
 engine/src/core/world/load.c \
 engine/src/core/world/destroy.c \

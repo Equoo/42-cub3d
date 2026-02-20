@@ -18,7 +18,7 @@ OBJS = ${patsubst %.c,$(DIR_OBJ)%.o, $(shell echo $(SRCS) | sed "s|/$(SRC_DIR)|/
 DEPS = ${patsubst %.o,%.d, $(OBJS)}
 -include $(DEPS)
 
-MAKEOVERRIDES += -j $(nproc)
+MAKEFLAGS += -j $(nproc)
 
 .SILENT:
 

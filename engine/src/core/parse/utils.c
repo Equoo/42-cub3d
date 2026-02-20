@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 06:31:54 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 04:50:17 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 22:22:41 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,22 @@ int	is_empty_line(char *line)
 int	is_player_char(char c)
 {
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+int	dir_to_int(char c)
+{
+	int res;
+
+	res = 0;
+	if (c == 'N')
+		res = 180;
+	else if (c == 'E')
+		res = 270;
+	else if (c == 'S')
+		res = 0;
+	else if (c == 'W')
+		res = 90;
+	else
+		ft_dprintf(1, "Error: wrong char in dir_to_int()\n");
+	return (res);
 }

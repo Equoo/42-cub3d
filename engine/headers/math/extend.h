@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:29:53 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/17 03:48:02 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/20 22:04:33 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ float	cos_lut(float angle_deg);
 float	get_distance_lut(int dx, int dy);
 
 float	fast_sqrtf_lut(int value);
+
+float	sanitize_angle(float f);
 
 #endif

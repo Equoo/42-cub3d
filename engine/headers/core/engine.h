@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:24:40 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/17 04:55:06 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/20 08:32:51 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ struct					s_engine
 {
 	int					max_fps;
 	int					physics_ticks;
+	int					mouse_warped;
 
 	double				start_time;
 	double				last_frame;

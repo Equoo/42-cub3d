@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_assign.c                                     :+:      :+:    :+:   */
+/*   assign.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 21:49:24 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 04:00:54 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 06:22:28 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static int	texture_path_assign(char *line, t_map *map, int valid[])
 	int		i;
 	char	*tex_path;
 
-	if (ft_strncmp(line, MAP_NORTH, 3) == 0 || ft_strncmp(line, MAP_WEST,
-			3) == 0 || ft_strncmp(line, MAP_SOUTH, 3) == 0 || ft_strncmp(line,
-			MAP_EAST, 3) == 0)
+	if (ft_strncmp(line, TEX_NORTH, 3) == 0 || ft_strncmp(line, TEX_WEST,
+			3) == 0 || ft_strncmp(line, TEX_SOUTH, 3) == 0 || ft_strncmp(line,
+			TEX_EAST, 3) == 0)
 	{
 		i = 3;
 		while (line[i] == ' ')

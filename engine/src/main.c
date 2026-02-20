@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 06:18:52 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 07:44:42 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 // NORM V.4
 // Using global variables that are **not marked const or static** is forbidden
 // and is considered a norm error, unless the project explicitly allows them.
-const static t_engine	g_engine = {.max_fps = 0, .physics_ticks = 20};
+static const t_engine	g_engine = {.max_fps = 0, .physics_ticks = 20};
 
-const static t_window	g_window = {.mousedown = &inputs_mousedown,
+static const t_window	g_window = {.mousedown = &inputs_mousedown,
 		.mousemove = &inputs_mousemove, .mouseup = &inputs_mouseup,
 		.keydown = &inputs_keydown, .keyup = &inputs_keyup,
 		.close = &engine_close, .update = &engine_update};
@@ -43,9 +43,10 @@ int	engine_initialize(t_engine *engine, int argc, char *argv[])
 	if (window_create(&engine->window, g_window, engine))
 		return (1);
 	map = (t_map){0};
-	engine->camera = (t_camera){.fov = 75, .pos = {6., 2., 8.}};
 	if (map_init(argv[1], &map))
 		return (1);
+	engine->camera = (t_camera){.fov = 75, .pos = {map.spawn.x + SPAWN_OFFSET, map.spawn.y + SPAWN_OFFSET, 8.}};
+	// Need to check for rotation in parsing and assign (WIP) 
 	if (load_map(engine->window.mlx, &map))
 		return (1);
 	engine->map = &map;

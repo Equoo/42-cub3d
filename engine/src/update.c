@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:10:24 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/17 05:00:23 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/20 07:46:19 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core/engine.h"
+#include "core/physics.h"
 #include "core/game.h"
 #include "core/inputs.h"
 #include <ft_printf.h>
@@ -77,11 +78,12 @@ static int	render_update(t_engine *engine)
 
 int	engine_update(t_engine *engine)
 {
-	if (time_update(engine) || inputs_update(engine) || apply_inputs(engine)
+	if (time_update(engine) || inputs_update(engine) || apply_inputs_with_collision(engine)
 		|| render_update(engine) || game_update(engine))
 	{
 		engine_close(engine);
 	}
+	// No fps displayed recently, maybe mb idk
 	ft_printf("FPS: %f\n", engine->frametime > 0 ? (1 / engine->frametime) : 0);
 	engine->lastrealtime = engine->time;
 	return (0);

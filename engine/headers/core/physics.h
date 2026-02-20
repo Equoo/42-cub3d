@@ -1,12 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collision.c                                        :+:      :+:    :+:   */
+/*   physics.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/20 06:15:54 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 06:15:55 by zsonie           ###   ########lyon.fr   */
+/*   Created: 2026/02/20 07:40:12 by zsonie            #+#    #+#             */
+/*   Updated: 2026/02/20 07:40:19 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PHYSICS_H
+# define PHYSICS_H
+#include "core/engine.h"
+
+void	move_with_collision(t_engine *engine, float dx, float dy);
+
+#endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inputs.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 15:28:02 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/17 03:49:41 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/20 08:32:55 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int	iskeyreleased(t_engine *engine, u_int key);
 int	iskeyup(t_engine *engine, u_int key);
 
 int	apply_inputs(t_engine *engine);
+int	apply_inputs_with_collision(t_engine *engine);
 
 #endif

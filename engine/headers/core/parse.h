@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 22:18:22 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 06:18:52 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 06:23:09 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 # define TEXTURE_FOLDER "game/textures/"
 # define MAP_FORMAT ".cub"
 # define MAP_MAXSIZE 1024
-# define MAP_NORTH "NO "
-# define MAP_SOUTH "SO "
-# define MAP_WEST "WE "
-# define MAP_EAST "EA "
-# define MAP_FLOOR "F "
-# define MAP_CEILING "C "
+# define TEX_NORTH "NO "
+# define TEX_SOUTH "SO "
+# define TEX_WEST "WE "
+# define TEX_EAST "EA "
+# define COL_FLOOR "F "
+# define COL_CEILING "C "
 
 # define ERR_TEXTURE_PATH "Error: Texture path format issue: %s\n"
 # define ERR_TEXTURE_OPEN "Error: Cannot open texture at index[%d]: %s\n"

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 21:49:24 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 19:29:59 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/20 20:51:36 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	texture_path_assign(char *line, t_map *map, int valid[])
 		if (!tex_path)
 			return (1);
 		if (ft_strlen(tex_path) > 0 && tex_path[ft_strlen(tex_path)
-			- 1] == '\n')
+				- 1] == '\n')
 			tex_path[ft_strlen(tex_path) - 1] = '\0';
 		check_textures(tex_path, line, map, valid);
 		return (0);
@@ -49,10 +49,12 @@ static void	free_tex_paths(t_map *map)
 
 	i = 0;
 	while (i < 4)
+	{
 		if (map->tex_paths[i])
 			free(map->tex_paths[i++]);
 		else
 			i++;
+	}
 }
 
 int	assign_textures_and_colors(int fd, t_map *map)

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 22:18:22 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 06:23:09 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 20:53:12 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@
 # define ERR_TEXTURE_PATH "Error: Texture path format issue: %s\n"
 # define ERR_TEXTURE_OPEN "Error: Cannot open texture at index[%d]: %s\n"
 # define ERR_XPM_FORMAT "Error: XPM validation failed at index[%d]\n"
-# define ERR_SURROUNDED_SPACE "Error: Map not properly surrounded - space reached from filled area\n"
-# define ERR_SURROUNDED_EDGE "Error: Map not properly surrounded - filled area touches edge\n"
+# define ERR_SURROUNDED_SPACE "Error: Map not properly surrounded\
+ - space reached from filled area\n"
+# define ERR_SURROUNDED_EDGE "Error: Map not properly surrounded\
+ - filled area touches edge\n"
 
 # include "world.h"
 
@@ -67,7 +69,7 @@ void	cleanup_map_resources(t_map *map);
 // parse_utils.c
 int		secure_open(char *path, int *fd);
 int		is_empty_line(char *line);
-int	    is_player_char(char c);
+int		is_player_char(char c);
 
 // parse.c
 int		map_init(char *map_name, t_map *map);

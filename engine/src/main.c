@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/19 19:59:48 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 06:18:52 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	engine_initialize(t_engine *engine, int argc, char *argv[])
 		return (1);
 	map = (t_map){0};
 	engine->camera = (t_camera){.fov = 75, .pos = {6., 2., 8.}};
-	if (check_map_validity(argv[1], &map))
+	if (map_init(argv[1], &map))
 		return (1);
 	if (load_map(engine->window.mlx, &map))
 		return (1);

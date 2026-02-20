@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 18:06:36 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 04:53:35 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 06:18:52 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	validate_map_content(t_map *map)
 	return (0);
 }
 
-int	check_map_validity(char *map_name, t_map *map)
+int	map_init(char *map_name, t_map *map)
 {
 	char	*path;
 

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 22:18:22 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 04:51:33 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 06:18:52 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,6 @@ int		is_empty_line(char *line);
 int	    is_player_char(char c);
 
 // parse.c
-int		check_map_validity(char *map_name, t_map *map);
+int		map_init(char *map_name, t_map *map);
 
 #endif

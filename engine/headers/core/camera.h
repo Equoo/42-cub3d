@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 03:48:43 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 18:26:13 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/20 21:17:36 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef struct s_camera
 {
 	t_vec3	pos;
 	t_vec3	rot;
+	float	speed;
+	float	rot_speed;
 	int		fov;
 }			t_camera;
 

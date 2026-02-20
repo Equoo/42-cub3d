@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:21 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 20:52:40 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/20 22:11:50 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_map
 	t_rgba		ceiling;
 	t_rgba		floor;
 	t_vec2		spawn;
+	char		dir;
 }				t_map;
 
 typedef struct s_draw_ctx

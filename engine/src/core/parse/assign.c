@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 21:49:24 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 20:51:36 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 22:11:40 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int	assign_player_pos(t_map *map)
 				player_count++;
 				map->spawn.x = j;
 				map->spawn.y = i;
+				map->dir = map->grid[i][j];
 			}
 		}
 	}

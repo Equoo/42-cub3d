@@ -64,5 +64,5 @@ engine/src/types/image/new.c \
 engine/src/types/rgba/apply_darkness.c \
 engine/src/types/rgba/rgba_from_str.c \
 engine/src/close.c \
-engine/src/main.c \
-engine/src/update.c
+engine/src/update.c \
+engine/src/main.c

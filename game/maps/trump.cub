@@ -1,6 +1,6 @@
-NO game/textures/background0.xpm
-SO game/textures/background0.xpm
-WE game/textures/test.xpm
+NO game/textures/test.xpm
+SO game/textures/test.xpm
+WE game/textures/background0.xpm
 EA game/textures/background0.xpm
 F 46,90,137
 C 78,137,198
@@ -15,6 +15,6 @@ C 78,137,198
 11000000110101011100000010001    
 10000000000000001100000000001    
 10000000000000001101010010001    
-11000001110101011111011110N0111  
+11000001110101011111011000S0011  
 11110111 1110101 101111010001    
 11111111 1111111 111111111111    

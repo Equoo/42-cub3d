@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 03:48:43 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 07:44:22 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 18:26:13 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define CAMERA_H
 # include "types/vector3.h"
 
-#define CAMERA_RADIUS 0.2f
-#define SPAWN_OFFSET 0.5f
+# define CAMERA_RADIUS 0.2f
+# define SPAWN_OFFSET 0.5f
 
 typedef struct s_camera
 {

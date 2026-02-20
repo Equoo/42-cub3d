@@ -6,10 +6,12 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 21:49:24 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 06:22:28 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 19:29:59 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <errno.h>
+#include <string.h>
 #include "core/parse.h"
 #include "ft_printf.h"
 #include "get_next_line.h"
@@ -59,8 +61,9 @@ int	assign_textures_and_colors(int fd, t_map *map)
 	int		i;
 	char	*line;
 
+	errno = 0;
 	ft_bzero(valid, sizeof(valid));
-	while ((line = get_next_line(fd)))
+	while (get_next_line(fd, &line) != -1 && line)
 	{
 		if (texture_path_assign(line, map, valid))
 		{
@@ -73,7 +76,7 @@ int	assign_textures_and_colors(int fd, t_map *map)
 	i = 0;
 	while (i < 6 && valid[i] == 1)
 		i++;
-	if (i < 6)
+	if (i < 6 || errno)
 	{
 		free_tex_paths(map);
 		return (0);
@@ -117,8 +120,8 @@ int	assign_map(int fd, t_map *map)
 
 	i = 0;
 	result = NULL;
-	line = get_next_line(fd);
-	while (line)
+	errno = 0;
+	while (get_next_line(fd, &line) != -1 && line)
 	{
 		if (check_map_format(map, line, &result, &i) == -1)
 		{
@@ -126,11 +129,11 @@ int	assign_map(int fd, t_map *map)
 				free(result);
 			return (1);
 		}
-		line = get_next_line(fd);
 	}
-	if (!result)
+	if (!result || errno)
 	{
-		ft_printf("Error: No map found in file\n");
+		if (!errno)
+			ft_printf("Error: No map found in file\n");
 		return (1);
 	}
 	map->cells = result;

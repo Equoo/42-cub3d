@@ -1,12 +1,10 @@
 # Auto-generated file, do not edit!
 SRCS += engine/src/close.c \
 engine/src/core/draw/drawing.c \
-engine/src/core/inputs/apply.c \
 engine/src/core/inputs/keyboard.c \
 engine/src/core/inputs/lib.c \
 engine/src/core/inputs/mouse.c \
-engine/src/core/parse/assign.c \
-engine/src/core/parse/checker.c \
+engine/src/core/inputs/apply.c \
 engine/src/core/parse/debug.c \
 engine/src/core/parse/flood_fill.c \
 engine/src/core/parse/free.c \
@@ -14,6 +12,8 @@ engine/src/core/parse/grid_build.c \
 engine/src/core/parse/parse.c \
 engine/src/core/parse/path_format.c \
 engine/src/core/parse/utils.c \
+engine/src/core/parse/checker.c \
+engine/src/core/parse/assign.c \
 engine/src/core/physics/collision.c \
 engine/src/core/window/create.c \
 engine/src/core/window/destroy.c \

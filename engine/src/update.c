@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:10:24 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 07:46:19 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 19:39:10 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static int	time_update(t_engine *engine)
 
 static int	render_update(t_engine *engine)
 {
+	ft_printf("POS: %f, %f\n", engine->camera.pos.x, engine->camera.pos.y);
 	window_drawbuffer(&engine->window);
 	draw_walls(&engine->window.buffer, *engine->map, engine->camera);
 	return (0);
@@ -83,7 +84,6 @@ int	engine_update(t_engine *engine)
 	{
 		engine_close(engine);
 	}
-	// No fps displayed recently, maybe mb idk
 	ft_printf("FPS: %f\n", engine->frametime > 0 ? (1 / engine->frametime) : 0);
 	engine->lastrealtime = engine->time;
 	return (0);

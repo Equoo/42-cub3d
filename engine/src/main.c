@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 21:31:48 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/20 21:41:43 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	engine_initialize(t_engine *engine, int argc, char *argv[])
 	if (load_map(engine->window.mlx, &map))
 		return (1);
 	engine->map = &map;
-	engine->camera = (t_camera){.speed = 2.0f, .rot_speed = 500.0f, .fov = 75,
+	engine->camera = (t_camera){.speed = 2.0f, .rot_speed = 5.0f, .fov = 75,
 		.pos = {map.spawn.x - SPAWN_OFFSET, map.spawn.y - SPAWN_OFFSET, 0}};
 	if (game_initialize(engine))
 		return (1);

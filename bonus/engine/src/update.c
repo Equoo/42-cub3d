@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:10:24 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/21 01:05:57 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 21:04:59 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	render_update(t_engine *engine)
 int	engine_update(t_engine *engine)
 {
 	if (time_update(engine) || inputs_update(engine)
-		|| apply_inputs(engine) || render_update(engine)
+		|| apply_inputs_with_collision(engine) || render_update(engine)
 		|| game_update(engine))
 	{
 		engine_close(engine);

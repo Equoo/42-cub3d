@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 03:00:01 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 23:49:01 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/21 05:49:04 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,6 @@ static int	append_line_to_result(char **result, char *line)
 
 int	check_map_format(t_map *map, char *line, char **result, int *i)
 {
-	int	line_len;
-
 	if (!line || !line[0] || is_empty_line(line))
 	{
 		free(line);
@@ -124,9 +122,13 @@ int	check_map_format(t_map *map, char *line, char **result, int *i)
 	}
 	if (line[0] == '0' || line[0] == '1' || line[0] == ' ')
 	{
-		line_len = ft_strlen(line);
-		if (line[line_len - 1] == '\n')
-			line[line_len - 1] = '\0';
+		// if (ft_strlen(line) >= MAP_MAXSIZE)
+		// {
+		// 	ft_dprintf(2, "ERROR: Map is too big\n");
+		// 	return (-1);
+		// }
+		if (line[ft_strlen(line) - 1] == '\n')
+			line[ft_strlen(line) - 1] = '\0';
 		if (ft_strlen(line) > (unsigned long)map->width)
 			map->width = ft_strlen(line);
 		if (append_line_to_result(result, line) == -1)

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 18:06:36 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/21 02:10:42 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/21 05:22:59 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,38 @@
 #include "get_next_line.h"
 #include "libft.h"
 #include <fcntl.h>
+static int	fill_with_space(t_map *map)
+{
+	int		i;
+	int		j;
+	int		dif;
+	char	*tmp;
+	char	*joined;
+
+	i = 0;
+	while (map->grid[i])
+	{
+		dif = map->width - (int)ft_strlen(map->grid[i]);
+		if (dif > 0)
+		{
+			tmp = malloc(sizeof(char) * (dif + 1));
+			if (!tmp)
+				return (1);
+			j = -1;
+			while (++j < dif)
+				tmp[j] = ' ';
+			tmp[j] = '\0';
+			joined = ft_strjoin(map->grid[i], tmp);
+			free(tmp);
+			free(map->grid[i]);
+			map->grid[i] = joined;
+			if (!map->grid[i])
+				return (1);
+		}
+		i++;
+	}
+	return (0);
+}
 
 static int	load_map_file(char *path, t_map *map)
 {
@@ -52,6 +84,7 @@ static int	validate_map_content(t_map *map)
 		ft_printf("Error: player_count != 1 in the map\n");
 		return (1);
 	}
+	fill_with_space(map);
 	if (check_surrounded_with_flood_fill(map))
 		return (1);
 	return (0);

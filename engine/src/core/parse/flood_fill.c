@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 22:35:51 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 00:43:50 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/21 03:06:53 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,7 @@ int	check_surrounded_with_flood_fill(t_map *map)
 	map_copy = duplicate_map_grid(map);
 	if (!map_copy)
 		return (1);
-	flood_fill(map_copy, map->width, map->height, (t_vec2){map->spawn.x,
-		map->spawn.y});
+	flood_fill(map_copy, map->width, map->height, map->spawn);
 	result = 0;
 	if (check_filled_boundaries_copy(map_copy, map))
 		result = 1;

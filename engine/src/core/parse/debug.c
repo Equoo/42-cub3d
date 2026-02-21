@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 04:47:45 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/21 02:15:56 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/21 03:10:34 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 static void	properties_debug(t_map *map)
 {
+	ft_printf("Properties debug:\n");
+	ft_printf("spawnX: %f spawnY: %f\n", map->spawn.x, map->spawn.y);
 	ft_printf("width: %d\t height: %d\n", map->width, map->height);
 	ft_printf("Ceiling color:\trgb:%x\tr:%d\tg:%d\tb:%d\n", map->ceiling.rgb,
 		map->ceiling.r, map->ceiling.g, map->ceiling.b);

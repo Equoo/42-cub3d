@@ -28,6 +28,9 @@ all: export DEBUG = 0
 all: gen_srcs
 all: $(NAME)
 
+test: export CFLAGS += -DUNITTEST=1
+test: debug
+
 .PHONY: debug
 debug: export CFLAGS += -O0 -g3 -D DEBUG=1
 debug: export DEBUG = 1

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 03:07:08 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 22:38:15 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/21 02:17:02 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ int	apply_inputs_with_collision(t_engine *engine)
 	if (iskeydown(engine, XK_Right))
 		engine->camera.rot.z += 100.0f * engine->frametime;
 	if (iskeydown(engine, XK_Alt_L))
-		mlx_mouse_show(engine->window.mlx,engine->window.mlx_win);
+		mlx_mouse_show(engine->window.mlx, engine->window.mlx_win);
 	else
-		mlx_mouse_hide(engine->window.mlx,engine->window.mlx_win);
+		mlx_mouse_hide(engine->window.mlx, engine->window.mlx_win);
 	return (0);
 }

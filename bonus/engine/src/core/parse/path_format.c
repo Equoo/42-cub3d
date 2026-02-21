@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_files.c                                      :+:      :+:    :+:   */
+/*   path_format.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 04:43:58 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/19 23:46:42 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/21 01:57:12 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	map_path_checker(char *map_name, char **path)
 	ft_printf("map: %s\n", map_name);
 	if (!suffix_format_checker(map_name, ".cub"))
 		return (0);
-	if (map_name[0] == '.' || map_name[0] == '/')
+	if (ft_strchr(map_name, '/') != NULL)
 		*path = ft_strdup(map_name);
 	else
 		*path = ft_strjoin(MAP_FOLDER, map_name);

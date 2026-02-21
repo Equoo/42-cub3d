@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 06:31:54 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 23:35:56 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/21 02:04:02 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	is_player_char(char c)
 
 int	dir_to_int(char c)
 {
-	int res;
+	int	res;
 
 	res = 0;
 	if (c == 'N')
@@ -64,31 +64,31 @@ int	dir_to_int(char c)
 	return (res);
 }
 
-char *ft_rmcharfromstr(char *cells, char clear)
+char	*ft_rmcharfromstr(char *str, char clear)
 {
-	int i;
-	int j;
-	char *res;
-	
+	int		i;
+	int		j;
+	char	*res;
+
 	i = -1;
 	j = 0;
-	while (cells[++i])
+	while (str[++i])
 	{
-		if (cells[i] == clear)
+		if (str[i] == clear)
 			j++;
 	}
-	res = malloc(sizeof(char) * (ft_strlen(cells) - j) + 1);
+	res = malloc(sizeof(char) * (ft_strlen(str) - j) + 1);
 	if (!res)
-		return NULL;
+		return (NULL);
 	i = -1;
 	j = 0;
-	while (cells[++i])
+	while (str[++i])
 	{
-		if (cells[i] == clear)
+		if (str[i] == clear)
 			i++;
-		res[j] = cells[i]; 
+		res[j] = str[i];
 		j++;
 	}
-	free(cells);
-	return res;
+	free(str);
+	return (res);
 }

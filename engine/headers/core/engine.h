@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:24:40 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 08:32:51 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/20 23:36:57 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # ifndef DEBUG
 #  define DEBUG 0
+# endif
+
+# ifndef UNITTEST
+#  define UNITTEST 0
 # endif
 
 # include "core/camera.h"

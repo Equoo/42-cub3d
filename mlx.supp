@@ -19,3 +19,9 @@
    ...
    fun:mlx_int_wait_first_expose
 }
+{
+   MLX_Breaking
+   Memcheck:BreakingLeak
+   ...
+   fun:mlx*
+}

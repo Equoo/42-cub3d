@@ -17,8 +17,8 @@ engine/src/core/parse/utils.c \
 engine/src/core/physics/collision.c \
 engine/src/core/window/drawbuffer.c \
 engine/src/core/window/loop.c \
-engine/src/core/window/create.c \
 engine/src/core/window/destroy.c \
+engine/src/core/window/create.c \
 engine/src/core/world/calc.c \
 engine/src/core/world/load.c \
 engine/src/core/world/destroy.c \
@@ -64,5 +64,5 @@ engine/src/types/vector3/operators_by.c \
 engine/src/types/vector3/other_operators.c \
 engine/src/types/vector3/other_operators_by.c \
 engine/src/types/vector3/rotation.c \
-engine/src/update.c \
-engine/src/main.c
+engine/src/main.c \
+engine/src/update.c

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 06:31:54 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/21 02:04:02 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/21 02:28:30 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,19 @@ int	is_player_char(char c)
 
 int	dir_to_int(char c)
 {
-	int	res;
-
-	res = 0;
 	if (c == 'N')
-		res = 180;
+		return (270);
 	else if (c == 'E')
-		res = 270;
+		return (0);
 	else if (c == 'S')
-		res = 0;
+		return (90);
 	else if (c == 'W')
-		res = 90;
+		return (180);
 	else
+	{
 		ft_dprintf(1, "Error: wrong char in dir_to_int()\n");
-	return (res);
+		return (-1);
+	}
 }
 
 char	*ft_rmcharfromstr(char *str, char clear)

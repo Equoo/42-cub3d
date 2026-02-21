@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/21 02:19:06 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/21 02:38:29 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 const static t_engine	g_engine = {.max_fps = 0, .physics_ticks = 20};
 
 const static t_window	g_window = {.mousedown = &inputs_mousedown,
-	.mousemove = &inputs_mousemove, .mouseup = &inputs_mouseup,
+	.mouseup = &inputs_mouseup,
 	.keydown = &inputs_keydown, .keyup = &inputs_keyup,
 	.close = &engine_close, .update = &engine_update};
 

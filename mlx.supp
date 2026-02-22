@@ -21,7 +21,7 @@
 }
 {
    MLX_Breaking
-   Memcheck:BreakingLeak
+   Memcheck:Break
    ...
    fun:mlx*
 }

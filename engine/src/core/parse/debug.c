@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 04:47:45 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 22:56:50 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/21 06:20:30 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void	map_debug(t_map *map)
 	ft_printf("/----------------MAP-DEBUG----------------/\n");
 	ft_printf("/-----------------------------------------/\n");
 	ft_printf("\nmap cells:\n");
-	i= 0;
-	while (map->cells[i])
-	{
-		if (map->cells[i] == '\n')
-			ft_printf(";");
-		ft_printf("%c", map->cells[i]);
-		i++;
-	}
+	i = 0;
+	// while (map->cells[i])
+	// {
+	// 	if (map->cells[i] == '\n')
+	// 		ft_printf(";");
+	// 	ft_printf("%c", map->cells[i]);
+	// 	i++;
+	//}
 	ft_printf(";\n");
 	
 	ft_printf("width: %d\t height: %d\n", map->width, map->height);

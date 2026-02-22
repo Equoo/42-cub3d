@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 04:43:58 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/21 01:51:05 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/22 08:02:11 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static int	suffix_format_checker(char *to_check, char *suffix)
 
 int	map_path_checker(char *map_name, char **path)
 {
-	ft_printf("map: %s\n", map_name);
 	if (!suffix_format_checker(map_name, ".cub"))
 		return (0);
 	if (ft_strchr(map_name, '/') != NULL)

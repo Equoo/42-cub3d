@@ -6,84 +6,91 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 21:49:24 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/21 00:59:35 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/22 00:00:00 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <errno.h>
-#include <string.h>
 #include "core/parse.h"
 #include "ft_printf.h"
 #include "get_next_line.h"
 #include "libft.h"
 
-static int	texture_path_assign(char *line, t_map *map, int valid[])
+static void	free_lines(char **lines, int height)
 {
-	int		i;
-	char	*tex_path;
-
-	if (ft_strncmp(line, TEX_NORTH, 3) == 0 || ft_strncmp(line, TEX_WEST,
-			3) == 0 || ft_strncmp(line, TEX_SOUTH, 3) == 0 || ft_strncmp(line,
-			TEX_EAST, 3) == 0)
-	{
-		i = 3;
-		while (line[i] == ' ')
-			i++;
-		tex_path = ft_strdup(&line[i]);
-		if (!tex_path)
-			return (1);
-		if (ft_strlen(tex_path) > 0 && tex_path[ft_strlen(tex_path)
-				- 1] == '\n')
-			tex_path[ft_strlen(tex_path) - 1] = '\0';
-		check_textures(tex_path, line, map, valid);
-		return (0);
-	}
-	if (ft_strncmp(line, "F ", 2) == 0 || ft_strncmp(line, "C ", 2) == 0)
-		return (check_floor_and_ceiling(line, map, valid));
-	return (0);
+	while (--height >= 0)
+		free(lines[height]);
+	free(lines);
 }
 
-static void	free_tex_paths(t_map *map)
+static char	**collect_map_lines(int fd, int *height, int *width)
 {
-	int	i;
-
-	i = 0;
-	while (i < 4)
-	{
-		if (map->tex_paths[i])
-			free(map->tex_paths[i++]);
-		else
-			i++;
-	}
-}
-
-int	assign_textures_and_colors(int fd, t_map *map)
-{
-	int		valid[6];
-	int		i;
+	char	**lines;
 	char	*line;
+	int		len;
 
-	errno = 0;
-	ft_bzero(valid, sizeof(valid));
-	while (get_next_line(fd, &line) != -1 && line)
+	lines = ft_calloc(MAP_MAXSIZE, sizeof(char *));
+	if (!lines)
+		return (NULL);
+	*height = 0;
+	*width = 0;
+	while (*height < MAP_MAXSIZE && get_next_line(fd, &line) != -1 && line)
 	{
-		if (texture_path_assign(line, map, valid))
+		len = ft_strlen(line);
+		if (len > 0 && line[len - 1] == '\n')
+			line[--len] = '\0';
+		if (!len || is_empty_line(line) || !is_map_line(line))
 		{
 			free(line);
-			free_tex_paths(map);
-			return (0);
+			continue ;
 		}
-		free(line);
+		if (len > *width)
+			*width = len;
+		lines[(*height)++] = line;
 	}
-	i = 0;
-	while (i < 6 && valid[i] == 1)
-		i++;
-	if (i < 6 || errno)
+	return (lines);
+}
+
+static char	*build_cells(char **lines, int height, int width)
+{
+	char	*cells;
+	int		i;
+	int		len;
+
+	cells = ft_calloc(width * height + 1, sizeof(char));
+	if (!cells)
+		return (NULL);
+	i = -1;
+	while (++i < height)
 	{
-		free_tex_paths(map);
-		return (0);
+		len = ft_strlen(lines[i]);
+		ft_memcpy(cells + i * width, lines[i], len);
+		while (len < width)
+			cells[i * width + len++] = ' ';
 	}
-	return (1);
+	return (cells);
+}
+
+int	assign_map(int fd, t_map *map)
+{
+	char	**lines;
+
+	errno = 0;
+	lines = collect_map_lines(fd, &map->height, &map->width);
+	if (!lines)
+		return (1);
+	if (!map->height || errno)
+	{
+		if (!errno)
+			ft_printf("Error: No map found in file\n");
+		free_lines(lines, map->height);
+		return (1);
+	}
+	map->cells = build_cells(lines, map->height, map->width);
+	free_lines(lines, map->height);
+	if (!map->cells)
+		return (1);
+	return (0);
 }
 
 int	assign_player_pos(t_map *map)
@@ -96,10 +103,8 @@ int	assign_player_pos(t_map *map)
 	player_count = 0;
 	while (++i < map->height)
 	{
-		if (!map->grid[i])
-			continue ;
 		j = -1;
-		while (++j < (int)ft_strlen(map->grid[i]))
+		while (++j < map->width)
 		{
 			if (is_player_char(map->grid[i][j]))
 			{
@@ -112,34 +117,5 @@ int	assign_player_pos(t_map *map)
 	}
 	if (player_count != 1)
 		return (1);
-	return (0);
-}
-
-int	assign_map(int fd, t_map *map)
-{
-	char	*line;
-	char	*result;
-	int		i;
-
-	i = 0;
-	result = NULL;
-	errno = 0;
-	while (get_next_line(fd, &line) != -1 && line)
-	{
-		if (check_map_format(map, line, &result, &i) == -1)
-		{
-			if (result)
-				free(result);
-			return (1);
-		}
-	}
-	if (!result || errno)
-	{
-		if (!errno)
-			ft_printf("Error: No map found in file\n");
-		return (1);
-	}
-	map->cells = result;
-	map->height = i;
 	return (0);
 }

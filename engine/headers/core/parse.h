@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 22:18:22 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 23:35:29 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/22 08:39:36 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,34 +44,30 @@ int		check_surrounded_with_flood_fill(t_map *map);
 int		build_map_grid(t_map *map);
 char	**duplicate_map_grid(t_map *map);
 
-// parse_assign.c
+// assign.c
 int		assign_map(int fd, t_map *map);
 int		assign_player_pos(t_map *map);
+
+// assign_textures.c
 int		assign_textures_and_colors(int fd, t_map *map);
 
-// parse_checker.c
-void	check_textures(char *tex_path, char *line, t_map *map, int valid[]);
-int		check_floor_and_ceiling(char *line, t_map *map, int valid[]);
-int		check_possible_char(t_map *map);
-int		check_map_format(t_map *map, char *line, char **result, int *i);
-
-// parse_debug.c
+// debug.c
 void	map_debug(t_map *map);
 
-// parse_files.c
+// path_format.c
 int		map_path_checker(char *map_name, char **path);
 int		textures_path_checker(t_map *map);
 
-// parse_free.c
+// free.c
 void	free_map_copy(char **dup, int height);
 void	cleanup_map_resources(t_map *map);
 
-// parse_utils.c
+// utils.c
 int		secure_open(char *path, int *fd);
 int		is_empty_line(char *line);
+int		is_map_line(char *line);
 int		is_player_char(char c);
 int		dir_to_int(char c);
-char	*ft_rmcharfromstr(char *cells, char clear);
 
 // parse.c
 int		map_init(char *map_name, t_map *map);

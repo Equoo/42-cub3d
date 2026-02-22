@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 06:31:54 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/21 02:28:30 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/22 08:39:12 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ int	is_player_char(char c)
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
+int	is_map_line(char *line)
+{
+	return (line[0] == '0' || line[0] == '1' || line[0] == ' ');
+}
+
 int	dir_to_int(char c)
 {
 	if (c == 'N')
@@ -61,33 +66,4 @@ int	dir_to_int(char c)
 		ft_dprintf(1, "Error: wrong char in dir_to_int()\n");
 		return (-1);
 	}
-}
-
-char	*ft_rmcharfromstr(char *str, char clear)
-{
-	int		i;
-	int		j;
-	char	*res;
-
-	i = -1;
-	j = 0;
-	while (str[++i])
-	{
-		if (str[i] == clear)
-			j++;
-	}
-	res = malloc(sizeof(char) * (ft_strlen(str) - j) + 1);
-	if (!res)
-		return (NULL);
-	i = -1;
-	j = 0;
-	while (str[++i])
-	{
-		if (str[i] == clear)
-			i++;
-		res[j] = str[i];
-		j++;
-	}
-	free(str);
-	return (res);
 }

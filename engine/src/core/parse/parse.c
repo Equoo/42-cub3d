@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 18:06:36 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/21 02:10:42 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/22 07:29:59 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,28 @@ static int	load_map_file(char *path, t_map *map)
 	return (0);
 }
 
+static int	check_possible_char(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map->cells[++i])
+	{
+		j = 0;
+		while (POSSIBLE_CHAR[j])
+		{
+			if (map->cells[i] != POSSIBLE_CHAR[j])
+				j++;
+			else
+				break ;
+			if (j >= 7)
+				return (1);
+		}
+	}
+	return (0);
+}
+
 static int	validate_map_content(t_map *map)
 {
 	if (check_possible_char(map) || textures_path_checker(map))
@@ -67,16 +89,11 @@ int	map_init(char *map_name, t_map *map)
 	if (load_map_file(path, map))
 	{
 		free(path);
+		cleanup_map_resources(map);
 		return (1);
 	}
 	free(path);
 	if (validate_map_content(map))
-	{
-		cleanup_map_resources(map);
-		return (1);
-	}
-	map->cells = ft_rmcharfromstr(map->cells, '\n');
-	if (!map->cells)
 	{
 		cleanup_map_resources(map);
 		return (1);

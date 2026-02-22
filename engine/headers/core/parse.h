@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 22:18:22 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/22 08:39:36 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/22 09:14:45 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define MAP_FOLDER "game/maps/"
 # define TEXTURE_FOLDER "game/textures/"
 # define MAP_FORMAT ".cub"
-# define MAP_MAXSIZE 1024
+# define MAP_MAXSIZE 256
 # define TEX_NORTH "NO "
 # define TEX_SOUTH "SO "
 # define TEX_WEST "WE "
@@ -33,6 +33,7 @@
  - space reached from filled area\n"
 # define ERR_SURROUNDED_EDGE "Error: Map not properly surrounded\
  - filled area touches edge\n"
+# define ERR_MAP_SIZE "Error: Map size exceeds maximum size (%d)\n"
 
 # include "world.h"
 

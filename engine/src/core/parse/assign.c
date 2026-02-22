@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 21:49:24 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/22 00:00:00 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/22 09:14:32 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,12 @@ int	assign_map(int fd, t_map *map)
 	{
 		if (!errno)
 			ft_printf("Error: No map found in file\n");
+		free_lines(lines, map->height);
+		return (1);
+	}
+	if (map->width > MAP_MAXSIZE || map->height > MAP_MAXSIZE)
+	{
+		ft_printf(ERR_MAP_SIZE, MAP_MAXSIZE);
 		free_lines(lines, map->height);
 		return (1);
 	}

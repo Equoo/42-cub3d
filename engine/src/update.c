@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:10:24 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/21 01:50:09 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/21 02:40:42 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int	engine_update(t_engine *engine)
 	if (engine->frametime > 0)
 		ft_printf("FPS: %f\n", 1 / engine->frametime);
 	engine->lastrealtime = engine->time;
-
 	if (UNITTEST && engine->time - engine->start_time > 0.3)
 		engine_close(engine);
 	return (0);

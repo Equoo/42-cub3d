@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 23:48:41 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/21 02:38:29 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 const static t_engine	g_engine = {.max_fps = 0, .physics_ticks = 20};
 
 const static t_window	g_window = {.mousedown = &inputs_mousedown,
-	.mousemove = &inputs_mousemove, .mouseup = &inputs_mouseup,
+	.mouseup = &inputs_mouseup,
 	.keydown = &inputs_keydown, .keyup = &inputs_keyup,
 	.close = &engine_close, .update = &engine_update};
 
@@ -50,7 +50,7 @@ int	engine_initialize(t_engine *engine, int argc, char *argv[])
 	engine->map = &map;
 	engine->camera = (t_camera){.speed = 2.0f, .rot_speed = 2.0f, .fov = 75,
 		.pos = {map.spawn.x + SPAWN_OFFSET, map.spawn.y + SPAWN_OFFSET, 0},
-		.rot = { 0, 0, dir_to_int(map.dir)}};
+		.rot = {0, 0, dir_to_int(map.dir)}};
 	if (game_initialize(engine))
 		return (1);
 	window_loop(&engine->window);

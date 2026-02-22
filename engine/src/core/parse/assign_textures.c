@@ -92,20 +92,6 @@ static int	texture_path_assign(char *line, t_map *map, int valid[])
 	return (0);
 }
 
-static void	free_tex_paths(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (i < 4)
-	{
-		if (map->tex_paths[i])
-			free(map->tex_paths[i++]);
-		else
-			i++;
-	}
-}
-
 int	assign_textures_and_colors(int fd, t_map *map)
 {
 	int		valid[6];
@@ -119,7 +105,6 @@ int	assign_textures_and_colors(int fd, t_map *map)
 		if (texture_path_assign(line, map, valid))
 		{
 			free(line);
-			free_tex_paths(map);
 			return (0);
 		}
 		free(line);
@@ -129,7 +114,6 @@ int	assign_textures_and_colors(int fd, t_map *map)
 		i++;
 	if (i < 6 || errno)
 	{
-		free_tex_paths(map);
 		return (0);
 	}
 	return (1);

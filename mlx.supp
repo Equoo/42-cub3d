@@ -21,7 +21,13 @@
 }
 {
    MLX_Breaking
-   Memcheck:BreakingLeak
+   Memcheck:Break
    ...
    fun:mlx*
+}
+{
+   MLX_Breaking
+   Memcheck:Break
+   ...
+   obj:*/libX11.so*
 }

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:21 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 22:11:50 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/23 03:37:08 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ typedef struct s_draw_ctx
 	int			x;
 	int			half_height;
 }				t_draw_ctx;
+
+int				is_inmap(t_vec2 pos, t_map *map);
 
 void			calc_wall_dimensions(t_wall_params *params, float dist,
 					int buffer_height);

@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:02:12 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/17 02:52:22 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/23 03:38:03 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 
 static int	clear_buffer(t_image *buffer, t_map map, t_camera cam)
 {
-	if (map.cells[vec2_index(*(t_vec2 *)&cam.pos, map.width)] == '1'
+	if (!is_inmap((t_vec2){cam.pos.x, cam.pos.y}, &map)
+		|| map.cells[vec2_index(*(t_vec2 *)&cam.pos, map.width)] == '1'
 		|| map.cells[vec2_index(*(t_vec2 *)&cam.pos, map.width)] == ' ')
 	{
 		ft_memset(buffer->data, 0, buffer->byte_size);

@@ -23,7 +23,7 @@ static int	col_from_str(char *str)
 	int		col;
 
 	errno = 0;
-	col = ft_strtoi(str, &endptr, 0);
+	col = ft_strtoi(str, &endptr, 10);
 	if (errno || (*endptr && *endptr != '\n'))
 		return (-1);
 	if (col > 255 || col < 0)

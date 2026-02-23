@@ -134,8 +134,6 @@ int	assign_textures_and_colors(int fd, t_map *map)
 		}
 		free(line);
 	}
-	while ((get_next_line(fd, &line) != -1 && line))
-		free(line);
 	if (!valid_properties(valid) || errno)
 		return properties_err(NULL, valid);
 	return (1);

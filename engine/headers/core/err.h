@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 07:37:52 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/23 09:05:36 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/23 09:39:16 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,5 @@
  # define ERR_PLAYER_POS ERR_PARS"Invalid player spawn\n"RESET
 # define ERR_PLAYER_COUNT ERR_PARS"Invalid player count\n"RESET
 # define ERR_UNKNOWN_ID ERR_PARS"Unknown identifier\n"RESET
+
 #endif

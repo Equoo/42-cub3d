@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 06:31:54 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/23 09:01:12 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/23 09:39:22 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ int	dir_to_int(char c)
 	else if (c == 'W')
 		return (180);
 	else
-	{
-		ft_dprintf(1, "Error: wrong char in dir_to_int()\n");
 		return (-1);
-	}
 }
 
 int	valid_properties(int valid[])

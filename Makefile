@@ -65,6 +65,14 @@ gen_srcs:
 	$(call gen_srcs_file,engine)
 	$(call gen_srcs_file,game)
 
+.PHONY: test_parsing
+test_parsing: all
+	for map in game/maps/parsing/*.cub; do \
+		echo "--- $$(basename $$map) ---"; \
+		timeout 1 ./$(NAME) $$map 2>&1; ret=$$?; \
+		if [ $$ret -eq 0 ] || [ $$ret -eq 124 ]; then echo "[OK]"; else echo "[FAIL]"; fi; \
+	done
+
 .PHONY: cachegrind
 cachegrind:
 	valgrind --tool=cachegrind ./$(NAME) $(ARGS)

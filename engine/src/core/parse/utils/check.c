@@ -34,7 +34,10 @@ int	is_player_char(char c)
 
 int	is_map_line(char *line)
 {
-	return (line[0] == '0' || line[0] == '1' || line[0] == ' ');
+	if (is_identifier_line(line))
+		return (0);
+	return (line[0] == '0' || line[0] == '1' || line[0] == ' '
+		|| is_player_char(line[0]));
 }
 
 int	is_identifier_line(char *line)

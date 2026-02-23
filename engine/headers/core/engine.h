@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:24:40 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 23:36:57 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/23 16:21:54 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 # ifndef DEBUG
 #  define DEBUG 0
+# endif
+
+# ifndef BONUS
+#  define BONUS 0
 # endif
 
 # ifndef UNITTEST

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:21 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/23 03:37:08 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/23 16:04:06 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@
 # define HALF_DIVISOR 2.0f
 # define RAYS_FILLING 1
 # define RAYS_DENSITY 1
+
+# define MMAP_OFFSET 100
+# define SIZE 200
+# define SIZEHALF 100
+# define ZOOM 15.f
+# define MMAP_PLY_SIZE 3.f
 
 typedef struct s_wall_params
 {
@@ -99,5 +105,7 @@ int				draw_walls(t_image *buffer, t_map map, t_camera cam);
 int				map_destroy(void *mlx, t_map *map);
 
 int				load_map(void *mlx, t_map *map);
+
+void			draw_minimap(t_image *buffer, t_map *map, t_camera camera);
 
 #endif

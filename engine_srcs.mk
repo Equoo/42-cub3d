@@ -2,8 +2,9 @@
 SRCS += engine/src/core/draw/drawing.c \
 engine/src/core/inputs/lib.c \
 engine/src/core/inputs/keyboard.c \
-engine/src/core/inputs/apply.c \
+ \
 engine/src/core/inputs/mouse.c \
+engine/src/core/inputs/apply.c \
 engine/src/core/parse/grid_build.c \
 engine/src/core/parse/assign_textures.c \
 engine/src/core/parse/flood_fill.c \
@@ -15,7 +16,7 @@ engine/src/core/parse/utils/err.c \
 engine/src/core/parse/utils/free.c \
 engine/src/core/parse/utils/utils.c \
 engine/src/core/parse/assign.c \
-engine/src/core/physics/collision.c \
+ \
 engine/src/core/window/drawbuffer.c \
 engine/src/core/window/loop.c \
 engine/src/core/window/destroy.c \
@@ -26,6 +27,7 @@ engine/src/core/world/draw.c \
 engine/src/core/world/is_inmap.c \
 engine/src/core/world/render.c \
 engine/src/core/world/calc.c \
+ \
 engine/src/math/m_cubic.c \
 engine/src/math/m_lerp.c \
 engine/src/math/m_sine.c \
@@ -67,5 +69,5 @@ engine/src/types/vector3/other_operators.c \
 engine/src/types/vector3/other_operators_by.c \
 engine/src/types/vector3/rotation.c \
 engine/src/close.c \
-engine/src/main.c \
-engine/src/update.c
+engine/src/update.c \
+engine/src/main.c

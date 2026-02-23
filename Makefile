@@ -10,44 +10,51 @@ INCLUDES = -I engine/$(INC_DIR) -I game/$(INC_DIR) -I libs/libft/headers -I libs
 LIBS = -Llibs/libft -lft -Llibs/minilibx-linux -lmlx -L/usr/X11/lib -lXext -lX11 -lm
 
 SRCS =
+SRCS_BONUS =
 include game_srcs.mk
 include engine_srcs.mk
-SRCS_BONUS =
+include engine_bonus.mk
+
+ifneq ($(filter bonus,$(MAKECMDGOALS)),)
+	SRCS += $(SRCS_BONUS)
+endif
 
 OBJS = ${patsubst %.c,$(DIR_OBJ)%.o, $(shell echo $(SRCS) | sed "s|/$(SRC_DIR)|/|g")}
 DEPS = ${patsubst %.o,%.d, $(OBJS)}
+
 -include $(DEPS)
 
-MAKEFLAGS += -j $(nproc)
+# MAKEFLAGS += -j $(nproc)
+
+MODE ?= debug
+
+ifeq ($(filter $(MODE),debug release),)
+$(error MODE must be 'debug' or 'release')
+endif
+
+ifeq ($(MODE),debug)
+	CFLAGS += -O0 -g3 -D DEBUG=1
+	DEBUG = 1
+	TARGET = debug
+endif
+
+ifeq ($(MODE),release)
+	CFLAGS += -O3 -flto -D DEBUG=0
+	DEBUG = 0
+	TARGET = release
+endif
 
 .SILENT:
 
 .PHONY: all
-all: export CFLAGS += -D DEBUG=0
-all: export DEBUG = 0
 all: gen_srcs
 all: $(NAME)
 
 test: export CFLAGS += -DUNITTEST=1
-test: debug
-
-.PHONY: debug
-debug: export CFLAGS += -O0 -g3 -D DEBUG=1
-debug: export DEBUG = 1
-debug: export TARGET = debug
-debug: gen_srcs
-debug: $(NAME)
-
-.PHONY: release
-release: export CFLAGS += -O3 -flto -D DEBUG=0
-release: export DEBUG = 0
-release: export TARGET = release
-release: gen_srcs
-release: $(NAME)
+test: all
 
 .PHONY: bonus
-bonus: export SRCS := $(SRCS) $(SRCS_BONUS)
-bonus: gen_srcs
+bonus: export CFLAGS += -DBONUS=1
 bonus: all
 
 ###########################################################
@@ -57,7 +64,7 @@ bonus: all
 define gen_srcs_file # arg1: directory and file name
 	$(shell echo "# Auto-generated file, do not edit!" > $(1)_srcs.mk)
 	$(shell echo -n "SRCS += " >> $(1)_srcs.mk)
-	$(shell find $(1)/src -type f -name "*.c" | sed '$$ ! s/$$/ \\/' >> $(1)_srcs.mk)
+	$(shell find $(1)/src -type f -name "*.c" | sed "s/.*_bonus.c//" | sed '$$ ! s/$$/ \\/' >> $(1)_srcs.mk)
 endef
 
 .PHONY: gen_srcs

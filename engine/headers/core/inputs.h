@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 15:28:02 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 20:52:43 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/23 16:47:21 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ int	iskeyup(t_engine *engine, u_int key);
 
 int	apply_inputs(t_engine *engine);
 int	apply_inputs_with_collision(t_engine *engine);
+int	camera_mouse_move(int x, int y, t_engine *engine);
 
 #endif

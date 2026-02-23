@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 21:49:24 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/23 07:59:00 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/23 15:03:35 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@
 #include "get_next_line.h"
 #include "libft.h"
 
-static void	free_lines(char **lines, int height)
+static void	free_lines(char ***lines)
 {
-	while (--height >= 0)
-		free(lines[height]);
-	free(lines);
+	ft_freearray((void **)*lines);
+	*lines = NULL;
 }
 
 static char	**collect_map_lines(int fd, int *height, int *width)
@@ -29,11 +28,10 @@ static char	**collect_map_lines(int fd, int *height, int *width)
 	char	*line;
 	int		len;
 
-	lines = ft_calloc(MAP_MAXSIZE, sizeof(char *));
+	lines = ft_calloc(MAP_MAXSIZE + 1, sizeof(char **));
 	if (!lines)
 		return (NULL);
-	*height = 0;
-	*width = 0;
+	errno = 0;
 	while (*height < MAP_MAXSIZE && get_next_line(fd, &line) != -1 && line)
 	{
 		len = ft_strlen(line);
@@ -48,6 +46,8 @@ static char	**collect_map_lines(int fd, int *height, int *width)
 			*width = len;
 		lines[(*height)++] = line;
 	}
+	if (errno)
+		free_lines(&lines);
 	return (lines);
 }
 
@@ -81,17 +81,17 @@ int	assign_map(int fd, t_map *map)
 	if (!map->height)
 	{
 		ft_printf(ERR_MAP_MISS);
-		free_lines(lines, map->height);
+		ft_freearray((void **)lines);
 		return (1);
 	}
 	if (map->width > MAP_MAXSIZE || map->height > MAP_MAXSIZE)
 	{
 		ft_printf(ERR_MAP_SIZE, MAP_MAXSIZE);
-		free_lines(lines, map->height);
+		ft_freearray((void **)lines);
 		return (1);
 	}
 	map->cells = build_cells(lines, map->height, map->width);
-	free_lines(lines, map->height);
+	ft_freearray((void *)lines);
 	if (!map->cells)
 		return (1);
 	return (0);

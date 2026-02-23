@@ -6,16 +6,16 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 04:47:45 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/22 20:02:36 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/23 11:32:42 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core/parse.h"
 #include "ft_printf.h"
 
-static void grid_debug_indexes(t_map *map)
+static void	grid_debug_indexes(t_map *map)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	ft_printf("\n[Map->grid]\n-----------\nIndex|");
@@ -33,9 +33,9 @@ static void grid_debug_indexes(t_map *map)
 	ft_printf("\n");
 }
 
-static void cells_debug(t_map *map)
+static void	cells_debug(t_map *map)
 {
-	int i;
+	int	i;
 
 	ft_printf("\nmap cells:\n----------\n");
 	i = -1;

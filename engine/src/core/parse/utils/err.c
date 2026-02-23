@@ -6,14 +6,14 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 08:21:26 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/23 09:08:09 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/23 11:31:30 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "core/parse.h"
 
-int properties_err(char *line, int valid[])
+int	properties_err(char *line, int valid[])
 {
 	if (line)
 		free(line);

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/19 04:43:58 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/22 08:02:11 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/23 05:22:08 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	suffix_format_checker(char *to_check, char *suffix)
 	format_start = ft_strlen(to_check) - ft_strlen(suffix);
 	if (ft_strncmp(&to_check[format_start], suffix, ft_strlen(suffix)) != 0)
 	{
-		perror("Error\n: Wrong format\n");
+		perror("Error\n");
 		return (0);
 	}
 	return (1);
@@ -49,20 +49,20 @@ static int	check_xpm_format(char *path)
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf("Error: Cannot open texture file: %s\n", path);
+		ft_printf("Error\nCannot open texture file: %s\n", path);
 		return (1);
 	}
 	bytes_read = read(fd, header, 8);
 	close(fd);
 	if (bytes_read < 8)
 	{
-		ft_printf("Error: Texture file too small: %s\n", path);
+		ft_printf("Error\nTexture header too small: %s\n", path);
 		return (1);
 	}
 	header[8] = '\0';
 	if (ft_strncmp(header, "/* XPM */", 8) != 0)
 	{
-		ft_printf("Error: Invalid XPM header in: %s\n", path);
+		ft_printf("Error\nInvalid XPM header in: %s\n", path);
 		return (1);
 	}
 	return (0);

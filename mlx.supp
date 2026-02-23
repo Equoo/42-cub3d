@@ -19,15 +19,3 @@
    ...
    fun:mlx_int_wait_first_expose
 }
-{
-   MLX_Breaking
-   Memcheck:Break
-   ...
-   fun:mlx*
-}
-{
-   MLX_Breaking
-   Memcheck:Break
-   ...
-   obj:*/libX11.so*
-}

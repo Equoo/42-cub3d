@@ -68,6 +68,8 @@ int	valid_rgb_format(char *str)
 				return (0);
 			commas++;
 		}
+		else if (!ft_isdigit(str[i]))
+			return (0);
 		i++;
 	}
 	return (commas == 2);

@@ -2,10 +2,15 @@
 SRCS += engine/src/core/draw/drawing.c \
 engine/src/core/inputs/lib.c \
 engine/src/core/inputs/keyboard.c \
+engine/src/core/inputs/apply.c \
  \
 engine/src/core/inputs/mouse.c \
-engine/src/core/inputs/apply.c \
+engine/src/core/window/drawbuffer.c \
+engine/src/core/window/loop.c \
+engine/src/core/window/create.c \
+engine/src/core/window/destroy.c \
 engine/src/core/parse/grid_build.c \
+engine/src/core/parse/assign.c \
 engine/src/core/parse/assign_textures.c \
 engine/src/core/parse/flood_fill.c \
 engine/src/core/parse/parse.c \
@@ -15,12 +20,6 @@ engine/src/core/parse/utils/debug.c \
 engine/src/core/parse/utils/err.c \
 engine/src/core/parse/utils/free.c \
 engine/src/core/parse/utils/utils.c \
-engine/src/core/parse/assign.c \
- \
-engine/src/core/window/drawbuffer.c \
-engine/src/core/window/loop.c \
-engine/src/core/window/destroy.c \
-engine/src/core/window/create.c \
 engine/src/core/world/load.c \
 engine/src/core/world/destroy.c \
 engine/src/core/world/draw.c \
@@ -28,16 +27,12 @@ engine/src/core/world/is_inmap.c \
 engine/src/core/world/render.c \
 engine/src/core/world/calc.c \
  \
+ \
 engine/src/math/m_cubic.c \
 engine/src/math/m_lerp.c \
 engine/src/math/m_sine.c \
 engine/src/math/trigo.c \
 engine/src/math/dda.c \
-engine/src/types/image/from_mlx.c \
-engine/src/types/image/from_xpm.c \
-engine/src/types/image/new.c \
-engine/src/types/rgba/apply_darkness.c \
-engine/src/types/rgba/rgba_from_str.c \
 engine/src/types/vector2/abs.c \
 engine/src/types/vector2/clamp.c \
 engine/src/types/vector2/comparisons.c \
@@ -68,6 +63,11 @@ engine/src/types/vector3/operators_by.c \
 engine/src/types/vector3/other_operators.c \
 engine/src/types/vector3/other_operators_by.c \
 engine/src/types/vector3/rotation.c \
+engine/src/types/image/from_mlx.c \
+engine/src/types/image/from_xpm.c \
+engine/src/types/image/new.c \
+engine/src/types/rgba/apply_darkness.c \
+engine/src/types/rgba/rgba_from_str.c \
 engine/src/close.c \
-engine/src/update.c \
-engine/src/main.c
+engine/src/main.c \
+engine/src/update.c

@@ -1,0 +1,11 @@
+NO game/textures/north.xpm
+SO game/textures/south.xpm
+WE game/textures/west.xpm
+EA game/textures/east.xpm
+F 100,150,200
+C 50,50,50
+
+111111
+10N001
+100000
+111111

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 22:18:22 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/22 09:14:45 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/23 08:42:44 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 
 # define POSSIBLE_CHAR "01NWSE "
 
-# define MAP_FOLDER "game/maps/"
-# define TEXTURE_FOLDER "game/textures/"
-# define MAP_FORMAT ".cub"
 # define MAP_MAXSIZE 256
+# define MAP_FOLDER "game/maps/"
+# define MAP_FORMAT ".cub"
+
+# define TEX_FOLDER "game/textures/"
+# define TEX_FORMAT ".xpm"
 # define TEX_NORTH "NO "
 # define TEX_SOUTH "SO "
 # define TEX_WEST "WE "
@@ -26,15 +28,7 @@
 # define COL_FLOOR "F "
 # define COL_CEILING "C "
 
-# define ERR_TEXTURE_PATH "Error: Texture path format issue: %s\n"
-# define ERR_TEXTURE_OPEN "Error: Cannot open texture at index[%d]: %s\n"
-# define ERR_XPM_FORMAT "Error: XPM validation failed at index[%d]\n"
-# define ERR_SURROUNDED_SPACE "Error: Map not properly surrounded\
- - space reached from filled area\n"
-# define ERR_SURROUNDED_EDGE "Error: Map not properly surrounded\
- - filled area touches edge\n"
-# define ERR_MAP_SIZE "Error: Map size exceeds maximum size (%d)\n"
-
+# include "err.h" 
 # include "world.h"
 
 // flood_fill.c
@@ -48,12 +42,22 @@ char	**duplicate_map_grid(t_map *map);
 // assign.c
 int		assign_map(int fd, t_map *map);
 int		assign_player_pos(t_map *map);
+int		dir_to_int(char c);
 
 // assign_textures.c
 int		assign_textures_and_colors(int fd, t_map *map);
 
+// check.c
+int		is_identifier_line(char *line);
+int		is_empty_line(char *line);
+int		is_map_line(char *line);
+int		is_player_char(char c);
+
 // debug.c
 void	map_debug(t_map *map);
+
+// err.c
+int		properties_err(char *line, int valid[]);
 
 // path_format.c
 int		map_path_checker(char *map_name, char **path);
@@ -65,10 +69,8 @@ void	cleanup_map_resources(t_map *map);
 
 // utils.c
 int		secure_open(char *path, int *fd);
-int		is_empty_line(char *line);
-int		is_map_line(char *line);
-int		is_player_char(char c);
-int		dir_to_int(char c);
+int		valid_properties(int valid[]);
+int		valid_rgb_format(char *str);
 
 // parse.c
 int		map_init(char *map_name, t_map *map);

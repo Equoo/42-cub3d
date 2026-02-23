@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/22 09:04:45 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/23 09:24:55 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	main(int argc, char *argv[])
 	engine.garbage = &garbage;
 	if (engine_initialize(&engine, argc, argv))
 	{
-		perror("Failed to launch");
+		// perror("Failed to launch");
 		engine_close(&engine);
 		return (1);
 	}

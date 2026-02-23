@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/17 22:35:51 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 00:43:50 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/23 07:11:10 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,10 @@ int	check_surrounded_with_flood_fill(t_map *map)
 
 	if (!map || !map->grid || map->height <= 0)
 		return (1);
-	if (map->spawn.y < 0 || map->spawn.y >= map->height || (map->spawn.x < 0
+	if (map->spawn.y <= 0 || map->spawn.y >= map->height || (map->spawn.x <= 0
 			|| map->spawn.x >= (int)ft_strlen(map->grid[(int)map->spawn.y])))
 	{
-		ft_printf("Error: Invalid player spawn\n");
+		ft_printf(ERR_PLAYER_POS);
 		return (1);
 	}
 	map_copy = duplicate_map_grid(map);

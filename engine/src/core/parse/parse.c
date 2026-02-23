@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 18:06:36 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/23 02:05:23 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/23 08:58:45 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,18 @@ static int	check_possible_char(t_map *map)
 
 static int	validate_map_content(t_map *map)
 {
-	if (check_possible_char(map) || textures_path_checker(map))
+	if (check_possible_char(map))
+	{
+		ft_printf(ERR_INVALID_CHAR);
+		return (1);
+	}
+	if  (textures_path_checker(map))
 		return (1);
 	if (build_map_grid(map))
 		return (1);
 	if (assign_player_pos(map))
 	{
-		ft_printf("Error: player_count != 1 in the map\n");
+		ft_printf(ERR_PLAYER_COUNT);
 		return (1);
 	}
 	if (check_surrounded_with_flood_fill(map))

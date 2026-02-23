@@ -6,11 +6,13 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:38:05 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 21:03:00 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/23 08:55:12 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_printf.h"
+#include "core/parse.h"
 #include "types/rgba.h"
 #include <asm-generic/errno.h>
 #include <errno.h>
@@ -38,10 +40,15 @@ int	rgba_from_str(char *str, t_rgba *out)
 	int		col;
 	int		i;
 
+	if (!valid_rgb_format(str))
+	{
+		ft_printf(ERR_COLORS_RGB);
+		return (1);
+	}
 	cols = ft_split(str, ',');
 	if (!cols)
 		return (1);
-	if (ft_arraylen((void **)cols) > 3)
+	if (ft_arraylen((void **)cols) != 3)
 	{
 		ft_freearray((void **)cols);
 		return (1);

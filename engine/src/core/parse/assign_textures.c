@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 00:00:00 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/23 03:53:23 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/23 09:25:23 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,46 +96,38 @@ static int	texture_path_assign(char *line, t_map *map, int valid[])
 	return (0);
 }
 
-static int	all_valid(int valid[])
-{
-	int	i;
 
-	i = 0;
-	while (i < 6 && valid[i] == 1)
-		i++;
-	return (i == 6);
-}
 
 int	assign_textures_and_colors(int fd, t_map *map)
 {
 	int		valid[6];
 	char	*line;
+	int		map_started;
 
 	errno = 0;
+	map_started = 0;
 	ft_bzero(valid, sizeof(valid));
 	while (get_next_line(fd, &line) != -1 && line)
 	{
 		if (!is_empty_line(line) && is_map_line(line))
 		{
-			if (!all_valid(valid))
-			{
-				free(line);
-				if (valid[0] > 1 || valid[1] > 1 || valid[2] > 1
-					|| valid[3] > 1)
-					ft_printf("Error\nPARSING: Too many textures.\n");
-				else if (valid[0] < 1 || valid[1] < 1 || valid[2] < 1
-					|| valid[3] < 1)
-					ft_printf("Error\nPARSING: Not enough textures.\n");
-				else if (valid[4] > 1 || valid[5] > 1)
-					ft_printf("Error\nPARSING: Too many colors.\n");
-				else if (valid[4] < 1 || valid[5] < 1)
-					ft_printf("Error\nPARSING: Not enough colors.\n");
-				else
-					ft_printf("Error\nPARSING: Map should be last.\n");
-				return (0);
-			}
+			if (!valid_properties(valid))
+				return properties_err(line, valid);
+			map_started = 1;
 		}
-		if (texture_path_assign(line, map, valid))
+		else if (!is_empty_line(line) && map_started)
+		{
+			ft_printf(ERR_MAP_LAST);
+			free(line);
+			return (0);
+		}
+		else if (!is_empty_line(line) && !is_identifier_line(line))
+		{
+			ft_printf(ERR_UNKNOWN_ID);
+			free(line);
+			return (0);
+		}
+		if (!map_started && texture_path_assign(line, map, valid))
 		{
 			free(line);
 			return (0);
@@ -144,7 +136,7 @@ int	assign_textures_and_colors(int fd, t_map *map)
 	}
 	while ((get_next_line(fd, &line) != -1 && line))
 		free(line);
-	if (!all_valid(valid) || errno)
-		return (0);
+	if (!valid_properties(valid) || errno)
+		return properties_err(NULL, valid);
 	return (1);
 }

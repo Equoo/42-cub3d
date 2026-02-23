@@ -1,6 +1,5 @@
 # Auto-generated file, do not edit!
-SRCS += engine/src/close.c \
-engine/src/core/draw/drawing.c \
+SRCS += engine/src/core/draw/drawing.c \
 engine/src/core/inputs/lib.c \
 engine/src/core/inputs/keyboard.c \
 engine/src/core/inputs/apply.c \
@@ -23,6 +22,7 @@ engine/src/core/world/calc.c \
 engine/src/core/world/load.c \
 engine/src/core/world/destroy.c \
 engine/src/core/world/draw.c \
+engine/src/core/world/is_inmap.c \
 engine/src/core/world/render.c \
 engine/src/math/dda.c \
 engine/src/math/m_cubic.c \
@@ -64,5 +64,6 @@ engine/src/types/vector3/operators_by.c \
 engine/src/types/vector3/other_operators.c \
 engine/src/types/vector3/other_operators_by.c \
 engine/src/types/vector3/rotation.c \
-engine/src/update.c \
-engine/src/main.c
+engine/src/close.c \
+engine/src/main.c \
+engine/src/update.c

@@ -79,7 +79,7 @@ static int	time_update(t_engine *engine)
 #define SIZE 200
 #define SIZEHALF 100
 #define ZOOM 15.f
-#define MMAP_PLY_SIZE (CAMERA_RADIUS * ZOOM)
+#define MMAP_PLY_SIZE 3.f
 
 static void	draw_minimap(t_image *buffer, t_map *map, t_camera camera)
 {
@@ -98,7 +98,8 @@ static void	draw_minimap(t_image *buffer, t_map *map, t_camera camera)
 			i / SIZE / ZOOM + camera.pos.y - SIZEHALF / ZOOM};
 		if (!is_inmap(map_pos, map)
 			|| map->cells[vec2_index(map_pos, map->width)] == '1')
-			draw_pixel(buffer, pos.x + i % SIZE, pos.y + i / SIZE, (t_rgba)0xffffffff);
+			draw_pixel(buffer, pos.x + i % SIZE,
+				pos.y + i / SIZE, (t_rgba)0xffffffff);
 		i++;
 	}
 	draw_square(buffer, (t_vec2){pos.x + SIZEHALF - MMAP_PLY_SIZE,

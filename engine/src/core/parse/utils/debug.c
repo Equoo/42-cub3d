@@ -58,10 +58,10 @@ static void	cells_debug(t_map *map)
 	ft_printf("\n");
 }
 
-static void grid_debug(t_map *map)
+static void	grid_debug(t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (map->grid[++i])
@@ -77,9 +77,9 @@ static void grid_debug(t_map *map)
 	}
 }
 
-static void textures_debug(t_map *map)
+static void	textures_debug(t_map *map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 4)
@@ -89,16 +89,16 @@ static void textures_debug(t_map *map)
 	}
 }
 
-void map_debug(t_map *map)
+void	map_debug(t_map *map)
 {
 	ft_printf("/-----------------------------------------/\n");
 	ft_printf("/----------------MAP-DEBUG----------------/\n");
 	ft_printf("/-----------------------------------------/\n");
 	ft_printf("Width: %d\nHeight: %d\n", map->width, map->height);
 	ft_printf("Ceiling color:\trgb:%x\tr:%d\tg:%d\tb:%d\n", map->ceiling.rgb,
-			  map->ceiling.r, map->ceiling.g, map->ceiling.b);
+		map->ceiling.r, map->ceiling.g, map->ceiling.b);
 	ft_printf("Floor color:\trgb:%x\tr:%d\tg:%d\tb:%d\n", map->floor.rgb,
-			  map->floor.r, map->floor.g, map->floor.b);
+		map->floor.r, map->floor.g, map->floor.b);
 	ft_printf("/-----------------------------------------/\n");
 	textures_debug(map);
 	ft_printf("/-----------------------------------------/\n");

@@ -73,6 +73,7 @@ static int	check_floor_and_ceiling(char *line, t_map *map, int valid[])
 static int	texture_path_assign(char *line, t_map *map, int valid[])
 {
 	int		i;
+	int		len;
 	char	*tex_path;
 
 	if (ft_strncmp(line, TEX_NORTH, 3) == 0 || ft_strncmp(line, TEX_WEST,
@@ -85,9 +86,9 @@ static int	texture_path_assign(char *line, t_map *map, int valid[])
 		tex_path = ft_strdup(&line[i]);
 		if (!tex_path)
 			return (1);
-		if (ft_strlen(tex_path) > 0 && tex_path[ft_strlen(tex_path)
-			- 1] == '\n')
-			tex_path[ft_strlen(tex_path) - 1] = '\0';
+		len = ft_strlen(tex_path);
+		if (len > 0 && tex_path[len - 1] == '\n')
+			tex_path[len - 1] = '\0';
 		check_textures(tex_path, line, map, valid);
 		return (0);
 	}

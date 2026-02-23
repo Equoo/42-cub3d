@@ -14,9 +14,9 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-static int suffix_format_checker(char *to_check, char *suffix)
+static int	suffix_format_checker(char *to_check, char *suffix)
 {
-	int format_start;
+	int	format_start;
 
 	format_start = ft_strlen(to_check) - ft_strlen(suffix);
 	if (ft_strncmp(&to_check[format_start], suffix, ft_strlen(suffix)) != 0)
@@ -24,7 +24,7 @@ static int suffix_format_checker(char *to_check, char *suffix)
 	return (1);
 }
 
-int map_path_checker(char *map_name, char **path)
+int	map_path_checker(char *map_name, char **path)
 {
 	if (!suffix_format_checker(map_name, ".cub"))
 	{
@@ -40,10 +40,10 @@ int map_path_checker(char *map_name, char **path)
 	return (1);
 }
 
-int textures_path_checker(t_map *map)
+int	textures_path_checker(t_map *map)
 {
-	int i;
-	int fd;
+	int	i;
+	int	fd;
 
 	i = -1;
 	while (++i < 4)

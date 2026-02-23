@@ -70,7 +70,7 @@ static int	validate_map_content(t_map *map)
 		ft_printf(ERR_INVALID_CHAR);
 		return (1);
 	}
-	if  (textures_path_checker(map))
+	if (textures_path_checker(map))
 		return (1);
 	if (build_map_grid(map))
 		return (1);

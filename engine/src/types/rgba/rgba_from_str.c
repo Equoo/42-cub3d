@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:38:05 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/23 08:55:12 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/23 10:40:56 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,29 @@ static int	col_from_str(char *str)
 	return (col);
 }
 
+static int	fill_rgba(char **cols, t_rgba *out)
+{
+	int	col;
+	int	i;
+
+	i = -1;
+	while (++i < 3)
+	{
+		col = col_from_str(cols[i]);
+		if (col == -1)
+		{
+			ft_freearray((void **)cols);
+			return (1);
+		}
+		*out = (t_rgba)(out->rgb | (col << (16 - i * 8)));
+	}
+	ft_freearray((void **)cols);
+	return (0);
+}
+
 int	rgba_from_str(char *str, t_rgba *out)
 {
 	char	**cols;
-	int		col;
-	int		i;
 
 	if (!valid_rgb_format(str))
 	{
@@ -53,17 +71,5 @@ int	rgba_from_str(char *str, t_rgba *out)
 		ft_freearray((void **)cols);
 		return (1);
 	}
-	i = -1;
-	while (++i < 3)
-	{
-		col = col_from_str(cols[i]);
-		if (col == -1)
-		{
-			ft_freearray((void **)cols);
-			return (1);
-		}
-		*out = (t_rgba)(out->rgb | (col << (16 - i * 8)));
-	}
-	ft_freearray((void **)cols);
-	return (0);
+	return (fill_rgba(cols, out));
 }

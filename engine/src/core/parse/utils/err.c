@@ -21,12 +21,12 @@ int properties_err(char *line, int valid[])
 		|| valid[3] != 1)
 	{
 		ft_printf(ERR_TEXTURE_MISS);
-		return 0;
+		return (0);
 	}
 	else if (valid[4] != 1 || valid[5] != 1)
 	{
 		ft_printf(ERR_COLORS_MISS);
-		return 0;
+		return (0);
 	}
 	return (0);
 }

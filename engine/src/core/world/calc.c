@@ -31,8 +31,10 @@ void	calc_texture_params(t_wall_params *params, t_hit hit, t_image img)
 	params->img_off = (height_diff * img.height) / (HALF_DIVISOR
 			* params->w_height);
 	params->img_x = (int)(fabsf(hit.pos.y) * img.width) % img.width;
-	if (hit.dir == 0 || hit.dir == 1)
+	if (hit.dir == NORTH || hit.dir == SOUTH)
 		params->img_x = (int)(hit.pos.x * img.width) % img.width;
+	if (hit.dir == NORTH || hit.dir == WEST)
+		params->img_x = img.width - 1 - params->img_x;
 	params->img_step = (float)img.height / (float)params->w_height;
 }
 

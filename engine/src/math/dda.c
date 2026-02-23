@@ -84,9 +84,9 @@ t_hit	define_orient(int side, t_vec2 diff, t_vec2 dir, t_dda data)
 	else
 	{
 		res.dist = (diff.y + (1 - data.step.y) / 2) / dir.y;
-		res.dir = NORTH;
+		res.dir = SOUTH;
 		if (data.step.y > 0)
-			res.dir = SOUTH;
+			res.dir = NORTH;
 	}
 	return (res);
 }

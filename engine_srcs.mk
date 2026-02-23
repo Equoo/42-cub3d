@@ -59,7 +59,6 @@ engine/src/types/vector3/operators_by.c \
 engine/src/types/vector3/other_operators.c \
 engine/src/types/vector3/other_operators_by.c \
 engine/src/types/vector3/rotation.c \
-<<<<<<< HEAD
 engine/src/types/image/from_mlx.c \
 engine/src/types/image/from_xpm.c \
 engine/src/types/image/new.c \
@@ -68,8 +67,3 @@ engine/src/types/rgba/rgba_from_str.c \
 engine/src/close.c \
 engine/src/update.c \
 engine/src/main.c
-=======
-engine/src/close.c \
-engine/src/main.c \
-engine/src/update.c
->>>>>>> origin/main

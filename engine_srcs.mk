@@ -20,6 +20,7 @@ engine/src/core/parse/utils/debug.c \
 engine/src/core/parse/utils/err.c \
 engine/src/core/parse/utils/free.c \
 engine/src/core/parse/utils/utils.c \
+ \
 engine/src/core/world/load.c \
 engine/src/core/world/destroy.c \
 engine/src/core/world/draw.c \

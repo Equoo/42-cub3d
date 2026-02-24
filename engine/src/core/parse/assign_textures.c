@@ -6,17 +6,18 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 00:00:00 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/23 11:17:57 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/24 04:08:52 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "core/engine.h"
 #include "core/parse.h"
 #include "ft_printf.h"
 #include "get_next_line.h"
 #include "libft.h"
 #include <errno.h>
 
-static void	check_textures(char *tex_path, char *line, t_map *map, int valid[])
+void	check_textures(char *tex_path, char *line, t_map *map, int valid[])
 {
 	if (ft_strncmp(line, TEX_NORTH, 3) == 0)
 	{
@@ -44,7 +45,7 @@ static void	check_textures(char *tex_path, char *line, t_map *map, int valid[])
 	}
 }
 
-static int	check_floor_and_ceiling(char *line, t_map *map, int valid[])
+int	check_floor_and_ceiling(char *line, t_map *map, int valid[])
 {
 	int		i;
 	t_rgba	color;
@@ -70,12 +71,14 @@ static int	check_floor_and_ceiling(char *line, t_map *map, int valid[])
 	return (0);
 }
 
-static int	texture_path_assign(char *line, t_map *map, int valid[])
+static int	assign_paths(char *line, t_map *map, int valid[])
 {
 	int		i;
 	int		len;
 	char	*tex_path;
 
+	if (BONUS)
+		return (texture_path_assign_bonus(line, map, valid));
 	if (ft_strncmp(line, TEX_NORTH, 3) == 0 || ft_strncmp(line, TEX_WEST,
 			3) == 0 || ft_strncmp(line, TEX_SOUTH, 3) == 0 || ft_strncmp(line,
 			TEX_EAST, 3) == 0)
@@ -105,19 +108,17 @@ static int	handle_line(char *line, t_map *map, int valid[], int *map_started)
 			return (properties_err(line, valid));
 		*map_started = 1;
 	}
-	else if (!is_empty_line(line) && *map_started)
+	else if (!is_empty_line(line) && (*map_started
+			|| !is_identifier_line(line)))
 	{
-		ft_printf(ERR_MAP_LAST);
+		if (*map_started)
+			ft_printf(ERR_MAP_LAST);
+		else
+			ft_printf(ERR_UNKNOWN_ID);
 		free(line);
 		return (0);
 	}
-	else if (!is_empty_line(line) && !is_identifier_line(line))
-	{
-		ft_printf(ERR_UNKNOWN_ID);
-		free(line);
-		return (0);
-	}
-	if (!*map_started && texture_path_assign(line, map, valid))
+	if (!*map_started && assign_paths(line, map, valid))
 	{
 		free(line);
 		return (0);

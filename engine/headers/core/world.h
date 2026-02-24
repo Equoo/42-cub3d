@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:21 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/23 16:04:06 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/24 01:19:27 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_hit
 	t_vec2		pos;
 	t_orient	dir;
 	float		dist;
+	char		cell;
 }				t_hit;
 
 typedef struct s_dda
@@ -75,6 +76,8 @@ typedef struct s_map
 	int			height;
 	t_image		textures[4];
 	char		*tex_paths[4];
+	t_image		door_texture;
+	char		*door_tex_path;
 	t_rgba		ceiling;
 	t_rgba		floor;
 	t_vec2		spawn;

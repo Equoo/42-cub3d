@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apply_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 15:41:37 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/23 16:47:07 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/24 04:01:38 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,30 @@
 #include "math/extend.h"
 #include <X11/keysym.h>
 
+static void	toggle_door(t_engine *engine)
+{
+	t_vec3	fwd;
+	int		cx;
+	int		cy;
+	int		idx;
+
+	if (!iskeydown(engine, (uint) 'e'))
+		return ;
+	fwd = rot_forward(engine->camera.rot);
+	cx = (int)(engine->camera.pos.x + fwd.x);
+	cy = (int)(engine->camera.pos.y + fwd.y);
+	if (cx < 0 || cx >= engine->map->width || cy < 0
+		|| cy >= engine->map->height)
+		return ;
+	idx = cy * engine->map->width + cx;
+	if (engine->map->cells[idx] == 'D')
+		engine->map->cells[idx] = '0';
+}
+
 static void	apply_sprint(t_engine *engine)
 {
 	if (iskeydown(engine, XK_Shift_L))
-		engine->camera.speed = 3.5f * engine->frametime;
+		engine->camera.speed = 6.0f * engine->frametime;
 	else
 		engine->camera.speed = 2.0f * engine->frametime;
 }
@@ -73,6 +93,7 @@ int	apply_inputs_with_collision(t_engine *engine)
 		mlx_mouse_show(engine->window.mlx, engine->window.mlx_win);
 	else
 		mlx_mouse_hide(engine->window.mlx, engine->window.mlx_win);
+	toggle_door(engine);
 	return (0);
 }
 

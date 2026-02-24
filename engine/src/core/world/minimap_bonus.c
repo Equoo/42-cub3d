@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 16:02:52 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/23 16:05:17 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/24 04:17:40 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	draw_minimap(t_image *buffer, t_map *map, t_camera camera)
 	t_vec2	map_pos;
 
 	pos = (t_vec2){g_win_width - MMAP_OFFSET - SIZE, MMAP_OFFSET};
-	i = 0;
-	while (i < SIZE * SIZE)
+	i = -1;
+	while (++i < SIZE * SIZE)
 	{
 		if (vec2_dist((t_vec2){pos.x + i % SIZE, pos.y + i / SIZE},
 			(t_vec2){pos.x + SIZEHALF, pos.y + SIZEHALF}) > SIZEHALF && ++i)
@@ -37,7 +37,9 @@ void	draw_minimap(t_image *buffer, t_map *map, t_camera camera)
 			|| map->cells[vec2_index(map_pos, map->width)] == '1')
 			draw_pixel(buffer, pos.x + i % SIZE,
 				pos.y + i / SIZE, (t_rgba)0xffffffff);
-		i++;
+		else if (map->cells[vec2_index(map_pos, map->width)] == 'D')
+			draw_pixel(buffer, pos.x + i % SIZE,
+				pos.y + i / SIZE, (t_rgba)0xff00ff00);
 	}
 	draw_square(buffer, (t_vec2){pos.x + SIZEHALF - MMAP_PLY_SIZE,
 		pos.y + SIZEHALF - MMAP_PLY_SIZE},

@@ -6,14 +6,18 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 22:18:22 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/23 08:42:44 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/24 03:47:00 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-# define POSSIBLE_CHAR "01NWSE "
+# if BONUS
+#  define POSSIBLE_CHAR "01NWSED "
+# else
+#  define POSSIBLE_CHAR "01NWSE "
+# endif
 
 # define MAP_MAXSIZE 256
 # define MAP_FOLDER "game/maps/"
@@ -28,7 +32,10 @@
 # define COL_FLOOR "F "
 # define COL_CEILING "C "
 
-# include "err.h" 
+# define DOOR_CHAR "D"
+# define TEX_CLOSED_DOOR "CD "
+
+# include "err.h"
 # include "world.h"
 
 // flood_fill.c
@@ -39,13 +46,19 @@ int		check_surrounded_with_flood_fill(t_map *map);
 int		build_map_grid(t_map *map);
 char	**duplicate_map_grid(t_map *map);
 
+// assign_textures.c
+int		assign_textures_and_colors(int fd, t_map *map);
+void	check_textures(char *tex_path, char *line, t_map *map, int valid[]);
+int		check_floor_and_ceiling(char *line, t_map *map, int valid[]);
+
 // assign.c
 int		assign_map(int fd, t_map *map);
 int		assign_player_pos(t_map *map);
 int		dir_to_int(char c);
 
-// assign_textures.c
-int		assign_textures_and_colors(int fd, t_map *map);
+// door_bonus.c
+int		texture_path_assign_bonus(char *line, t_map *map, int valid[]);
+int		door_texture_path_checker(t_map *map);
 
 // check.c
 int		is_identifier_line(char *line);

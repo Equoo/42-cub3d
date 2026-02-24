@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   collision.c                                        :+:      :+:    :+:   */
+/*   collision_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 06:15:54 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/20 20:54:14 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/23 23:55:16 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ static int	is_wall(t_map *map, float x, float y)
 	new_y = (int)y;
 	if (new_x >= map->width || new_y >= map->height)
 		return (1);
+	if (BONUS)
+		return (map->cells[new_y * map->width + new_x] == '1'
+			|| map->cells[new_y * map->width + new_x] == 'D');
 	return (map->cells[new_y * map->width + new_x] == '1');
 }
 

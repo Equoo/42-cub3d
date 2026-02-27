@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:21 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/24 01:19:27 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/27 09:25:33 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 # define SIZE 200
 # define SIZEHALF 100
 # define ZOOM 15.f
+# define ZOOM_MIN 3.f
+# define ZOOM_MAX 30.f
+# define ZOOM_STEP 1.f
 # define MMAP_PLY_SIZE 3.f
 
 typedef struct s_wall_params
@@ -109,6 +112,7 @@ int				map_destroy(void *mlx, t_map *map);
 
 int				load_map(void *mlx, t_map *map);
 
-void			draw_minimap(t_image *buffer, t_map *map, t_camera camera);
+void			draw_minimap(t_image *buffer, t_map *map, t_camera camera,
+					float zoom);
 
 #endif

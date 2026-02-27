@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 22:18:22 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/24 03:47:00 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/27 08:30:18 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PARSE_H
 
 # if BONUS
-#  define POSSIBLE_CHAR "01NWSED "
+#  define POSSIBLE_CHAR "01NWSEDO "
 # else
 #  define POSSIBLE_CHAR "01NWSE "
 # endif

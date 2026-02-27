@@ -27,16 +27,24 @@ static t_image	get_wall_tex(t_map map, t_hit hit)
 	return (map.textures[hit.dir]);
 }
 
+static int	is_cam_in_wall(t_map map, t_camera cam)
+{
+	t_vec2	pos;
+	char	cell;
+
+	pos = (t_vec2){cam.pos.x, cam.pos.y};
+	if (!is_inmap(pos, &map))
+		return (1);
+	cell = map.cells[vec2_index(pos, map.width)];
+	return (cell == '1' || cell == ' ');
+}
+
 static int	clear_buffer(t_image *buffer, t_map map, t_camera cam)
 {
-	if (!is_inmap((t_vec2){cam.pos.x, cam.pos.y}, &map)
-		|| map.cells[vec2_index(*(t_vec2 *)&cam.pos, map.width)] == '1'
-		|| map.cells[vec2_index(*(t_vec2 *)&cam.pos, map.width)] == ' ')
-	{
-		ft_memset(buffer->data, 0, buffer->byte_size);
-		return (1);
-	}
-	return (0);
+	if (!is_cam_in_wall(map, cam))
+		return (0);
+	ft_memset(buffer->data, 0, buffer->byte_size);
+	return (1);
 }
 
 int	draw_walls(t_image *buffer, t_map map, t_camera cam)

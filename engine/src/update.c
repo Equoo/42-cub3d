@@ -80,7 +80,8 @@ static int	render_update(t_engine *engine)
 	window_drawbuffer(&engine->window);
 	draw_walls(&engine->window.buffer, *engine->map, engine->camera);
 	if (BONUS)
-		draw_minimap(&engine->window.buffer, engine->map, engine->camera);
+		draw_minimap(&engine->window.buffer, engine->map, engine->camera,
+			engine->mmap_zoom);
 	return (0);
 }
 

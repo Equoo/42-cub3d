@@ -18,11 +18,33 @@
 #include "types/vector2.h"
 #include <sys/cdefs.h>
 
-void	draw_minimap(t_image *buffer, t_map *map, t_camera camera)
+static t_rgba	get_cell_color(t_map *map, t_vec2 map_pos)
+{
+	if (!is_inmap(map_pos, map)
+		|| map->cells[vec2_index(map_pos, map->width)] == '1')
+		return ((t_rgba)0xffffffff);
+	if (map->cells[vec2_index(map_pos, map->width)] == 'D')
+		return ((t_rgba)0xffff0000);
+	if (map->cells[vec2_index(map_pos, map->width)] == 'O')
+		return ((t_rgba)0xff00ff00);
+	return ((t_rgba)0x00000000);
+}
+
+static void	draw_minimap_player(t_image *buffer, t_vec2 pos)
+{
+	draw_square(buffer,
+		(t_vec2){pos.x + SIZEHALF - MMAP_PLY_SIZE,
+		pos.y + SIZEHALF - MMAP_PLY_SIZE},
+		(t_vec2){pos.x + SIZEHALF + MMAP_PLY_SIZE,
+		pos.y + SIZEHALF + MMAP_PLY_SIZE}, (t_rgba)0xffff0000);
+}
+
+void	draw_minimap(t_image *buffer, t_map *map, t_camera camera, float zoom)
 {
 	int		i;
 	t_vec2	pos;
 	t_vec2	map_pos;
+	t_rgba	color;
 
 	pos = (t_vec2){g_win_width - MMAP_OFFSET - SIZE, MMAP_OFFSET};
 	i = -1;
@@ -31,18 +53,11 @@ void	draw_minimap(t_image *buffer, t_map *map, t_camera camera)
 		if (vec2_dist((t_vec2){pos.x + i % SIZE, pos.y + i / SIZE},
 			(t_vec2){pos.x + SIZEHALF, pos.y + SIZEHALF}) > SIZEHALF && ++i)
 			continue ;
-		map_pos = (t_vec2){(i % SIZE) / ZOOM + camera.pos.x - SIZEHALF / ZOOM,
-			i / SIZE / ZOOM + camera.pos.y - SIZEHALF / ZOOM};
-		if (!is_inmap(map_pos, map)
-			|| map->cells[vec2_index(map_pos, map->width)] == '1')
-			draw_pixel(buffer, pos.x + i % SIZE,
-				pos.y + i / SIZE, (t_rgba)0xffffffff);
-		else if (map->cells[vec2_index(map_pos, map->width)] == 'D')
-			draw_pixel(buffer, pos.x + i % SIZE,
-				pos.y + i / SIZE, (t_rgba)0xff00ff00);
+		map_pos = (t_vec2){(i % SIZE) / zoom + camera.pos.x - SIZEHALF / zoom,
+			i / SIZE / zoom + camera.pos.y - SIZEHALF / zoom};
+		color = get_cell_color(map, map_pos);
+		if (color.rgb)
+			draw_pixel(buffer, pos.x + i % SIZE, pos.y + i / SIZE, color);
 	}
-	draw_square(buffer, (t_vec2){pos.x + SIZEHALF - MMAP_PLY_SIZE,
-		pos.y + SIZEHALF - MMAP_PLY_SIZE},
-		(t_vec2){pos.x + SIZEHALF + MMAP_PLY_SIZE,
-		pos.y + SIZEHALF + MMAP_PLY_SIZE}, (t_rgba)0xffff0000);
+	draw_minimap_player(buffer, pos);
 }

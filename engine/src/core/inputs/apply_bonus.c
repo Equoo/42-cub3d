@@ -23,7 +23,7 @@ static void	toggle_door(t_engine *engine)
 	int		cy;
 	int		idx;
 
-	if (!iskeydown(engine, (uint) 'e'))
+	if (!iskeypressed(engine, (uint) 'e'))
 		return ;
 	fwd = rot_forward(engine->camera.rot);
 	cx = (int)(engine->camera.pos.x + fwd.x);
@@ -33,7 +33,13 @@ static void	toggle_door(t_engine *engine)
 		return ;
 	idx = cy * engine->map->width + cx;
 	if (engine->map->cells[idx] == 'D')
-		engine->map->cells[idx] = '0';
+		engine->map->cells[idx] = 'O';
+	else if (engine->map->cells[idx] == 'O'
+		&& (engine->camera.pos.x + CAMERA_RADIUS <= cx
+			|| engine->camera.pos.x - CAMERA_RADIUS >= cx + 1
+			|| engine->camera.pos.y + CAMERA_RADIUS <= cy
+			|| engine->camera.pos.y - CAMERA_RADIUS >= cy + 1))
+		engine->map->cells[idx] = 'D';
 }
 
 static void	apply_sprint(t_engine *engine)

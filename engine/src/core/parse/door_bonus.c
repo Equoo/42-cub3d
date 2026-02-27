@@ -6,13 +6,13 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 22:08:27 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/24 02:56:19 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/27 09:25:55 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_printf.h"
 #include "core/parse.h"
+#include "ft_printf.h"
+#include "libft.h"
 
 static void	check_door_texture(char *tex_path, char *line, t_map *map)
 {

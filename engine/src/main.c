@@ -54,6 +54,7 @@ int	engine_initialize(t_engine *engine, int argc, char *argv[])
 	engine->camera = (t_camera){.speed = 2.0f, .rot_speed = 2.0f, .fov = 75,
 		.pos = {map.spawn.x + SPAWN_OFFSET, map.spawn.y + SPAWN_OFFSET, 0},
 		.rot = {0, 0, dir_to_int(map.dir)}};
+	engine->mmap_zoom = ZOOM;
 	if (game_initialize(engine))
 		return (1);
 	window_loop(&engine->window);

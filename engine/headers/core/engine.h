@@ -48,6 +48,8 @@ struct					s_engine
 	uint				internal_last_keys[32];
 	uint				keys_states[32][2];
 
+	float				mmap_zoom;
+
 	t_map				*map;
 	t_camera			camera;
 	t_window			window;

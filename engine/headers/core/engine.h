@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:24:40 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/23 16:21:54 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/28 15:55:33 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #  define UNITTEST 0
 # endif
 
+# include "types/image.h"
 # include "core/camera.h"
 # include "core/window.h"
 # include "core/world.h"
@@ -48,6 +49,7 @@ struct					s_engine
 	uint				internal_last_keys[32];
 	uint				keys_states[32][2];
 
+	t_image				sprite;
 	t_map				*map;
 	t_camera			camera;
 	t_window			window;

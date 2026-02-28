@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:50:41 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/17 02:58:04 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/28 15:54:18 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -328,6 +328,6 @@ typedef struct s_intersect
 	t_vec2	*hit_pos;
 }			t_intersect;
 
-int			intersect_line_segment(t_intersect data);
+double		vec2_angle(t_vec2 from, t_vec2 to);
 
 #endif

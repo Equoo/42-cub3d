@@ -6,12 +6,13 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 19:02:12 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/23 03:38:03 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/24 14:27:15 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core/camera.h"
 #include "core/world.h"
+#include "core/engine.h"
 #include "libft.h"
 #include "math/algorithm.h"
 #include "math/extend.h"

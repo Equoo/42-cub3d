@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 02:47:47 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 20:54:38 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/28 16:04:34 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	map_destroy(void *mlx, t_map *map)
 		free(map->cells);
 	if (map->grid)
 		free_map_grid(map);
+	if (map->sprites)
+		free(map->sprites);
 	i = 0;
 	while (i < 4)
 	{

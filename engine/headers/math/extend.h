@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:29:53 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 22:04:33 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/25 03:18:35 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define SQRTF_TABLE_SIZE 10000 // sqrtf
 
 # define EPSILON 0.0001
-# define PI 3.141592
+# define PI 3.14159265358979323846f
 
 float	sin_lut(float angle_deg);
 float	cos_lut(float angle_deg);

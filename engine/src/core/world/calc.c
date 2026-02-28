@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 21:39:39 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/23 04:48:22 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/28 16:00:00 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ float	calc_sky_darkness(int y, float inv_half_height)
 	float	dist_from_center;
 	float	darkness;
 
-	dist_from_center = fabsf((float)y * inv_half_height - MAX_DARKNESS);
-	darkness = ft_fclamp(dist_from_center, MIN_DARKNESS, MAX_DARKNESS);
+	dist_from_center = fabsf((float)y * inv_half_height - MAX_DARK);
+	darkness = ft_fclamp(dist_from_center, MIN_DARK, MAX_DARK);
 	return (darkness);
 }

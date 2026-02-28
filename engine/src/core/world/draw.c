@@ -6,11 +6,12 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 21:40:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/20 20:57:35 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/28 15:58:48 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core/draw.h"
+#include "core/engine.h"
 #include "core/world.h"
 #include "libft.h"
 #include "types/image.h"
@@ -22,7 +23,7 @@ static void	draw_sky_ground_pixel(t_draw_ctx *ctx, int i)
 	float	inv_half_height;
 	t_rgba	color;
 
-	inv_half_height = MAX_DARKNESS / (float)ctx->half_height;
+	inv_half_height = MAX_DARK / (float)ctx->half_height;
 	darkness = calc_sky_darkness(i, inv_half_height);
 	color = apply_darkness(ctx->map.floor, darkness);
 	draw_pixel(ctx->buffer, ctx->x, i, color);
@@ -42,7 +43,7 @@ static void	draw_ceiling_floor(t_draw_ctx *ctx, int limit)
 	}
 }
 
-static void	draw_wall_pixel(t_draw_ctx *ctx, t_wall_params *params,
+void	draw_wall_pixel(t_draw_ctx *ctx, t_wall_params *params,
 		float darkness)
 {
 	int		i;
@@ -63,8 +64,8 @@ static void	draw_wall_pixel(t_draw_ctx *ctx, t_wall_params *params,
 void	draw_wall(t_draw_ctx ctx, float dist, t_hit hit)
 {
 	t_wall_params	params;
-	const float		darkness = ft_fclamp(MAX_DARKNESS / (dist * DIST_ATTENUATION
-				+ DIST_OFFSET), MIN_DARKNESS, MAX_DARKNESS);
+	const float		darkness = ft_fclamp(MAX_DARK / (dist * DIST_ATTEN
+				+ DIST_OFFSET), MIN_DARK, MAX_DARK);
 	int				limit;
 
 	calc_wall_dimensions(&params, dist, ctx.buffer->height);
@@ -75,4 +76,6 @@ void	draw_wall(t_draw_ctx ctx, float dist, t_hit hit)
 	ctx.half_height = ctx.buffer->height / 2;
 	draw_ceiling_floor(&ctx, limit);
 	draw_wall_pixel(&ctx, &params, darkness);
+	if (BONUS)
+		draw_sprites(&ctx, dist);
 }

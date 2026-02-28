@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/23 16:44:31 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/28 16:00:39 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "core/world.h"
 #include "ft_printf.h"
 #include "libft.h"
+#include "types/image.h"
 #include <errno.h>
 #include <stdio.h>
 #include <string.h>
@@ -50,10 +51,13 @@ int	engine_initialize(t_engine *engine, int argc, char *argv[])
 		return (1);
 	if (load_map(engine->window.mlx, &map))
 		return (1);
+	map.sprites[0] = (t_sprite){.tex = map.textures[0], .pos = {17, 7}};
 	engine->map = &map;
 	engine->camera = (t_camera){.speed = 2.0f, .rot_speed = 2.0f, .fov = 75,
 		.pos = {map.spawn.x + SPAWN_OFFSET, map.spawn.y + SPAWN_OFFSET, 0},
 		.rot = {0, 0, dir_to_int(map.dir)}};
+	if (BONUS && sprites_init(engine))
+		return (1);
 	if (game_initialize(engine))
 		return (1);
 	window_loop(&engine->window);

@@ -21,13 +21,14 @@ engine/src/core/window/drawbuffer.c \
 engine/src/core/window/loop.c \
 engine/src/core/window/destroy.c \
 engine/src/core/window/create.c \
+ \
 engine/src/core/world/load.c \
 engine/src/core/world/destroy.c \
-engine/src/core/world/draw.c \
 engine/src/core/world/is_inmap.c \
-engine/src/core/world/render.c \
-engine/src/core/world/calc.c \
  \
+engine/src/core/world/render.c \
+engine/src/core/world/draw.c \
+engine/src/core/world/calc.c \
 engine/src/math/m_cubic.c \
 engine/src/math/m_lerp.c \
 engine/src/math/m_sine.c \
@@ -53,6 +54,7 @@ engine/src/types/vector2/operators.c \
 engine/src/types/vector2/operators_by.c \
 engine/src/types/vector2/other_operators.c \
 engine/src/types/vector2/other_operators_by.c \
+engine/src/types/vector2/angle.c \
 engine/src/types/vector3/abs.c \
 engine/src/types/vector3/clamp.c \
 engine/src/types/vector3/comparisons.c \

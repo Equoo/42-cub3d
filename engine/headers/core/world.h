@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:21 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/23 16:04:06 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/28 16:03:37 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 
 # define TRACE_LEN 65536
 # define PROJECTION_SCALE 1200.0f
-# define DIST_ATTENUATION 0.8f
+# define DIST_ATTEN 0.8f
 # define DIST_OFFSET 0.3f
-# define MIN_DARKNESS 0.05f
-# define MAX_DARKNESS 1.0f
+# define MIN_DARK 0.05f
+# define MAX_DARK 1.0f
 # define HALF_DIVISOR 2.0f
 # define RAYS_FILLING 1
 # define RAYS_DENSITY 1
@@ -33,6 +33,21 @@
 # define SIZEHALF 100
 # define ZOOM 15.f
 # define MMAP_PLY_SIZE 3.f
+
+# define SPRITES_SIZE 1
+
+typedef struct s_sprite
+{
+	t_image		tex;
+	t_vec2		pos;
+	int			draw;
+	float		dist;
+	float		darkness;
+	int			height;
+	int			sx;
+	float		wmul;
+	int			width;
+}				t_sprite;
 
 typedef struct s_wall_params
 {
@@ -70,9 +85,11 @@ typedef struct s_dda
 typedef struct s_map
 {
 	char		*cells;
-	char		**grid;
 	int			width;
 	int			height;
+	t_sprite	*sprites;
+	int			sprites_len;
+	char		**grid;
 	t_image		textures[4];
 	char		*tex_paths[4];
 	t_rgba		ceiling;
@@ -99,6 +116,8 @@ void			calc_texture_params(t_wall_params *params, t_hit hit,
 float			calc_sky_darkness(int y, float inv_half_height);
 
 void			draw_wall(t_draw_ctx ctx, float dist, t_hit hit);
+void			draw_wall_pixel(t_draw_ctx *ctx, t_wall_params *params,
+					float darkness);
 
 int				draw_walls(t_image *buffer, t_map map, t_camera cam);
 
@@ -107,5 +126,9 @@ int				map_destroy(void *mlx, t_map *map);
 int				load_map(void *mlx, t_map *map);
 
 void			draw_minimap(t_image *buffer, t_map *map, t_camera camera);
+
+int				update_sprites(int len, t_sprite *sprites, t_camera cam);
+int				draw_sprites(t_draw_ctx *ctx, float dist);
+int				sprites_init(void *engine);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:21 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/28 16:11:31 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/28 17:54:42 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_sprite
 	int			sx;
 	float		wmul;
 	int			width;
+	double		*time;
 }				t_sprite;
 
 typedef struct s_wall_params
@@ -92,7 +93,6 @@ typedef struct s_map
 	int			width;
 	int			height;
 	t_sprite	*sprites;
-	int			sprites_len;
 	char		**grid;
 	t_image		textures[4];
 	char		*tex_paths[4];
@@ -134,7 +134,7 @@ int				load_map(void *mlx, t_map *map);
 void			draw_minimap(t_image *buffer, t_map *map, t_camera camera,
 					float zoom);
 
-int				update_sprites(int len, t_sprite *sprites, t_camera cam);
+int				update_sprites(t_sprite *sprites, t_camera cam);
 int				draw_sprites(t_draw_ctx *ctx, float dist);
 int				sprites_init(void *engine);
 

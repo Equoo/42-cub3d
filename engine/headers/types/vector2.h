@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 15:50:41 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/28 15:54:18 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/28 16:42:24 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -329,5 +329,6 @@ typedef struct s_intersect
 }			t_intersect;
 
 double		vec2_angle(t_vec2 from, t_vec2 to);
+t_vec2		vec2_from_index(int index, int width);
 
 #endif

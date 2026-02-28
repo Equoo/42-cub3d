@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 18:06:36 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/24 00:57:51 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/28 17:48:24 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,9 @@ static int	check_possible_char(t_map *map)
 				j++;
 			else
 				break ;
-			if (BONUS)
-			{
-				if (j >= 8)
-					return (1);
-				break ;
-			}
-			if (j >= 7)
+			if (!BONUS && j >= 7)
+				return (1);
+			else if (BONUS && j >= 10)
 				return (1);
 		}
 	}

@@ -1,5 +1,6 @@
 # Auto-generated file, do not edit!
-SRCS += engine/src/core/draw/drawing.c \
+SRCS += engine/src/update.c \
+engine/src/core/draw/drawing.c \
 engine/src/core/inputs/lib.c \
 engine/src/core/inputs/keyboard.c \
 engine/src/core/inputs/apply.c \
@@ -14,9 +15,9 @@ engine/src/core/parse/utils/check.c \
 engine/src/core/parse/utils/utils.c \
 engine/src/core/parse/assign.c \
 engine/src/core/parse/assign_textures.c \
+engine/src/core/parse/path_format.c \
  \
 engine/src/core/parse/parse.c \
-engine/src/core/parse/path_format.c \
  \
 engine/src/core/window/drawbuffer.c \
 engine/src/core/window/loop.c \
@@ -46,7 +47,6 @@ engine/src/types/vector2/comparisons.c \
 engine/src/types/vector2/cross.c \
 engine/src/types/vector2/dist.c \
 engine/src/types/vector2/dot.c \
-engine/src/types/vector2/index.c \
 engine/src/types/vector2/len.c \
 engine/src/types/vector2/max.c \
 engine/src/types/vector2/min.c \
@@ -56,6 +56,7 @@ engine/src/types/vector2/operators_by.c \
 engine/src/types/vector2/other_operators.c \
 engine/src/types/vector2/other_operators_by.c \
 engine/src/types/vector2/angle.c \
+engine/src/types/vector2/index.c \
 engine/src/types/vector3/abs.c \
 engine/src/types/vector3/clamp.c \
 engine/src/types/vector3/comparisons.c \
@@ -72,5 +73,4 @@ engine/src/types/vector3/other_operators.c \
 engine/src/types/vector3/other_operators_by.c \
 engine/src/types/vector3/rotation.c \
 engine/src/close.c \
-engine/src/main.c \
-engine/src/update.c
+engine/src/main.c

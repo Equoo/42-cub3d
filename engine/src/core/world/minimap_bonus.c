@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 16:02:52 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/24 04:17:40 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/28 16:55:08 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static t_rgba	get_cell_color(t_map *map, t_vec2 map_pos)
 		return ((t_rgba)0xffff0000);
 	if (map->cells[vec2_index(map_pos, map->width)] == 'O')
 		return ((t_rgba)0xff00ff00);
+	if (map->cells[vec2_index(map_pos, map->width)] == 'B')
+		return ((t_rgba)0xff134f5e);
 	return ((t_rgba)0x00000000);
 }
 

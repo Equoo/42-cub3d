@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 22:18:22 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/27 08:30:18 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/28 16:33:47 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PARSE_H
 
 # if BONUS
-#  define POSSIBLE_CHAR "01NWSEDO "
+#  define POSSIBLE_CHAR "01NWSEDOB "
 # else
 #  define POSSIBLE_CHAR "01NWSE "
 # endif
@@ -56,7 +56,7 @@ int		assign_map(int fd, t_map *map);
 int		assign_player_pos(t_map *map);
 int		dir_to_int(char c);
 
-// door_bonus.c
+// parse_bonus.c
 int		texture_path_assign_bonus(char *line, t_map *map, int valid[]);
 int		door_texture_path_checker(t_map *map);
 

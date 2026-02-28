@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:10:24 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/28 16:14:37 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/28 17:20:30 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@ static int	render_update(t_engine *engine)
 	window_drawbuffer(&engine->window);
 	draw_walls(&engine->window.buffer, *engine->map, engine->camera);
 	if (BONUS)
-		update_sprites(1, engine->map->sprites, engine->camera);
-	draw_minimap(&engine->window.buffer, engine->map, engine->camera,
-		engine->mmap_zoom);
+		update_sprites(engine->map->sprites, engine->camera);
+	if (BONUS)
+		draw_minimap(&engine->window.buffer, engine->map, engine->camera,
+			engine->mmap_zoom);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 15:24:40 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/28 15:55:33 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/28 16:11:13 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ struct					s_engine
 	uint				keys_states[32][2];
 
 	t_image				sprite;
+	float				mmap_zoom;
+
 	t_map				*map;
 	t_camera			camera;
 	t_window			window;

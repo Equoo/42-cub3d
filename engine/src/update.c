@@ -6,44 +6,18 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:10:24 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/26 21:52:57 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/28 16:14:37 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core/camera.h"
-#include "core/draw.h"
 #include "core/engine.h"
 #include "core/game.h"
 #include "core/inputs.h"
-#include "core/physics.h"
 #include "core/world.h"
-#include "types/rgba.h"
-#include "types/vector2.h"
 #include <ft_printf.h>
 #include <ft_time.h>
-#include <math.h>
 #include <stdint.h>
 #include <sys/types.h>
-
-// void	printticks(t_gameenv *env)
-// {
-// 	static double	last = 0;
-// 	static double	middle = 0;
-// 	static int		fps = TICK;
-// 	static int		count = 0;
-//
-// 	middle = middle + env->frametime;
-// 	count++;
-// 	if (env->time - last >= 1)
-// 	{
-// 		middle /= count;
-// 		count = 0;
-// 		fps = 1 / middle;
-// 		env->smooth_fps = fps;
-// 		middle = env->frametime;
-// 		last = env->time;
-// 	}
-// }
 
 int	engine_tick(t_engine *engine)
 {
@@ -80,9 +54,9 @@ static int	render_update(t_engine *engine)
 	window_drawbuffer(&engine->window);
 	draw_walls(&engine->window.buffer, *engine->map, engine->camera);
 	if (BONUS)
-		draw_minimap(&engine->window.buffer, engine->map, engine->camera);
-	if (BONUS)
 		update_sprites(1, engine->map->sprites, engine->camera);
+	draw_minimap(&engine->window.buffer, engine->map, engine->camera,
+		engine->mmap_zoom);
 	return (0);
 }
 

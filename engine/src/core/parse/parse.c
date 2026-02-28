@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 18:06:36 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/23 08:58:45 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/24 00:57:51 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ static int	check_possible_char(t_map *map)
 				j++;
 			else
 				break ;
+			if (BONUS)
+			{
+				if (j >= 8)
+					return (1);
+				break ;
+			}
 			if (j >= 7)
 				return (1);
 		}
@@ -70,7 +76,9 @@ static int	validate_map_content(t_map *map)
 		ft_printf(ERR_INVALID_CHAR);
 		return (1);
 	}
-	if (textures_path_checker(map))
+	if (BONUS && door_texture_path_checker(map))
+		return (1);
+	if (!BONUS && textures_path_checker(map))
 		return (1);
 	if (build_map_grid(map))
 		return (1);

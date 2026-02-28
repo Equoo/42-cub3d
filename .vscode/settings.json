@@ -1,4 +1,6 @@
 {
+    "C_formatter_42.path": "/home/saru/.local/share/pipx/venvs/c-formatter-42/bin/c_formatter_42"
+    ,
     "files.associations": {
         "math.h": "c",
         "trigo.h": "c"

@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 17:00:33 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/17 03:14:53 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/24 03:58:35 by zsonie           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "core/engine.h"
 #include "core/world.h"
 #include "types/vector2.h"
 #include <math.h>
@@ -21,7 +22,7 @@ static int	get_cell(t_map grid, int x, int y)
 	if (x < 0 || x >= grid.width || y < 0 || y >= grid.height)
 		return (1);
 	c = grid.cells[y * grid.width + x];
-	return (c == '1' || c == ' ');
+	return (c == '1' || c == ' ' || (BONUS && c == 'D'));
 }
 
 int	dda_core(t_vec2 *origin, t_dda data, t_map grid)
@@ -106,5 +107,6 @@ t_hit	dda_trace(t_vec2 pos, t_vec2 dir, t_map grid)
 	res = define_orient(side, vec2_sub(pos, origin), dir, data);
 	res.pos = vec2_add(origin, vec2_mulf(dir, res.dist));
 	res.hit = get_cell(grid, (int)pos.x, (int)pos.y);
+	res.cell = grid.cells[(int)pos.y * grid.width + (int)pos.x];
 	return (res);
 }

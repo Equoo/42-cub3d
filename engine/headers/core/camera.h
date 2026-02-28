@@ -16,6 +16,9 @@
 
 # define CAMERA_RADIUS 0.2f
 # define SPAWN_OFFSET 0.5f
+# define ROT_SPEED_MIN 0.5f
+# define ROT_SPEED_MAX 8.0f
+# define ROT_SPEED_STEP 0.5f
 
 typedef struct s_camera
 {

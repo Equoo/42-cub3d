@@ -2,6 +2,7 @@ NO game/textures/trump.xpm
 SO game/textures/trump.xpm
 WE game/textures/west.xpm
 EA game/textures/east.xpm
+CD ./game/textures/bonus/door.xpm
 
 F 46,80,137
 C 78,137,010

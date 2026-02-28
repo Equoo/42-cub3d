@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/28 16:00:39 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/28 16:13:38 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,8 @@ int	engine_initialize(t_engine *engine, int argc, char *argv[])
 {
 	t_map	map;
 
-	if (argc != 2)
-	{
-		ft_dprintf(2, "./cub3d exemple.cub\n");
+	if (argc != 2 && (ft_dprintf(2, "./cub3d exemple.cub\n") + 10))
 		return (1);
-	}
 	if (window_create(&engine->window, g_window, engine))
 		return (1);
 	map = (t_map){0};
@@ -58,6 +55,7 @@ int	engine_initialize(t_engine *engine, int argc, char *argv[])
 		.rot = {0, 0, dir_to_int(map.dir)}};
 	if (BONUS && sprites_init(engine))
 		return (1);
+	engine->mmap_zoom = ZOOM;
 	if (game_initialize(engine))
 		return (1);
 	window_loop(&engine->window);

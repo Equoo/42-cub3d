@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:21 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/28 16:03:37 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/28 16:11:31 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 # define SIZE 200
 # define SIZEHALF 100
 # define ZOOM 15.f
+# define ZOOM_MIN 3.f
+# define ZOOM_MAX 30.f
+# define ZOOM_STEP 1.f
 # define MMAP_PLY_SIZE 3.f
 
 # define SPRITES_SIZE 1
@@ -73,6 +76,7 @@ typedef struct s_hit
 	t_vec2		pos;
 	t_orient	dir;
 	float		dist;
+	char		cell;
 }				t_hit;
 
 typedef struct s_dda
@@ -92,6 +96,8 @@ typedef struct s_map
 	char		**grid;
 	t_image		textures[4];
 	char		*tex_paths[4];
+	t_image		door_texture;
+	char		*door_tex_path;
 	t_rgba		ceiling;
 	t_rgba		floor;
 	t_vec2		spawn;
@@ -125,7 +131,8 @@ int				map_destroy(void *mlx, t_map *map);
 
 int				load_map(void *mlx, t_map *map);
 
-void			draw_minimap(t_image *buffer, t_map *map, t_camera camera);
+void			draw_minimap(t_image *buffer, t_map *map, t_camera camera,
+					float zoom);
 
 int				update_sprites(int len, t_sprite *sprites, t_camera cam);
 int				draw_sprites(t_draw_ctx *ctx, float dist);

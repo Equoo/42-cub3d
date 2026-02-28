@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 02:53:52 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/28 16:03:52 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/28 18:55:58 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 int	engine_close(t_engine *engine)
 {
-	if (engine && engine->map)
-		map_destroy(engine->window.mlx, engine->map);
+	if (engine)
+		map_destroy(engine->window.mlx, &engine->map);
 	if (engine->sprite.img)
 		mlx_destroy_image(engine->window.mlx, engine->sprite.img);
 	garbage_collector(engine->garbage);

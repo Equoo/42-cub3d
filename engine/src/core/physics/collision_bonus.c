@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 06:15:54 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/23 23:55:16 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/28 18:57:29 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	move_with_collision(t_engine *engine, float dx, float dy)
 	float		ny;
 
 	cam = &engine->camera;
-	map = engine->map;
+	map = &engine->map;
 	nx = cam->pos.x + dx;
 	ny = cam->pos.y + dy;
 	if (!collides(map, nx, ny))

@@ -18,6 +18,9 @@ include engine_bonus.mk
 ifneq ($(filter bonus,$(MAKECMDGOALS)),)
 	SRCS += $(SRCS_BONUS)
 endif
+ifneq ($(filter test_bonus,$(MAKECMDGOALS)),)
+	SRCS += $(SRCS_BONUS)
+endif
 
 OBJS = ${patsubst %.c,$(DIR_OBJ)%.o, $(shell echo $(SRCS) | sed "s|/$(SRC_DIR)|/|g")}
 DEPS = ${patsubst %.o,%.d, $(OBJS)}
@@ -52,6 +55,9 @@ all: $(NAME)
 
 test: export CFLAGS += -DUNITTEST=1
 test: all
+
+test_bonus: export CFLAGS += -DUNITTEST=1
+test_bonus: bonus
 
 .PHONY: bonus
 bonus: export CFLAGS += -DBONUS=1

@@ -6,7 +6,7 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 17:43:39 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/28 18:04:22 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/28 18:56:15 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	sprites_init(void *e)
 	if (image_from_xpm(engine->window.mlx, "game/textures/smoke.xpm",
 			&engine->sprite))
 		return (1);
-	map = engine->map;
+	map = &engine->map;
 	map->sprites = vec_new(engine->garbage, sizeof(t_sprite), 4);
 	if (!map->sprites)
 		return (1);

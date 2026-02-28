@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/20 04:49:03 by zsonie            #+#    #+#             */
-/*   Updated: 2026/02/23 08:31:33 by zsonie           ###   ########lyon.fr   */
+/*   Updated: 2026/02/28 19:03:18 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ static void	free_tex_paths(t_map *map)
 			map->tex_paths[i] = NULL;
 		}
 		i++;
+	}
+	if (map->door_tex_path)
+	{
+		free(map->door_tex_path);
+		map->door_tex_path = NULL;
 	}
 }
 

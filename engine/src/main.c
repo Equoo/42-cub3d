@@ -6,7 +6,7 @@
 /*   By: zsonie <zsonie@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/14 16:14:42 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/28 16:39:31 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/28 18:54:30 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,20 @@ static const t_window	g_window = {.mousedown = &inputs_mousedown,
 
 int	engine_initialize(t_engine *engine, int argc, char *argv[])
 {
-	t_map	map;
+	t_map	*map;
 
+	map = &engine->map;
 	if (argc != 2 && (ft_dprintf(2, "./cub3d exemple.cub\n") + 10))
 		return (1);
 	if (window_create(&engine->window, g_window, engine))
 		return (1);
-	map = (t_map){0};
-	if (map_init(argv[1], &map))
+	if (map_init(argv[1], map))
 		return (1);
-	if (load_map(engine->window.mlx, &map))
+	if (load_map(engine->window.mlx, map))
 		return (1);
-	engine->map = &map;
 	engine->camera = (t_camera){.speed = 2.0f, .rot_speed = 2.0f, .fov = 75,
-		.pos = {map.spawn.x + SPAWN_OFFSET, map.spawn.y + SPAWN_OFFSET, 0},
-		.rot = {0, 0, dir_to_int(map.dir)}};
+		.pos = {map->spawn.x + SPAWN_OFFSET, map->spawn.y + SPAWN_OFFSET, 0},
+		.rot = {0, 0, dir_to_int(map->dir)}};
 	engine->mmap_zoom = ZOOM;
 	if (BONUS && sprites_init(engine))
 		return (1);

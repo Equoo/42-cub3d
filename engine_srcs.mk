@@ -1,18 +1,17 @@
 # Auto-generated file, do not edit!
-SRCS += engine/src/update.c \
-engine/src/core/draw/drawing.c \
+SRCS += engine/src/core/draw/drawing.c \
 engine/src/core/inputs/lib.c \
 engine/src/core/inputs/keyboard.c \
 engine/src/core/inputs/apply.c \
- \
 engine/src/core/inputs/mouse.c \
+ \
 engine/src/core/parse/grid_build.c \
 engine/src/core/parse/flood_fill.c \
 engine/src/core/parse/utils/debug.c \
 engine/src/core/parse/utils/err.c \
-engine/src/core/parse/utils/free.c \
 engine/src/core/parse/utils/check.c \
 engine/src/core/parse/utils/utils.c \
+engine/src/core/parse/utils/free.c \
 engine/src/core/parse/assign.c \
 engine/src/core/parse/assign_textures.c \
 engine/src/core/parse/path_format.c \
@@ -72,5 +71,6 @@ engine/src/types/vector3/operators_by.c \
 engine/src/types/vector3/other_operators.c \
 engine/src/types/vector3/other_operators_by.c \
 engine/src/types/vector3/rotation.c \
-engine/src/close.c \
-engine/src/main.c
+engine/src/main.c \
+engine/src/update.c \
+engine/src/close.c

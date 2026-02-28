@@ -6,17 +6,17 @@
 /*   By: dderny <dderny@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 17:43:39 by dderny            #+#    #+#             */
-/*   Updated: 2026/02/28 18:03:03 by dderny           ###   ########.fr       */
+/*   Updated: 2026/02/28 18:04:22 by dderny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdint.h>
 #include "core/camera.h"
 #include "core/game.h"
 #include "core/world.h"
 #include "ft_vector.h"
 #include "math/extend.h"
 #include "types/vector2.h"
+#include <stdint.h>
 
 static float	dist(float a, float b)
 {
@@ -70,7 +70,8 @@ static int	calc_params(t_wall_params *params, t_sprite *sprite, int x,
 	params->img_off = (height_diff * img.height) / (HALF_DIVISOR
 			* params->w_height);
 	params->img_step = (float)img.height / (float)params->w_height;
-	params->img_x += (int64_t)(*sprite->time * 10) % 6 * (sprite->tex.width / 8);
+	params->img_x += (int64_t)(*sprite->time * 10) % 6 * (sprite->tex.width
+			/ 8);
 	return (0);
 }
 

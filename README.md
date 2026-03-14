@@ -1,6 +1,6 @@
 *This project has been created as part of the 42 curriculum by zsonie, dderny.*
 
-# cub3D — My first RayCaster with miniLibX
+# cub3D — A RayCaster
 
 ## Description
 
@@ -15,6 +15,12 @@ The project is implemented in C using the miniLibX graphics library. It renders 
 - A Unix-based system (Linux or macOS)
 - The miniLibX library (included or available on your system)
 - `make`
+
+### Cloning
+
+```bash
+git clone https://github.com/Equoo/42-cub3d.git --recursive
+```
 
 ### Compilation
 

@@ -13,7 +13,7 @@
    fun:_dl_open
 }
 {
-   MLX_XOpenDisplay_err
+   XOpenDisplay
    Memcheck:Param
    writev(vector[0])
    ...

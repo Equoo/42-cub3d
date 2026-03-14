@@ -3,8 +3,6 @@ SO ./game/textures/south.xpm
 WE ./game/textures/west.xpm
 EA ./game/textures/east.xpm
 
-
-
 F 220,100,0
 C 225,30,0
 
